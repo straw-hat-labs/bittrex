@@ -1,8 +1,11 @@
 defmodule Bittrex.Order do
   alias Bittrex.Interactor.Order.{CancelOrder}
-  alias Bittrex.Order
+  alias Bittrex.{Order, Market}
 
-  defstruct [:id, :quantity, :price, :rate, :type, :total, :fill_type]
+  defstruct [:id, :quantity, :quantity_remaining, :price, :type,
+             :total, :fill_type, :limit, :commision, :price_per_unit,
+             :opened, :closed, :cancelation_initiated, :immediate_or_cancel,
+             :is_conditional]
 
   def cancel_order(order_id) do
     CancelOrder.call(order_id)
@@ -15,13 +18,32 @@ defmodule Bittrex.Order do
   end
   def new(type, item) do
     %Order{
-      id: item["Id"] || item["uuid"],
+      id: get_order_id(item),
+      price: get_price(item),
+      type: type,
       quantity: item["Quantity"],
-      price: item["Price"],
+      quantity_remaining: item["QuantityRemaining"],
       total: item["Total"],
-      rate: item["Rate"],
       fill_type: item["FillType"],
-      type: type
+      limit: item["Limit"],
+      commision: item["CommissionPaid"],
+      price_per_unit: item["PricePerUnit"],
+      opened: Bittrex.format_datetime(item["Opened"]),
+      closed: Bittrex.format_datetime(item["Closed"]),
+      cancelation_initiated: item["CancelInitiated"],
+      immediate_or_cancel: item["ImmediateOrCancel"],
+      is_conditional: item["IsConditional"],
+      market: %Market{
+        name: item["Exchange"]
+      }
     }
+  end
+
+  defp get_order_id(item) do
+    item["Id"] || item["Uuid"] || item["uuid"] || item["OrderUuid"]
+  end
+
+  defp get_price(item) do
+    item["Rate"] || item["Price"]
   end
 end

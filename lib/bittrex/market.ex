@@ -1,7 +1,7 @@
 defmodule Bittrex.Market do
   alias Bittrex.{Market, Currency}
   alias Bittrex.Interactor.Market.{
-    GetMarkets, GetMarketHistory, BuyLimit, SellLimit}
+    GetMarkets, GetMarketHistory, BuyLimit, SellLimit, GetOpenOrders}
 
   defstruct [:name, :display_name, :minimum_trade, :active, :created_at,
              :base_currency, :market_currency, :volume]
@@ -20,6 +20,10 @@ defmodule Bittrex.Market do
 
   def sell_limit(market_name, quantity, rate) do
     SellLimit.call(market_name, quantity, rate)
+  end
+
+  def get_open_orders(market_name) do
+    GetOpenOrders.call(market_name)
   end
 
   def new(item) do
