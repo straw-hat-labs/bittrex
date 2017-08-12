@@ -3,7 +3,7 @@ defmodule Bittrex.Mixfile do
 
   @elixir_version "~> 1.4"
   @name :bittrex
-  @version "0.1.0"
+  @version "0.3.0"
   @description """
     Client for Bittrex (https://bittrex.com)
   """
