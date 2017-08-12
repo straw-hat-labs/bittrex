@@ -1,7 +1,12 @@
 defmodule Bittrex.Order do
+  alias Bittrex.Interactor.Order.{CancelOrder}
   alias Bittrex.Order
 
   defstruct [:id, :quantity, :price, :rate, :type, :total, :fill_type]
+
+  def cancel_order(order_id) do
+    CancelOrder.call(order_id)
+  end
 
   def new(item) do
     item["OrderType"]
