@@ -4,8 +4,8 @@
 - [x] public/getmarkets
 - [x] public/getcurrencies
 - [x] public/getticker
-- [ ] public/getmarketsummaries
-- [ ] public/getmarketsummary
+- [x] public/getmarketsummaries
+- [x] public/getmarketsummary
 - [ ] public/getorderbook (Order)
 - [ ] public/getmarkethistory (History)
 - [ ] /market/buylimit (Market)
