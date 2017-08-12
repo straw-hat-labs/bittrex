@@ -8,18 +8,18 @@
 - [x] public/getmarketsummary
 - [x] public/getorderbook
 - [x] public/getmarkethistory
-- [ ] /market/buylimit (Market)
-- [ ] /market/selllimit (Market)
-- [ ] /market/cancel (Market)
-- [ ] /market/getopenorders (Market)
-- [ ] /account/getbalances (Account)
-- [ ] /account/getbalance (Account)
-- [ ] /account/getdepositaddress (Account)
-- [ ] /account/withdraw (Account)
-- [ ] /account/getorder (Account)
-- [ ] /account/getorderhistory (Account)
-- [ ] /account/getwithdrawalhistory (Account)
-- [ ] /account/getdeposithistory (Account)
+- [x] /market/buylimit
+- [x] /market/selllimit
+- [x] /market/cancel
+- [x] /market/getopenorders
+- [ ] /account/getbalances
+- [ ] /account/getbalance
+- [ ] /account/getdepositaddress
+- [ ] /account/withdraw
+- [ ] /account/getorder
+- [ ] /account/getorderhistory
+- [ ] /account/getwithdrawalhistory
+- [ ] /account/getdeposithistory
 
 
 
