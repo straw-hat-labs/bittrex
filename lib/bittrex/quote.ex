@@ -3,7 +3,7 @@ defmodule Bittrex.Quote do
 
   defstruct [:market, :bid, :ask, :last]
 
-  def get_quote(market) do
-    GetQuote.call(market)
+  def get_quote(market_name) do
+    GetQuote.call(market_name)
   end
 end
