@@ -6,7 +6,7 @@
 - [x] public/getticker
 - [x] public/getmarketsummaries
 - [x] public/getmarketsummary
-- [ ] public/getorderbook (Order)
+- [x] public/getorderbook
 - [ ] public/getmarkethistory (History)
 - [ ] /market/buylimit (Market)
 - [ ] /market/selllimit (Market)
