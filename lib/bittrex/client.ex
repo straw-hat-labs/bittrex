@@ -50,7 +50,7 @@ defmodule Bittrex.Client do
   defp format_response({:ok, data}) do
     case data["success"] do
       true -> {:ok, data["result"]}
-      false -> {:error, data["result"]}
+      false -> {:error, data["message"]}
     end
   end
   defp format_response({:error, reason}), do: {:error, reason}

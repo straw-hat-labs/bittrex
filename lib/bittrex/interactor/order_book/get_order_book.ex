@@ -18,6 +18,6 @@ defmodule Bittrex.Interactor.OrderBook.GetOrderBook do
     do: OrderBook.new([], result)
   defp format_response({:ok, result}, _type),
     do: OrderBook.new(result["buy"], result["sell"])
-  defp format_response({:error, _result}, _type),
-    do: []
+  defp format_response({:error, message}, _type),
+    do: {:error, message}
 end

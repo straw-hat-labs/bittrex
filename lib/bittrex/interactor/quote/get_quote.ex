@@ -10,6 +10,6 @@ defmodule Bittrex.Interactor.Quote.GetQuote do
 
   defp format_response({:ok, result}, market_name),
     do: Quote.new(market_name, result)
-  defp format_response({:error, _result}, _market_name),
-    do: nil
+  defp format_response({:error, message}, _market_name),
+    do: {:error, message}
 end
