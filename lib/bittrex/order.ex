@@ -5,7 +5,7 @@ defmodule Bittrex.Order do
   defstruct [:id, :quantity, :quantity_remaining, :price, :type,
              :total, :fill_type, :limit, :commision, :price_per_unit,
              :opened, :closed, :cancelation_initiated, :immediate_or_cancel,
-             :is_conditional]
+             :is_conditional, :market]
 
   def cancel_order(order_id) do
     CancelOrder.call(order_id)
