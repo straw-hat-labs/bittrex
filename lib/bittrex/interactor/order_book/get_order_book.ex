@@ -1,4 +1,6 @@
 defmodule Bittrex.Interactor.OrderBook.GetOrderBook do
+  @moduledoc false
+
   use Bittrex.Interactor
   alias Bittrex.{OrderBook}
 

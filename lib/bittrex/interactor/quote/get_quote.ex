@@ -1,4 +1,6 @@
 defmodule Bittrex.Interactor.Quote.GetQuote do
+  @moduledoc false
+
   use Bittrex.Interactor
   alias Bittrex.Quote
 

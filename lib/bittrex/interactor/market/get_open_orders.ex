@@ -1,4 +1,6 @@
 defmodule Bittrex.Interactor.Market.GetOpenOrders do
+  @moduledoc false
+
   use Bittrex.Interactor
   alias Bittrex.Order
 

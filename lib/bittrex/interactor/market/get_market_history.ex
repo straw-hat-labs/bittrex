@@ -1,4 +1,6 @@
 defmodule Bittrex.Interactor.Market.GetMarketHistory do
+  @moduledoc false
+
   use Bittrex.Interactor
   alias Bittrex.Order
 

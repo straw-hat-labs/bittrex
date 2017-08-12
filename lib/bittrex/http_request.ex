@@ -1,4 +1,6 @@
 defmodule Bittrex.HttpRequest do
+  @moduledoc false
+
   @base_url Application.get_env(:bittrex, :base_url, "https://bittrex.com/api/")
   @version Application.get_env(:bittrex, :version, "v1.1")
 

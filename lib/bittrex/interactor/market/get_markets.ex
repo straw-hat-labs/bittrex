@@ -1,4 +1,6 @@
 defmodule Bittrex.Interactor.Market.GetMarkets do
+  @moduledoc false
+
   use Bittrex.Interactor
   alias Bittrex.Market
 

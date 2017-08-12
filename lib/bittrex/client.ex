@@ -1,4 +1,6 @@
 defmodule Bittrex.Client do
+  @moduledoc false
+
   alias Bittrex.HttpRequest
 
   def send(%HttpRequest{} = request) do
