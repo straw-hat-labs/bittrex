@@ -10,7 +10,7 @@ defmodule Bittrex.Order do
   end
   def new(type, item) do
     %Order{
-      id: item["Id"],
+      id: item["Id"] || item["uuid"],
       quantity: item["Quantity"],
       price: item["Price"],
       total: item["Total"],
