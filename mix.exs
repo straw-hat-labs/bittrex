@@ -42,6 +42,7 @@ defmodule Bittrex.Mixfile do
       {:poison, "~> 3.1"},
       {:httpoison, "~> 0.12"},
 
+      {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
     ]
   end
