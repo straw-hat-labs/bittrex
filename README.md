@@ -1,17 +1,17 @@
 # Bittrex
 
 ### API Endpoints
-- [x] public/getmarkets
-- [x] public/getcurrencies
-- [x] public/getticker
-- [x] public/getmarketsummaries
-- [x] public/getmarketsummary
-- [x] public/getorderbook
-- [x] public/getmarkethistory
-- [x] /market/buylimit
-- [x] /market/selllimit
-- [x] /market/cancel
-- [x] /market/getopenorders
+- [ ] public/getmarkets
+- [ ] public/getcurrencies
+- [ ] public/getticker
+- [ ] public/getmarketsummaries
+- [ ] public/getmarketsummary
+- [ ] public/getorderbook
+- [ ] public/getmarkethistory
+- [ ] /market/buylimit
+- [ ] /market/selllimit
+- [ ] /market/cancel
+- [ ] /market/getopenorders
 - [ ] /account/getbalances
 - [ ] /account/getbalance
 - [ ] /account/getdepositaddress
