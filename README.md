@@ -1,28 +1,5 @@
 # Bittrex
 
-### API Endpoints
-- [x] public/getmarkets
-- [x] public/getcurrencies
-- [x] public/getticker
-- [x] public/getmarketsummaries
-- [x] public/getmarketsummary
-- [x] public/getorderbook
-- [x] public/getmarkethistory
-- [x] /market/buylimit
-- [x] /market/selllimit
-- [x] /market/cancel
-- [x] /market/getopenorders
-- [x] /account/getbalances
-- [x] /account/getbalance
-- [x] /account/getdepositaddress
-- [x] /account/withdraw
-- [ ] /account/getorder
-- [ ] /account/getorderhistory
-- [ ] /account/getwithdrawalhistory
-- [ ] /account/getdeposithistory
-
-
-
 ## Installation
 
 Add `bittrex` to your list of dependencies in `mix.exs`:
