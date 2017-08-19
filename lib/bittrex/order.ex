@@ -1,12 +1,12 @@
 defmodule Bittrex.Order do
   alias Bittrex.Interactor.Order.{CancelOrder}
-  alias Bittrex.Order.OrderStatus
+  alias Bittrex.Order.{OrderStatus, OrderCondition}
   alias Bittrex.{Order, Market}
 
   defstruct [:id, :quantity, :quantity_remaining, :price, :type,
              :total, :fill_type, :limit, :commision, :price_per_unit,
              :status, :cancelation_initiated, :immediate_or_cancel,
-             :is_conditional, :market, :traded_at]
+             :condition, :market, :traded_at]
 
   def cancel_order(order_id) do
     CancelOrder.call(order_id)
@@ -33,7 +33,7 @@ defmodule Bittrex.Order do
       status: OrderStatus.new(item),
       cancelation_initiated: item["CancelInitiated"],
       immediate_or_cancel: item["ImmediateOrCancel"],
-      is_conditional: item["IsConditional"],
+      condition: OrderCondition.new(item),
       market: Market.new(item["Exchange"])
     }
   end
