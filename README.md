@@ -12,10 +12,10 @@
 - [x] /market/selllimit
 - [x] /market/cancel
 - [x] /market/getopenorders
-- [ ] /account/getbalances
-- [ ] /account/getbalance
-- [ ] /account/getdepositaddress
-- [ ] /account/withdraw
+- [x] /account/getbalances
+- [x] /account/getbalance
+- [x] /account/getdepositaddress
+- [x] /account/withdraw
 - [ ] /account/getorder
 - [ ] /account/getorderhistory
 - [ ] /account/getwithdrawalhistory
