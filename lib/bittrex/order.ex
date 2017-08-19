@@ -39,7 +39,7 @@ defmodule Bittrex.Order do
   end
 
   defp get_order_id(item) do
-    item["Uuid"] || item["uuid"] || item["OrderUuid"]
+    item["OrderUuid"] || item["Uuid"] || item["uuid"]
   end
 
   defp get_price(item) do
