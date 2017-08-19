@@ -7,7 +7,7 @@
 - [x] public/getmarketsummaries
 - [x] public/getmarketsummary
 - [x] public/getorderbook
-- [ ] public/getmarkethistory
+- [x] public/getmarkethistory
 - [ ] /market/buylimit
 - [ ] /market/selllimit
 - [ ] /market/cancel
