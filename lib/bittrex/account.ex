@@ -1,6 +1,6 @@
 defmodule Bittrex.Account do
   alias Bittrex.Interactor.Account.{
-    GetBalances, GetBalance, GetDepositAddress, Withdraw}
+    GetBalances, GetBalance, GetDepositAddress, Withdraw, GetOrderHistory}
 
   def get_balances do
     GetBalances.call()
@@ -16,5 +16,9 @@ defmodule Bittrex.Account do
 
   def withdraw(currency, quantity, address, paymentid) do
     Withdraw.call(currency, quantity, address, paymentid)
+  end
+
+  def get_order_history(market_name) do
+    GetOrderHistory.call(market_name)
   end
 end
