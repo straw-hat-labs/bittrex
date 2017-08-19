@@ -2,7 +2,7 @@ defmodule Bittrex.Interactor.Market.GetMarketHistory do
   @moduledoc false
 
   use Bittrex.Interactor
-  alias Bittrex.Order
+  alias Bittrex.MarketHistory
 
   def call(market_name) do
     HttpRequest.new(:get, "/public/getmarkethistory", [market: market_name])
@@ -12,7 +12,7 @@ defmodule Bittrex.Interactor.Market.GetMarketHistory do
 
   defp format_response({:ok, result}) do
     result
-    |> Enum.map(&Order.new/1)
+    |> Enum.map(&MarketHistory.new/1)
   end
   defp format_response({:error, message}), do: {:error, message}
 end
