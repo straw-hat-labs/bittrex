@@ -12,8 +12,9 @@ defmodule Bittrex.Order do
   end
 
   def new(item) do
-    item["OrderType"]
-    |> String.downcase()
+    item
+    |> get_order_type()
+    |> String.upcase()
     |> new(item)
   end
   def new(type, item) do
@@ -22,12 +23,18 @@ defmodule Bittrex.Order do
       price: get_price(item),
       type: type,
       traded_at: Bittrex.format_datetime(item["TimeStamp"]),
-      quantity: item["Quantity"],
-      quantity_remaining: item["QuantityRemaining"],
+      quantity: %{
+        value: item["Quantity"],
+        remaining: item["QuantityRemaining"]
+      },
       total: item["Total"],
       fill_type: item["FillType"],
       limit: item["Limit"],
-      commision: item["CommissionPaid"],
+      commision: %{
+        paid: item["CommissionPaid"],
+        reserved: item["CommissionReserved"],
+        reserved_remaining: item["CommissionReserveRemaining"]
+      },
       price_per_unit: item["PricePerUnit"],
       status: OrderStatus.new(item),
       condition: OrderCondition.new(item),
@@ -41,5 +48,9 @@ defmodule Bittrex.Order do
 
   defp get_price(item) do
     item["Rate"] || item["Price"]
+  end
+
+  defp get_order_type(item) do
+    item["OrderType"] || item["Type"]
   end
 end
