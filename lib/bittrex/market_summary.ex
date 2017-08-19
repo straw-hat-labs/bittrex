@@ -5,7 +5,7 @@ defmodule Bittrex.MarketSummary do
   }
 
   defstruct [:created_at, :market, :quote, :last_hour_status, :orders_status,
-             :previous_day]
+             :previous_day, :snapshot_at]
 
   def get_market_summaries do
     GetMarketSummaries.call()
@@ -25,6 +25,7 @@ defmodule Bittrex.MarketSummary do
     %MarketSummary{
       market: market,
       created_at: Bittrex.format_datetime(item["Created"]),
+      snapshot_at: Bittrex.format_datetime(item["TimeStamp"]),
       previous_day: item["PrevDay"],
       last_hour_status: %HourStatus{
         lowest: item["Low"],
