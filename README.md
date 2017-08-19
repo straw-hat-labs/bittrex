@@ -11,7 +11,7 @@
 - [x] /market/buylimit
 - [x] /market/selllimit
 - [x] /market/cancel
-- [ ] /market/getopenorders
+- [x] /market/getopenorders
 - [ ] /account/getbalances
 - [ ] /account/getbalance
 - [ ] /account/getdepositaddress
