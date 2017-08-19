@@ -5,7 +5,8 @@ defmodule Bittrex.Interactor.Account.GetDepositHistory do
   alias Bittrex.Payment
 
   def call(currency) do
-    HttpRequest.new(:get, "/account/getdeposithistory", [currency: currency])
+    :get
+    |> HttpRequest.new("/account/getdeposithistory", [currency: currency])
     |> Client.send()
     |> format_response()
   end

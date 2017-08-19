@@ -5,7 +5,8 @@ defmodule Bittrex.Interactor.Account.GetBalance do
   alias Bittrex.Account.AccountBalance
 
   def call(currency) do
-    HttpRequest.new(:get, "/account/getbalance", [currency: currency])
+    :get
+    |> HttpRequest.new("/account/getbalance", [currency: currency])
     |> Client.send()
     |> format_response()
   end

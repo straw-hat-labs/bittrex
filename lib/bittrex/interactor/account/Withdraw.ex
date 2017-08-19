@@ -12,7 +12,8 @@ defmodule Bittrex.Interactor.Account.Withdraw do
       paymentid: paymentid
     ]
 
-    HttpRequest.new(:get, "/account/withdraw", params)
+    :get
+    |> HttpRequest.new("/account/withdraw", params)
     |> Client.send()
     |> format_response()
   end

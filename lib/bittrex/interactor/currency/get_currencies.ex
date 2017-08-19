@@ -5,7 +5,8 @@ defmodule Bittrex.Interactor.Currency.GetCurrencies do
   alias Bittrex.Currency
 
   def call do
-    HttpRequest.new(:get, "/public/getcurrencies")
+    :get
+    |> HttpRequest.new("/public/getcurrencies")
     |> Client.send()
     |> format_response()
   end

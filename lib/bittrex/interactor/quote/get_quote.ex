@@ -5,7 +5,8 @@ defmodule Bittrex.Interactor.Quote.GetQuote do
   alias Bittrex.Quote
 
   def call(market_name) do
-    HttpRequest.new(:get, "/public/getticker", [market: market_name])
+    :get
+    |> HttpRequest.new("/public/getticker", [market: market_name])
     |> Client.send()
     |> format_response(market_name)
   end

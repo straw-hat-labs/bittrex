@@ -5,7 +5,8 @@ defmodule Bittrex.Interactor.Account.GetWithdrawalHistory do
   alias Bittrex.Payment
 
   def call(currency) do
-    HttpRequest.new(:get, "/account/getwithdrawalhistory", [currency: currency])
+    :get
+    |> HttpRequest.new("/account/getwithdrawalhistory", [currency: currency])
     |> Client.send()
     |> format_response()
   end

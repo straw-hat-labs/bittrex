@@ -9,7 +9,8 @@ defmodule Bittrex.Interactor.OrderBook.GetOrderBook do
       market: market_name,
       type: type]
 
-    HttpRequest.new(:get, "/public/getorderbook", params)
+    :get
+    |> HttpRequest.new("/public/getorderbook", params)
     |> Client.send()
     |> format_response(type)
   end

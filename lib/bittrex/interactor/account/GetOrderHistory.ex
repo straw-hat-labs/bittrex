@@ -5,7 +5,8 @@ defmodule Bittrex.Interactor.Account.GetOrderHistory do
   alias Bittrex.Order
 
   def call(market_name) do
-    HttpRequest.new(:get, "/account/getorderhistory", [market: market_name])
+    :get
+    |> HttpRequest.new("/account/getorderhistory", [market: market_name])
     |> Client.send()
     |> format_response()
   end

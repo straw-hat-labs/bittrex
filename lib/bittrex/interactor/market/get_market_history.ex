@@ -5,7 +5,8 @@ defmodule Bittrex.Interactor.Market.GetMarketHistory do
   alias Bittrex.MarketHistory
 
   def call(market_name) do
-    HttpRequest.new(:get, "/public/getmarkethistory", [market: market_name])
+    :get
+    |> HttpRequest.new("/public/getmarkethistory", [market: market_name])
     |> Client.send()
     |> format_response()
   end

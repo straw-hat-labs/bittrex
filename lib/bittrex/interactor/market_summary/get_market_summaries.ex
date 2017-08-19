@@ -5,7 +5,8 @@ defmodule Bittrex.Interactor.MarketSummary.GetMarketSummaries do
   alias Bittrex.MarketSummary
 
   def call do
-    HttpRequest.new(:get, "/public/getmarketsummaries")
+    :get
+    |> HttpRequest.new("/public/getmarketsummaries")
     |> Client.send()
     |> format_response()
   end

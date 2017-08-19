@@ -11,7 +11,8 @@ defmodule Bittrex.Interactor.Market.BuyLimit do
       rate: rate
     ]
 
-    HttpRequest.new(:get, "/market/buylimit", params)
+    :get
+    |> HttpRequest.new("/market/buylimit", params)
     |> Client.send()
     |> format_response()
   end

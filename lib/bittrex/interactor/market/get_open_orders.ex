@@ -5,7 +5,8 @@ defmodule Bittrex.Interactor.Market.GetOpenOrders do
   alias Bittrex.Order
 
   def call(market_name) do
-    HttpRequest.new(:get, "/market/getopenorders", [market: market_name])
+    :get
+    |> HttpRequest.new("/market/getopenorders", [market: market_name])
     |> Client.send()
     |> format_response()
   end

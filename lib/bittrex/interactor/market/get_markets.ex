@@ -5,7 +5,8 @@ defmodule Bittrex.Interactor.Market.GetMarkets do
   alias Bittrex.Market
 
   def call do
-    HttpRequest.new(:get, "/public/getmarkets")
+    :get
+    |> HttpRequest.new("/public/getmarkets")
     |> Client.send()
     |> format_response()
   end

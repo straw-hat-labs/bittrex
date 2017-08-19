@@ -5,7 +5,8 @@ defmodule Bittrex.Interactor.Account.GetOrder do
   alias Bittrex.Order
 
   def call(id) do
-    HttpRequest.new(:get, "/account/getorder", [uuid: id])
+    :get
+    |> HttpRequest.new("/account/getorder", [uuid: id])
     |> Client.send()
     |> format_response()
   end
