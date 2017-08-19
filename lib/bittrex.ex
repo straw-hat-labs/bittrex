@@ -24,6 +24,7 @@ defmodule Bittrex do
     :os.system_time(:milli_seconds)
   end
 
+  def format_datetime(nil), do: nil
   def format_datetime(datetime_string) do
     case NaiveDateTime.from_iso8601(datetime_string) do
       {:ok, date} -> date
