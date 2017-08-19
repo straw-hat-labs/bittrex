@@ -8,8 +8,8 @@
 - [x] public/getmarketsummary
 - [x] public/getorderbook
 - [x] public/getmarkethistory
-- [ ] /market/buylimit
-- [ ] /market/selllimit
+- [x] /market/buylimit
+- [x] /market/selllimit
 - [ ] /market/cancel
 - [ ] /market/getopenorders
 - [ ] /account/getbalances
