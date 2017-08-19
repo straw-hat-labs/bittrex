@@ -11,7 +11,8 @@ defmodule Bittrex.Interactor.Account.GetDepositAddress do
   end
 
   defp format_response({:ok, result}) do
-    DepositAddress.new(result)
+    response = DepositAddress.new(result)
+    {:ok, response}
   end
   defp format_response({:error, message}), do: {:error, message}
 end

@@ -9,6 +9,6 @@ defmodule Bittrex.Interactor.Order.CancelOrder do
     |> format_response()
   end
 
-  defp format_response({:ok, _result}), do: true
+  defp format_response({:ok, _result}), do: {:ok, true}
   defp format_response({:error, message}), do: {:error, message}
 end

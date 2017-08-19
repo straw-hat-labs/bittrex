@@ -11,8 +11,8 @@ defmodule Bittrex.Interactor.Account.GetBalances do
   end
 
   defp format_response({:ok, result}) do
-    result
-    |> Enum.map(&AccountBalance.new/1)
+    response = Enum.map(result, &AccountBalance.new/1)
+    {:ok, response}
   end
   defp format_response({:error, message}), do: {:error, message}
 end

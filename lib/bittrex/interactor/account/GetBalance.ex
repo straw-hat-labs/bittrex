@@ -11,7 +11,8 @@ defmodule Bittrex.Interactor.Account.GetBalance do
   end
 
   defp format_response({:ok, result}) do
-    AccountBalance.new(result)
+    response = AccountBalance.new(result)
+    {:ok, response}
   end
   defp format_response({:error, message}), do: {:error, message}
 end

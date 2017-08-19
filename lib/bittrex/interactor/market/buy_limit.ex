@@ -17,7 +17,8 @@ defmodule Bittrex.Interactor.Market.BuyLimit do
   end
 
   defp format_response({:ok, result}) do
-    Order.new(result)
+    response = Order.new(result)
+    {:ok, response}
   end
   defp format_response({:error, message}), do: {:error, message}
 end

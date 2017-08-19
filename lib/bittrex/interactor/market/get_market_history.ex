@@ -11,8 +11,8 @@ defmodule Bittrex.Interactor.Market.GetMarketHistory do
   end
 
   defp format_response({:ok, result}) do
-    result
-    |> Enum.map(&MarketHistory.new/1)
+    response = Enum.map(result, &MarketHistory.new/1)
+    {:ok, response}
   end
   defp format_response({:error, message}), do: {:error, message}
 end

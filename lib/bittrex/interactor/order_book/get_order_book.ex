@@ -14,12 +14,17 @@ defmodule Bittrex.Interactor.OrderBook.GetOrderBook do
     |> format_response(type)
   end
 
-  defp format_response({:ok, result}, "buy"),
-    do: OrderBook.new(result, [])
-  defp format_response({:ok, result}, "sell"),
-    do: OrderBook.new([], result)
-  defp format_response({:ok, result}, _type),
-    do: OrderBook.new(result["buy"], result["sell"])
-  defp format_response({:error, message}, _type),
-    do: {:error, message}
+  defp format_response({:ok, result}, "buy") do
+    response = OrderBook.new(result, [])
+    {:ok, response}
+  end
+  defp format_response({:ok, result}, "sell") do
+    response = OrderBook.new([], result)
+    {:ok, response}
+  end
+  defp format_response({:ok, result}, _type) do
+    response = OrderBook.new(result["buy"], result["sell"])
+    {:ok, response}
+  end
+  defp format_response({:error, message}, _type), do: {:error, message}
 end

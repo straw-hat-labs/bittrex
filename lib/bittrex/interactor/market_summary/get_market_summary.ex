@@ -11,9 +11,12 @@ defmodule Bittrex.Interactor.MarketSummary.GetMarketSummary do
   end
 
   defp format_response({:ok, result}) do
-    result
-    |> List.first()
-    |> MarketSummary.new()
+    response =
+      result
+      |> List.first()
+      |> MarketSummary.new()
+
+    {:ok, response}
   end
   defp format_response({:error, message}), do: {:error, message}
 end
