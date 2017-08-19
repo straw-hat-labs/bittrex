@@ -10,7 +10,7 @@
 - [x] public/getmarkethistory
 - [x] /market/buylimit
 - [x] /market/selllimit
-- [ ] /market/cancel
+- [x] /market/cancel
 - [ ] /market/getopenorders
 - [ ] /account/getbalances
 - [ ] /account/getbalance
