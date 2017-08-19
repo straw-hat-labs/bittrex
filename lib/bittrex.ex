@@ -1,12 +1,14 @@
 defmodule Bittrex do
-  @credentials Application.get_env(:bittrex, :credentials)
+  def credentials do
+    Application.get_env(:bittrex, :credentials)
+  end
 
   def api_key do
-    @credentials[:api_key]
+    credentials() |> Keyword.get(:api_key)
   end
 
   def api_secret do
-    @credentials[:api_secret]
+    credentials() |> Keyword.get(:api_secret)
   end
 
   def get_api_sign(url) do
@@ -23,7 +25,9 @@ defmodule Bittrex do
   end
 
   def format_datetime(datetime_string) do
-    {:ok, date} = NaiveDateTime.from_iso8601(datetime_string)
-    date
+    case NaiveDateTime.from_iso8601(datetime_string) do
+      {:ok, date} -> date
+      _ -> nil
+    end
   end
 end

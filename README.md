@@ -1,7 +1,7 @@
 # Bittrex
 
 ### API Endpoints
-- [ ] public/getmarkets
+- [x] public/getmarkets
 - [ ] public/getcurrencies
 - [ ] public/getticker
 - [ ] public/getmarketsummaries
