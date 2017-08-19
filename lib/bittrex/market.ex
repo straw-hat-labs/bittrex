@@ -25,7 +25,8 @@ defmodule Bittrex.Market do
   def get_open_orders(market_name) do
     GetOpenOrders.call(market_name)
   end
-
+  
+  def new(name) when is_binary(name), do: %Market{name: name}
   def new(item) do
     %Market{
       name: item["MarketName"],
