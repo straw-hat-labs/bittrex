@@ -2,11 +2,11 @@
 
 ### API Endpoints
 - [x] public/getmarkets
-- [ ] public/getcurrencies
-- [ ] public/getticker
-- [ ] public/getmarketsummaries
-- [ ] public/getmarketsummary
-- [ ] public/getorderbook
+- [x] public/getcurrencies
+- [x] public/getticker
+- [x] public/getmarketsummaries
+- [x] public/getmarketsummary
+- [x] public/getorderbook
 - [ ] public/getmarkethistory
 - [ ] /market/buylimit
 - [ ] /market/selllimit
