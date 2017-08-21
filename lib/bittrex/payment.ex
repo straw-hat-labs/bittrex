@@ -24,7 +24,7 @@ defmodule Bittrex.Payment do
     }
   end
 
-  def get_paymeny_id(item) do
+  defp get_paymeny_id(item) do
     item["PaymentUuid"] || item["uuid"]
   end
 end

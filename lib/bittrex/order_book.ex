@@ -15,7 +15,7 @@ defmodule Bittrex.OrderBook do
     }
   end
 
-  def list_of_orders(list, type) do
+  defp list_of_orders(list, type) do
     list
     |> Enum.map(fn item -> Order.new(type, item) end)
   end
