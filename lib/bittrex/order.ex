@@ -5,7 +5,7 @@ defmodule Bittrex.Order do
 
   defstruct [:id, :quantity, :quantity_remaining, :price, :type,
              :total, :fill_type, :limit, :commision, :price_per_unit,
-             :status, :condition, :market, :traded_at]
+             :status, :condition, :market, :traded_at, :cancelation_initiated]
 
   def cancel_order(order_id) do
     CancelOrder.call(order_id)
@@ -38,6 +38,7 @@ defmodule Bittrex.Order do
       price_per_unit: item["PricePerUnit"],
       status: OrderStatus.new(item),
       condition: OrderCondition.new(item),
+      cancelation_initiated: item["CancelInitiated"],
       market: Market.new(item["Exchange"])
     }
   end
