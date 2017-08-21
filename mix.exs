@@ -22,7 +22,7 @@ defmodule Bittrex.Mixfile do
       deps: deps(),
       package: package(),
 
-      # ex_docs
+      # docs
       name: "Bittrex",
       source_url: @source_url,
       homepage_url: @source_url,
@@ -42,6 +42,7 @@ defmodule Bittrex.Mixfile do
       {:poison, "~> 3.1"},
       {:httpoison, "~> 0.12"},
 
+      # Tools
       {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
     ]
