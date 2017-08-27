@@ -3,16 +3,16 @@ defmodule Bittrex.Order.OrderStatus do
 
   defstruct [:name, :at]
 
-  def new(%{"Opened": nil} = order) do
+  def new(%{"Closed": closed_at} = order) do
     %OrderStatus{
-      name: "closed",
-      at: Bittrex.format_datetime(order["Closed"])
+      name: "CLOSED",
+      at: Bittrex.format_datetime(closed_at)
     }
   end
-  def new(order) do
+  def new(%{"Opened": opened_at} = order) do
     %OrderStatus{
-      name: "opened",
-      at: Bittrex.format_datetime(order["Opened"])
+      name: "OPENED",
+      at: Bittrex.format_datetime(opened_at)
     }
   end
 end
