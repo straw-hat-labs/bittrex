@@ -1,4 +1,5 @@
 defmodule Bittrex.Order.OrderStatus do
+  alias Bittrex.Order
   alias Bittrex.Order.OrderStatus
 
   defstruct [:name, :at]
@@ -15,4 +16,7 @@ defmodule Bittrex.Order.OrderStatus do
       at: Bittrex.format_datetime(opened_at)
     }
   end
+
+  def closed?(%Order{status: %OrderStatus{name: "CLOSED"}} = _order), do: true
+  def closed?(_order), do: false
 end
