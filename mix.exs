@@ -1,35 +1,28 @@
 defmodule Bittrex.Mixfile do
   use Mix.Project
 
-  @elixir_version "~> 1.5"
   @name :bittrex
   @version "0.5.2"
+  @elixir_version "~> 1.5"
+
   @description """
     Client for Bittrex (https://bittrex.com)
   """
-  @source_url "https://github.com/straw-hat-llc/elixir_bittrex"
+  @source_url "https://github.com/straw-hat-team/bittrex"
 
   def project do
-    production? = Mix.env == :prod
-
     [
-      app: @name,
+      name: "Bittrex",
       description: @description,
+
+      app: @name,
       version: @version,
       elixir: @elixir_version,
-      build_embedded: production?,
-      start_permanent: production?,
       deps: deps(),
-      package: package(),
 
-      # docs
-      name: "Bittrex",
-      source_url: @source_url,
-      homepage_url: @source_url,
-      docs: [
-        main: "Bittrex",
-        extras: ["README.md"]
-      ]
+      # Extras
+      package: package(),
+      docs: docs()
     ]
   end
 
@@ -44,7 +37,7 @@ defmodule Bittrex.Mixfile do
 
       # Tools
       {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
-      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
+      {:ex_doc, ">= 0.0.0", only: [:dev], runtime: false}
     ]
   end
 
@@ -60,6 +53,16 @@ defmodule Bittrex.Mixfile do
       maintainers: ["Yordis Prieto"],
       licenses: ["MIT"],
       links: %{"GitHub" => @source_url}
+    ]
+  end
+
+  defp docs do
+    [
+      main: "readme",
+      homepage_url: @source_url,
+      source_ref: "v#{@version}",
+      source_url: @source_url,
+      extras: ["README.md"]
     ]
   end
 end
