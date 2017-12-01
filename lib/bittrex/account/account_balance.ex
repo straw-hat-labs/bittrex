@@ -2,8 +2,7 @@ defmodule Bittrex.Account.AccountBalance do
   alias Bittrex.Currency
   alias Bittrex.Account.AccountBalance
 
-  defstruct [:id, :currency, :balance, :available, :pending, :wallet,
-             :requested]
+  defstruct [:id, :currency, :balance, :available, :pending, :wallet, :requested]
 
   def new(item) do
     %AccountBalance{

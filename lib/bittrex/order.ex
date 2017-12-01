@@ -3,10 +3,24 @@ defmodule Bittrex.Order do
   alias Bittrex.Order.{OrderStatus, OrderCondition, TradeMethod}
   alias Bittrex.{Order, Market}
 
-  defstruct [:id, :quantity, :quantity_remaining, :price, :type,
-             :total, :fill_type, :limit, :commision, :price_per_unit,
-             :status, :condition, :market, :traded_at,
-             :cancelation_initiated, :trade_method]
+  defstruct [
+    :id,
+    :quantity,
+    :quantity_remaining,
+    :price,
+    :type,
+    :total,
+    :fill_type,
+    :limit,
+    :commision,
+    :price_per_unit,
+    :status,
+    :condition,
+    :market,
+    :traded_at,
+    :cancelation_initiated,
+    :trade_method
+  ]
 
   def cancel_order(order_id) do
     CancelOrder.call(order_id)
@@ -18,6 +32,7 @@ defmodule Bittrex.Order do
     |> String.upcase()
     |> new(item)
   end
+
   def new(type, item) do
     %Order{
       id: get_order_id(item),

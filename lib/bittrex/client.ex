@@ -13,8 +13,7 @@ defmodule Bittrex.Client do
   end
 
   defp put_default_params(request) do
-    params = [apikey: Bittrex.api_key(),
-              nonce: Bittrex.nonce()]
+    params = [apikey: Bittrex.api_key(), nonce: Bittrex.nonce()]
 
     HttpRequest.put_params(request, params)
   end
@@ -25,21 +24,17 @@ defmodule Bittrex.Client do
       |> HttpRequest.full_url()
       |> Bittrex.get_api_sign()
 
-    HttpRequest.put_header(request, [apisign: apisign])
+    HttpRequest.put_header(request, apisign: apisign)
   end
 
   defp execute_request(request) do
-    HTTPoison.request(
-      request.method,
-      request.url,
-      "",
-      request.headers,
-      [params: request.params])
+    HTTPoison.request(request.method, request.url, "", request.headers, params: request.params)
   end
 
   defp process_response({:ok, %{status_code: 200, body: body} = _response}) do
     decode_response(body)
   end
+
   defp process_response({:error, reason}), do: {:error, reason}
 
   defp decode_response(body) do
@@ -55,5 +50,6 @@ defmodule Bittrex.Client do
       false -> {:error, data["message"]}
     end
   end
+
   defp format_response({:error, reason}), do: {:error, reason}
 end

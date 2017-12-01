@@ -1,11 +1,20 @@
 defmodule Bittrex.MarketSummary do
   alias Bittrex.{HourStatus, Quote, Market, MarketSummary}
+
   alias Bittrex.Interactor.MarketSummary.{
-    GetMarketSummaries, GetMarketSummary
+    GetMarketSummaries,
+    GetMarketSummary
   }
 
-  defstruct [:created_at, :market, :quote, :last_hour_status, :orders_status,
-             :previous_day, :snapshot_at]
+  defstruct [
+    :created_at,
+    :market,
+    :quote,
+    :last_hour_status,
+    :orders_status,
+    :previous_day,
+    :snapshot_at
+  ]
 
   def get_market_summaries do
     GetMarketSummaries.call()
@@ -29,7 +38,7 @@ defmodule Bittrex.MarketSummary do
       previous_day: item["PrevDay"],
       last_hour_status: %HourStatus{
         lowest: item["Low"],
-        highest: item["High"],
+        highest: item["High"]
       },
       quote: %Quote{
         market: market,

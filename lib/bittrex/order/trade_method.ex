@@ -3,11 +3,12 @@ defmodule Bittrex.Order.TradeMethod do
 
   defstruct [:code]
 
-  def new(%{"ImmediateOrCancel": true} = _order) do
+  def new(%{ImmediateOrCancel: true} = _order) do
     %TradeMethod{
       code: "IOC"
     }
   end
+
   def new(_order) do
     %TradeMethod{
       code: "GTC"

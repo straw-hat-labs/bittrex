@@ -15,5 +15,6 @@ defmodule Bittrex.Interactor.Currency.GetCurrencies do
     response = Enum.map(result, &Currency.new/1)
     {:ok, response}
   end
+
   defp format_response({:error, message}), do: {:error, message}
 end

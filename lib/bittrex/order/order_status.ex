@@ -10,6 +10,7 @@ defmodule Bittrex.Order.OrderStatus do
       at: Bittrex.format_datetime(closed_at)
     }
   end
+
   def new(%{"Opened" => opened_at} = _order) do
     %OrderStatus{
       name: "OPENED",

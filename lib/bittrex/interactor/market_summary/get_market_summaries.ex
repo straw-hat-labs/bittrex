@@ -15,5 +15,6 @@ defmodule Bittrex.Interactor.MarketSummary.GetMarketSummaries do
     response = Enum.map(result, &MarketSummary.new/1)
     {:ok, response}
   end
+
   defp format_response({:error, message}), do: {:error, message}
 end

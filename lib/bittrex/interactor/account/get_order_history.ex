@@ -6,7 +6,7 @@ defmodule Bittrex.Interactor.Account.GetOrderHistory do
 
   def call(market_name) do
     :get
-    |> HttpRequest.new("/account/getorderhistory", [market: market_name])
+    |> HttpRequest.new("/account/getorderhistory", market: market_name)
     |> Client.send()
     |> format_response()
   end
@@ -15,5 +15,6 @@ defmodule Bittrex.Interactor.Account.GetOrderHistory do
     response = Enum.map(result, &Order.new/1)
     {:ok, response}
   end
+
   defp format_response({:error, message}), do: {:error, message}
 end

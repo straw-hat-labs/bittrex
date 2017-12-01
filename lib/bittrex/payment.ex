@@ -1,8 +1,18 @@
 defmodule Bittrex.Payment do
   alias Bittrex.{Payment, Currency}
 
-  defstruct [:id, :currency, :amount, :opened_at, :authorized, :pending,
-             :transaction, :canceled, :wallet, :invalid_wallet]
+  defstruct [
+    :id,
+    :currency,
+    :amount,
+    :opened_at,
+    :authorized,
+    :pending,
+    :transaction,
+    :canceled,
+    :wallet,
+    :invalid_wallet
+  ]
 
   def new(item) do
     %Payment{

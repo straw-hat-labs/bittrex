@@ -15,5 +15,6 @@ defmodule Bittrex.Interactor.Market.GetMarkets do
     response = Enum.map(result, &Market.new/1)
     {:ok, response}
   end
+
   defp format_response({:error, message}), do: {:error, message}
 end

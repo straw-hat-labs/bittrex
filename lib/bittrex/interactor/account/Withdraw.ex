@@ -22,5 +22,6 @@ defmodule Bittrex.Interactor.Account.Withdraw do
     response = Payment.new(result)
     {:ok, response}
   end
+
   defp format_response({:error, message}), do: {:error, message}
 end

@@ -6,7 +6,7 @@ defmodule Bittrex.Interactor.Account.GetOrder do
 
   def call(id) do
     :get
-    |> HttpRequest.new("/account/getorder", [uuid: id])
+    |> HttpRequest.new("/account/getorder", uuid: id)
     |> Client.send()
     |> format_response()
   end
@@ -15,5 +15,6 @@ defmodule Bittrex.Interactor.Account.GetOrder do
     response = Order.new(result)
     {:ok, response}
   end
+
   defp format_response({:error, message}), do: {:error, message}
 end

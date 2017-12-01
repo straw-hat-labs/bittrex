@@ -1,10 +1,24 @@
 defmodule Bittrex.Market do
   alias Bittrex.{Market, Currency}
-  alias Bittrex.Interactor.Market.{
-    GetMarkets, GetMarketHistory, BuyLimit, SellLimit, GetOpenOrders}
 
-  defstruct [:name, :display_name, :minimum_trade, :active, :created_at,
-             :base_currency, :market_currency, :volume]
+  alias Bittrex.Interactor.Market.{
+    GetMarkets,
+    GetMarketHistory,
+    BuyLimit,
+    SellLimit,
+    GetOpenOrders
+  }
+
+  defstruct [
+    :name,
+    :display_name,
+    :minimum_trade,
+    :active,
+    :created_at,
+    :base_currency,
+    :market_currency,
+    :volume
+  ]
 
   def get_markets do
     GetMarkets.call()
@@ -27,6 +41,7 @@ defmodule Bittrex.Market do
   end
 
   def new(name) when is_binary(name), do: %Market{name: name}
+
   def new(item) do
     %Market{
       name: item["MarketName"],

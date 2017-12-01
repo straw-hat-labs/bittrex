@@ -14,7 +14,7 @@ defmodule Bittrex do
   @doc """
   Get the API Key from the credentials.
   """
-  @spec api_key() :: String.t
+  @spec api_key() :: String.t()
   def api_key do
     credentials() |> Keyword.get(:api_key)
   end
@@ -22,7 +22,7 @@ defmodule Bittrex do
   @doc """
   Get the API Secret from the credentials
   """
-  @spec api_secret() :: String.t
+  @spec api_secret() :: String.t()
   def api_secret do
     credentials() |> Keyword.get(:api_secret)
   end
@@ -30,7 +30,7 @@ defmodule Bittrex do
   @doc """
   Returns the encrypted API Sign header value.
   """
-  @spec get_api_sign(String.t) :: String.t
+  @spec get_api_sign(String.t()) :: String.t()
   def get_api_sign(url) do
     secret = api_secret()
 
@@ -53,7 +53,7 @@ defmodule Bittrex do
   """
   @spec format_datetime(nil) :: nil
   def format_datetime(nil), do: nil
-  @spec format_datetime(String.t) :: NaiveDateTime.t | nil
+  @spec format_datetime(String.t()) :: NaiveDateTime.t() | nil
   def format_datetime(datetime_string) do
     case NaiveDateTime.from_iso8601(datetime_string) do
       {:ok, date} -> date

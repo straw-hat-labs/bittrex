@@ -6,7 +6,7 @@ defmodule Bittrex.Interactor.Quote.GetQuote do
 
   def call(market_name) do
     :get
-    |> HttpRequest.new("/public/getticker", [market: market_name])
+    |> HttpRequest.new("/public/getticker", market: market_name)
     |> Client.send()
     |> format_response(market_name)
   end
@@ -15,5 +15,6 @@ defmodule Bittrex.Interactor.Quote.GetQuote do
     response = Quote.new(market_name, result)
     {:ok, response}
   end
+
   defp format_response({:error, message}, _market_name), do: {:error, message}
 end

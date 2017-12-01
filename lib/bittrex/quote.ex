@@ -11,6 +11,7 @@ defmodule Bittrex.Quote do
   def new(market_name, item) when is_binary(market_name) do
     %Market{name: market_name} |> new(item)
   end
+
   def new(market, item) do
     %Quote{
       market: market,

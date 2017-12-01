@@ -9,11 +9,7 @@ defmodule Bittrex.HttpRequest do
   def new(method, path, params \\ [], headers \\ []) do
     url = process_url(path)
 
-    %__MODULE__{
-      method: method,
-      url: url,
-      params: params,
-      headers: headers}
+    %__MODULE__{method: method, url: url, params: params, headers: headers}
   end
 
   def process_url(path) do

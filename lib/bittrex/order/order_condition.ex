@@ -3,11 +3,12 @@ defmodule Bittrex.Order.OrderCondition do
 
   defstruct [:name, :value]
 
-  def new(%{"IsConditional": true} = order) do
+  def new(%{IsConditional: true} = order) do
     %OrderCondition{
       name: order["Condition"],
       value: order["ConditionTarget"]
     }
   end
+
   def new(_order), do: nil
 end

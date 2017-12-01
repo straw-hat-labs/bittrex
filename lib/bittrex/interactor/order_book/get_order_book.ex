@@ -5,9 +5,7 @@ defmodule Bittrex.Interactor.OrderBook.GetOrderBook do
   alias Bittrex.{OrderBook}
 
   def call(market_name, type) do
-    params = [
-      market: market_name,
-      type: type]
+    params = [market: market_name, type: type]
 
     :get
     |> HttpRequest.new("/public/getorderbook", params)
@@ -19,13 +17,16 @@ defmodule Bittrex.Interactor.OrderBook.GetOrderBook do
     response = OrderBook.new(result, [])
     {:ok, response}
   end
+
   defp format_response({:ok, result}, "sell") do
     response = OrderBook.new([], result)
     {:ok, response}
   end
+
   defp format_response({:ok, result}, _type) do
     response = OrderBook.new(result["buy"], result["sell"])
     {:ok, response}
   end
+
   defp format_response({:error, message}, _type), do: {:error, message}
 end

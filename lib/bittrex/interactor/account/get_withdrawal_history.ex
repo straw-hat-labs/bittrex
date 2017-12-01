@@ -6,7 +6,7 @@ defmodule Bittrex.Interactor.Account.GetWithdrawalHistory do
 
   def call(currency) do
     :get
-    |> HttpRequest.new("/account/getwithdrawalhistory", [currency: currency])
+    |> HttpRequest.new("/account/getwithdrawalhistory", currency: currency)
     |> Client.send()
     |> format_response()
   end
@@ -15,5 +15,6 @@ defmodule Bittrex.Interactor.Account.GetWithdrawalHistory do
     response = Enum.map(result, &Payment.new/1)
     {:ok, response}
   end
+
   defp format_response({:error, message}), do: {:error, message}
 end

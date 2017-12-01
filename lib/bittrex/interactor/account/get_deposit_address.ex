@@ -6,7 +6,7 @@ defmodule Bittrex.Interactor.Account.GetDepositAddress do
 
   def call(currency) do
     :get
-    |> HttpRequest.new("/account/getdepositaddress", [currency: currency])
+    |> HttpRequest.new("/account/getdepositaddress", currency: currency)
     |> Client.send()
     |> format_response()
   end
@@ -15,5 +15,6 @@ defmodule Bittrex.Interactor.Account.GetDepositAddress do
     response = DepositAddress.new(result)
     {:ok, response}
   end
+
   defp format_response({:error, message}), do: {:error, message}
 end

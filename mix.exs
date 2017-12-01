@@ -14,7 +14,6 @@ defmodule Bittrex.Mixfile do
     [
       name: "Bittrex",
       description: @description,
-
       app: @name,
       version: @version,
       elixir: @elixir_version,

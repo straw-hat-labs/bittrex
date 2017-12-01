@@ -5,7 +5,7 @@ defmodule Bittrex.Interactor.Order.CancelOrder do
 
   def call(order_id) do
     :get
-    |> HttpRequest.new("/market/cancel", [uuid: order_id])
+    |> HttpRequest.new("/market/cancel", uuid: order_id)
     |> Client.send()
     |> format_response()
   end
