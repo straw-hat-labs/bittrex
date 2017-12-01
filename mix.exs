@@ -2,7 +2,7 @@ defmodule Bittrex.Mixfile do
   use Mix.Project
 
   @name :bittrex
-  @version "0.5.2"
+  @version "0.5.3"
   @elixir_version "~> 1.5"
 
   @description """
