@@ -18,6 +18,8 @@ defmodule Bittrex.Order.OrderStatus do
     }
   end
 
+  def new(_), do: nil
+
   def closed?(%Order{status: %OrderStatus{name: "CLOSED"}} = _order), do: true
   def closed?(_order), do: false
 end
