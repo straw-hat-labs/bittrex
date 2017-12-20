@@ -29,7 +29,6 @@ defmodule Bittrex.Order do
   def new(item) do
     item
     |> get_order_type()
-    |> String.upcase()
     |> new(item)
   end
 
@@ -37,7 +36,7 @@ defmodule Bittrex.Order do
     %Order{
       id: get_order_id(item),
       price: get_price(item),
-      type: type,
+      type: String.upcase(type),
       traded_at: Bittrex.format_datetime(item["TimeStamp"]),
       quantity: %{
         value: item["Quantity"],
