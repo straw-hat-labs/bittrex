@@ -31,11 +31,17 @@ defmodule Bittrex.Client do
     HTTPoison.request(request.method, request.url, "", request.headers, params: request.params)
   end
 
-  defp process_response({:ok, %{status_code: 200, body: body} = _response}) do
+  defp process_response({:ok, %HTTPoison.Response{status_code: 200, body: body} = _response}) do
     decode_response(body)
   end
 
-  defp process_response({:error, reason}), do: {:error, reason}
+  defp process_response({:ok, %HTTPoison.Response{status_code: status_code} = _response}) do
+    {:error, status_code}
+  end
+
+  defp process_response({:error, %HTTPoison.Error{reason: reason}} = _response) do
+    {:error, reason}
+  end
 
   defp decode_response(body) do
     case Poison.decode(body) do
