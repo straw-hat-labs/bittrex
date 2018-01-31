@@ -32,7 +32,7 @@ defmodule Bittrex.Mixfile do
   defp deps do
     [
       {:poison, "~> 3.1"},
-      {:httpoison, "~> 0.12"},
+      {:httpoison, "~> 1.0"},
 
       # Tools
       {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
