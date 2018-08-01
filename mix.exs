@@ -31,7 +31,7 @@ defmodule Bittrex.Mixfile do
 
   defp deps do
     [
-      {:poison, "~> 3.1"},
+      {:poison, "~> 4.0"},
       {:httpoison, "~> 1.0"},
 
       # Tools
