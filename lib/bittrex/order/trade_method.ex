@@ -1,4 +1,8 @@
 defmodule Bittrex.Order.TradeMethod do
+  @moduledoc """
+  Trade method entity.
+  """
+
   alias Bittrex.Order.TradeMethod
 
   defstruct [:code]

@@ -1,4 +1,8 @@
 defmodule Bittrex.Order.OrderCondition do
+  @moduledoc """
+  Order condition entity.
+  """
+
   alias Bittrex.Order.OrderCondition
 
   defstruct [:name, :value]

@@ -1,4 +1,8 @@
 defmodule Bittrex.Market do
+  @moduledoc """
+  Market use cases.
+  """
+
   alias Bittrex.{Market, Currency}
 
   alias Bittrex.Interactor.Market.{

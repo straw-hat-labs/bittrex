@@ -1,4 +1,8 @@
 defmodule Bittrex.Currency do
+  @moduledoc """
+  Curreny entity and use cases.
+  """
+
   alias Bittrex.Currency
   alias Bittrex.Interactor.Currency.{GetCurrencies}
 

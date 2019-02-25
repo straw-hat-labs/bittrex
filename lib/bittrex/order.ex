@@ -1,4 +1,8 @@
 defmodule Bittrex.Order do
+  @moduledoc """
+  Order entity and use cases.
+  """
+
   alias Bittrex.Interactor.Order.{CancelOrder}
   alias Bittrex.Order.{OrderStatus, OrderCondition, TradeMethod}
   alias Bittrex.{Order, Market}

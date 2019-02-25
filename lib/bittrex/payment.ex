@@ -1,4 +1,8 @@
 defmodule Bittrex.Payment do
+  @moduledoc """
+  Payment entity.
+  """
+
   alias Bittrex.{Payment, Currency}
 
   defstruct [

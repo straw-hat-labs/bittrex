@@ -1,4 +1,8 @@
 defmodule Bittrex.OrderBook do
+  @moduledoc """
+  Order book use cases.
+  """
+
   alias Bittrex.Interactor.OrderBook.{GetOrderBook}
   alias Bittrex.{Order, OrderBook}
 

@@ -1,4 +1,8 @@
 defmodule Bittrex.MarketSummary do
+  @moduledoc """
+  Market summary use cases.
+  """
+
   alias Bittrex.{HourStatus, Quote, Market, MarketSummary}
 
   alias Bittrex.Interactor.MarketSummary.{

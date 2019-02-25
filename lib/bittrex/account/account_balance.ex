@@ -1,4 +1,8 @@
 defmodule Bittrex.Account.AccountBalance do
+  @moduledoc """
+  Account balance entity.
+  """
+
   alias Bittrex.Currency
   alias Bittrex.Account.AccountBalance
 

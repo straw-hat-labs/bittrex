@@ -1,4 +1,8 @@
 defmodule Bittrex.Quote do
+  @moduledoc """
+  Quote use cases.
+  """
+
   alias Bittrex.{Quote, Market}
   alias Bittrex.Interactor.Quote.{GetQuote}
 

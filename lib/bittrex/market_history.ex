@@ -1,4 +1,8 @@
 defmodule Bittrex.MarketHistory do
+  @moduledoc """
+  Market History entity.
+  """
+
   alias Bittrex.{MarketHistory, Order}
 
   defstruct [:id, :order]

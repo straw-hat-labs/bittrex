@@ -1,4 +1,8 @@
 defmodule Bittrex.Order.OrderStatus do
+  @moduledoc """
+  Order Status entity.
+  """
+
   alias Bittrex.Order
   alias Bittrex.Order.OrderStatus
 

@@ -1,4 +1,8 @@
 defmodule Bittrex.Account.DepositAddress do
+  @moduledoc """
+  Deposit address entity.
+  """
+
   alias Bittrex.Currency
   alias Bittrex.Account.DepositAddress
 
