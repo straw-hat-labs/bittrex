@@ -1,14 +1,8 @@
 # Bittrex
 
-## Installation
-
-Add `bittrex` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [{:bittrex, "~> 0.5"}]
-end
-```
+[![Hex.pm](https://img.shields.io/hexpm/v/bittrex.svg)](https://hex.pm/packages/bittrex)
+[![CI Status](https://travis-ci.org/straw-hat-team/bittrex.svg?branch=master)](https://travis-ci.org/straw-hat-team/bittrex)
+[![Code Coverage](https://codecov.io/gh/straw-hat-team/bittrex/branch/master/graph/badge.svg)](https://codecov.io/gh/straw-hat-team/bittrex)
 
 ## Usage
 

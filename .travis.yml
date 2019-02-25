@@ -1,0 +1,17 @@
+sudo: false
+notifications:
+  recipients:
+    - opensource@straw-hat-llc.com
+
+language: elixir
+elixir: 1.8
+otp_release: 21.2
+cache:
+  directories:
+    - _build
+    - deps
+
+script:
+  - make ci
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
