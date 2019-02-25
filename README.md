@@ -4,6 +4,8 @@
 [![CI Status](https://travis-ci.org/straw-hat-team/bittrex.svg?branch=master)](https://travis-ci.org/straw-hat-team/bittrex)
 [![Code Coverage](https://codecov.io/gh/straw-hat-team/bittrex/branch/master/graph/badge.svg)](https://codecov.io/gh/straw-hat-team/bittrex)
 
+[Bittrex API](https://bittrex.github.io/api/v3) integration.
+
 ## Usage
 
 Add credentials from Bittrex. To manage your API keys please goto
