@@ -28,7 +28,7 @@ defmodule Bittrex.MixProject do
 
   defp deps do
     [
-      {:poison, "~> 4.0"},
+      {:jason, "~> 1.1"},
       {:httpoison, "~> 1.0"},
 
       # Tools

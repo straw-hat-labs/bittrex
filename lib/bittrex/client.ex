@@ -44,7 +44,7 @@ defmodule Bittrex.Client do
   end
 
   defp decode_response(body) do
-    case Poison.decode(body) do
+    case Jason.decode(body) do
       {:ok, data} -> {:ok, data}
       _ -> {:error, "can't decode the response body"}
     end
