@@ -3,7 +3,9 @@ defmodule Bittrex.Account do
 
   def get_account(client) do
     client
-    |> HttpRequest.new(:get, "/account")
+    |> HttpRequest.new()
+    |> HttpRequest.put_method(:get)
+    |> HttpRequest.put_path("/account")
     |> HttpClient.send()
   end
 end
