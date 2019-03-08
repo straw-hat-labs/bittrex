@@ -3,6 +3,12 @@ defmodule Bittrex do
   Contains a functions for credentials and commo utility functions.
   """
 
+  def api_signature(url, content_hash) do
+    # var uri = 'https://api.bittrex.com/v3/balances';
+    # var preSign = [timestamp, uri, contentHash].join('');
+    # var signature = CryptoJS.HmacSHA512(preSign, apiSecret).toString(CryptoJS.enc.ASCII);
+  end
+
   @doc """
   Get the credentials of Bittrex.
   """

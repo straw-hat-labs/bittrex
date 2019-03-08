@@ -1,32 +1,30 @@
 defmodule Bittrex.HttpRequest do
-  @moduledoc false
+  @base_url Application.get_env(:bittrex, :base_url, "https://api.bittrex.com/v3")
 
-  @base_url Application.get_env(:bittrex, :base_url, "https://bittrex.com/api/")
-  @version Application.get_env(:bittrex, :version, "v1.1")
+  @enforce_keys [:http_client, :method, :url, :headers, :params]
+  defstruct [:http_client, :method, :url, :headers, :params]
 
-  defstruct [:method, :url, :headers, :params]
-
-  def new(method, path, params \\ [], headers \\ []) do
-    url = process_url(path)
-
-    %__MODULE__{method: method, url: url, params: params, headers: headers}
+  def new(http_client, method, path, params \\ %{}, headers \\ %{}) do
+    %__MODULE__{
+      http_client: http_client,
+      method: method,
+      url: process_url(path),
+      params: params,
+      headers: headers
+    }
   end
 
   def process_url(path) do
-    @base_url <> @version <> path
-  end
-
-  def full_url(%__MODULE__{} = request) do
-    request.url <> "?" <> URI.encode_query(request.params)
+    @base_url <> path
   end
 
   def put_header(%__MODULE__{} = request, headers) do
-    headers = Keyword.merge(request.headers, headers)
+    headers = Map.merge(request.headers, headers)
     Map.put(request, :headers, headers)
   end
 
   def put_params(%__MODULE__{} = request, params) do
-    params = Keyword.merge(request.params, params)
+    params = Map.merge(request.params, params)
     Map.put(request, :params, params)
   end
 end
