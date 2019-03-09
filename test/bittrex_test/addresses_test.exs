@@ -1,12 +1,10 @@
 defmodule Bittrex.Test.AddressesTest do
-  use ExUnit.Case
-  alias Bittrex.{HttpClient, Addresses}
-
-  @api_key System.get_env("BITTREX_KEY")
-  @api_secret System.get_env("BITTREX_SECRET")
-  @client HttpClient.new(@api_key, @api_secret)
+  use Bittrex.TestSupport.CaseTemplate, async: true
+  alias Bittrex.Addresses
 
   test "GET /addresses" do
-    assert {:ok, account} = Addresses.get_addresses(@client)
+    use_cassette "get_addresses" do
+      assert {:ok, account} = with_mock_client() |> Addresses.get_addresses()
+    end
   end
 end
