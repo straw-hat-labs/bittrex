@@ -1,4 +1,8 @@
 defmodule Bittrex.Account do
+  @moduledoc """
+  Implements /account endpoints.
+  """
+
   alias Bittrex.{HttpClient, HttpRequest}
 
   @doc """

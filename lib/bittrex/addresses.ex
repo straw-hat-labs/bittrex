@@ -1,4 +1,8 @@
 defmodule Bittrex.Addresses do
+  @moduledoc """
+  Implements /addresses endpoints.
+  """
+
   alias Bittrex.{HttpClient, HttpRequest}
 
   @doc """
