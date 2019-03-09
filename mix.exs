@@ -32,6 +32,7 @@ defmodule Bittrex.MixProject do
       {:httpoison, "~> 1.0"},
 
       # Tools
+      {:exvcr, ">= 0.0.0", only: [:test], runtime: false},
       {:dialyxir, ">= 0.0.0", only: [:dev], runtime: false},
       {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
       {:excoveralls, ">= 0.0.0", only: [:test], runtime: false},
@@ -46,7 +47,11 @@ defmodule Bittrex.MixProject do
   defp cli_env do
     [
       "coveralls.html": :test,
-      "coveralls.json": :test
+      "coveralls.json": :test,
+      vcr: :test,
+      "vcr.delete": :test,
+      "vcr.check": :test,
+      "vcr.show": :test
     ]
   end
 
