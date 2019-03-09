@@ -57,9 +57,10 @@ defmodule Bittrex.HttpClient do
   defp get_content_type(response) do
     {_key, content_type} = Enum.find(response.headers, &is_content_type_header/1)
 
-    cond do
-      String.contains?(content_type, "application/json") -> :json
-      true -> :text
+    if String.contains?(content_type, "application/json") do
+      :json
+    else
+      :text
     end
   end
 
