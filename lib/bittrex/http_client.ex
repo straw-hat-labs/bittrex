@@ -29,23 +29,41 @@ defmodule Bittrex.HttpClient do
   end
 
   defp process_response({:ok, %HTTPoison.Response{status_code: 200, body: body} = _response}) do
-    decode_response(body)
+    Jason.decode!(body)
   end
 
   defp process_response(
-         {:ok, %HTTPoison.Response{status_code: status_code, body: body} = _response}
+         {:ok, %HTTPoison.Response{status_code: status_code, body: body} = response}
        ) do
-    {:error, status_code, body}
+
+    decoded_body =
+      response
+      |> get_content_type()
+      |> decode_body(body)
+
+    {:error, status_code, decoded_body}
   end
 
   defp process_response({:error, %HTTPoison.Error{reason: reason}} = _response) do
     {:error, reason}
   end
 
-  defp decode_response(body) do
-    case Jason.decode(body) do
-      {:ok, data} -> {:ok, data}
-      _ -> {:error, :decoding_body_failed}
+  defp get_content_type(response) do
+    {_key, content_type} = Enum.find(response.headers, fn {key, value} ->
+      key == "Content-Type"
+    end)
+
+    cond do
+      String.contains?(content_type, "application/json") -> :json
+      true -> :text
     end
+  end
+
+  defp decode_body(:json, body) do
+    Jason.decode!(body)
+  end
+
+  defp decode_body(_content_type, body) do
+    body
   end
 end
