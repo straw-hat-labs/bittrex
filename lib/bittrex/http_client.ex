@@ -29,7 +29,7 @@ defmodule Bittrex.HttpClient do
   end
 
   defp process_response({:ok, %HTTPoison.Response{status_code: 200, body: body} = _response}) do
-    Jason.decode!(body)
+    {:ok, Jason.decode!(body)}
   end
 
   defp process_response(
