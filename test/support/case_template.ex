@@ -13,12 +13,6 @@ defmodule Bittrex.TestSupport.CaseTemplate do
     end
   end
 
-  setup tags do
-    ExVCR.Config.response_headers_blacklist([])
-    ExVCR.Config.cassette_library_dir("test/support/fixtures")
-    :ok
-  end
-
   def with_mock_client do
     Bittrex.HttpClient.new(@api_key, @api_secret)
   end
