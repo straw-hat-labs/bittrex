@@ -33,6 +33,7 @@ defmodule Bittrex.MixProject do
   defp deps do
     [
       {:jason, "~> 1.1"},
+      {:ibrowse, "~> 4.4"},
       {:httpoison, "~> 1.0"},
 
       # Tools
