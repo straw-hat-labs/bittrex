@@ -1,4 +1,9 @@
 defmodule Bittrex.HttpClient do
+  @moduledoc """
+  HTTP client used to request data from Bittrex server. It safes the credentials
+  of your client, this allow you to have multiple clients.
+  """
+
   alias Bittrex.HttpRequest
 
   @enforce_keys [:api_key, :api_secret]
@@ -11,6 +16,10 @@ defmodule Bittrex.HttpClient do
     }
   end
 
+  @doc """
+  Add Sub account to your HTTP client credentials. Read more about Sub Accounts
+  in Bittrex documentation.
+  """
   def with_sub_account(http_client, sub_account_id) do
     Map.put(http_client, :sub_account_id, sub_account_id)
   end
