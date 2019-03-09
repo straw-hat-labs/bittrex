@@ -32,16 +32,13 @@ defmodule Bittrex.HttpClient do
     {:ok, Jason.decode!(body)}
   end
 
-  defp process_response(
-         {:ok, %HTTPoison.Response{status_code: status_code, body: body} = response}
-       ) do
-
+  defp process_response({:ok, %HTTPoison.Response{} = response}) do
     decoded_body =
       response
       |> get_content_type()
-      |> decode_body(body)
+      |> decode_body(response.body)
 
-    {:error, status_code, decoded_body}
+    {:error, response.status_code, decoded_body}
   end
 
   defp process_response({:error, %HTTPoison.Error{reason: reason}} = _response) do
