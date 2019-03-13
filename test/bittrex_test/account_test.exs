@@ -4,7 +4,7 @@ defmodule Bittrex.Test.AccountTest do
 
   test "GET /account" do
     use_cassette "get_account" do
-      assert {:ok, account} = with_mock_client() |> Account.get_account()
+      assert {:ok, %Account{}} = with_mock_client() |> Account.get_account()
     end
   end
 end

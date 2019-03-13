@@ -5,6 +5,7 @@ defmodule Bittrex.HttpClient do
   """
 
   alias Bittrex.HttpRequest
+  alias StrawHat.Response
 
   @enforce_keys [:api_key, :api_secret]
   defstruct [:api_key, :api_secret, :sub_account_id]
@@ -38,7 +39,9 @@ defmodule Bittrex.HttpClient do
   end
 
   defp process_response({:ok, %HTTPoison.Response{status_code: 200, body: body} = _response}) do
-    {:ok, Jason.decode!(body)}
+    body
+    |> Jason.decode!()
+    |> Response.ok()
   end
 
   defp process_response({:ok, %HTTPoison.Response{} = response}) do
@@ -47,11 +50,11 @@ defmodule Bittrex.HttpClient do
       |> get_content_type()
       |> decode_body(response.body)
 
-    {:error, response.status_code, decoded_body}
+    Response.error({response.status_code, decoded_body})
   end
 
   defp process_response({:error, %HTTPoison.Error{reason: reason}} = _response) do
-    {:error, reason}
+    Response.error(reason)
   end
 
   defp get_content_type(response) do

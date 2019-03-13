@@ -4,7 +4,7 @@ defmodule Bittrex.Test.AddressesTest do
 
   test "GET /addresses NOT IMPLEMENTED" do
     use_cassette "get_addresses" do
-      assert {:error, _status_code, _body} = with_mock_client() |> Addresses.get_addresses()
+      assert {:error, {_status_code, _body}} = with_mock_client() |> Addresses.get_addresses()
     end
   end
 end
