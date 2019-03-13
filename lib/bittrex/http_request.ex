@@ -43,7 +43,7 @@ defmodule Bittrex.HttpRequest do
 
   def put_required_headers(request) do
     headers =
-      %{}
+      %{"Content-Type" => "application/json"}
       |> put_api_key_header(request)
       |> put_api_timestamp_header(request)
       |> put_api_content_hash_header(request)
