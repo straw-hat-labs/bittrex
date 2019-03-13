@@ -33,4 +33,20 @@ defmodule Bittrex.Addresses do
       |> Response.ok()
     end)
   end
+
+  @doc """
+  Retrieve the deposit address for a particular currency.
+  """
+  def get_address(client, currency_symbol) do
+    client
+    |> HttpRequest.new()
+    |> HttpRequest.put_method(:get)
+    |> HttpRequest.put_path("/addresses/#{currency_symbol}")
+    |> HttpClient.send()
+    |> StrawHat.Response.and_then(fn data ->
+      data
+      |> Address.to_struct()
+      |> Response.ok()
+    end)
+  end
 end

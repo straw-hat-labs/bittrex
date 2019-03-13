@@ -15,4 +15,10 @@ defmodule Bittrex.Test.AddressesTest do
       })
     end
   end
+
+  test "GET /addresses/{currencySymbol}" do
+    use_cassette "get_address" do
+      assert {:ok, %Address{}} = with_mock_client() |> Addresses.get_address("BAT")
+    end
+  end
 end
