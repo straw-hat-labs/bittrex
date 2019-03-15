@@ -1,6 +1,6 @@
 defmodule Bittrex.Deposit do
   @moduledoc """
-  A Bittrex Deposit
+  A Bittrex Deposit.
   """
 
   @typedoc """

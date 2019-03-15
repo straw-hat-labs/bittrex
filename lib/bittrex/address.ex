@@ -1,6 +1,6 @@
 defmodule Bittrex.Address do
   @moduledoc """
-  A Bittrex Address
+  A Bittrex Address.
   """
 
   @typedoc """

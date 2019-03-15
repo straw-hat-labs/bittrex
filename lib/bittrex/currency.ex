@@ -1,6 +1,6 @@
 defmodule Bittrex.Currency do
   @moduledoc """
-  A Bittrex Currency
+  A Bittrex Currency.
   """
 
   @typedoc """

@@ -1,6 +1,6 @@
 defmodule Bittrex.Balance do
   @moduledoc """
-  A Bittrex Balance
+  A Bittrex Balance.
   """
 
   @typedoc """

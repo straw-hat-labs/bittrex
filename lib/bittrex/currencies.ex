@@ -31,7 +31,7 @@ defmodule Bittrex.Currencies do
     client
     |> HttpRequest.new()
     |> HttpRequest.put_method(:get)
-    |> HttpRequest.put_path("/addresses/#{currency_symbol}")
+    |> HttpRequest.put_path("/currencies/#{currency_symbol}")
     |> HttpClient.send()
     |> StrawHat.Response.and_then(fn data ->
       data
