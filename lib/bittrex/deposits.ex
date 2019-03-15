@@ -9,6 +9,10 @@ defmodule Bittrex.Deposits do
   @doc """
   List historical deposits.
   """
+  @spec get_deposits(%HttpClient{}, %{
+    status: String.t(),
+    currency_symbol: String.t()
+  }) :: Response.t([%Deposit{}], any())
   def get_deposits(client, params \\ %{}) do
     params = Bittrex.camelcase_keys(params)
 
@@ -28,6 +32,9 @@ defmodule Bittrex.Deposits do
   @doc """
   List pending deposits.
   """
+  @spec get_pending_deposits(%HttpClient{}, %{
+    currency_symbol: String.t()
+  }) :: Response.t([%Deposit{}], any())
   def get_pending_deposits(client, params \\ %{}) do
     params = Bittrex.camelcase_keys(params)
 
@@ -45,8 +52,9 @@ defmodule Bittrex.Deposits do
   end
 
   @doc """
-  Retrieve information for a specific deposit. (NOT YET IMPLEMENTED).
+  Retrieve information for a specific deposit. (NOT YET IMPLEMENTED)
   """
+  @spec get_deposit(%HttpClient{}, String.t()) :: Response.t(%Deposit{}, any())
   def get_deposit(client, deposit_id) do
     client
     |> HttpRequest.new()
