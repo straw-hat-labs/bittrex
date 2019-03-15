@@ -1,4 +1,4 @@
-defmodule Bittrex.Test.AddressesTest do
+defmodule Bittrex.AddressesTest do
   use Bittrex.TestSupport.CaseTemplate, async: true
   alias Bittrex.{Addresses, Address}
 

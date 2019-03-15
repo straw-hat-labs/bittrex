@@ -1,4 +1,4 @@
-defmodule Bittrex.Test.AccountTest do
+defmodule Bittrex.AccountTest do
   use Bittrex.TestSupport.CaseTemplate, async: true
   alias Bittrex.Account
 
