@@ -3,6 +3,18 @@ defmodule Bittrex.Balance do
   A Bittrex Balance
   """
 
+  @typedoc """
+  - `total`: total amount.
+  - `currency_symbol`: unique ID for the currency this balance is associated
+  with.
+  - `available`: available amount.
+  """
+  @type t :: %__MODULE__{
+    total: number(),
+    currency_symbol: String.t(),
+    available: number()
+  }
+
   defstruct [:total, :currency_symbol, :available]
 
   @doc false

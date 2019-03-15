@@ -7,8 +7,9 @@ defmodule Bittrex.Balances do
   alias Bittrex.{HttpClient, HttpRequest, Balance}
 
   @doc """
-  List balances.
+  List account balances across available currencies.
   """
+  @spec get_balances(%HttpClient{}) :: Response.t([%Balance{}], any())
   def get_balances(client) do
     client
     |> HttpRequest.new()
@@ -23,8 +24,9 @@ defmodule Bittrex.Balances do
   end
 
   @doc """
-  Get balance by currency.
+  Retrieve account balance for a specific currency.
   """
+  @spec get_balance(%HttpClient{}, String.t()) :: Response.t(%Balance{}, any())
   def get_balance(client, currency_symbol) do
     client
     |> HttpRequest.new()
