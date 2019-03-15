@@ -11,7 +11,7 @@ defmodule Bittrex.Test.AddressesTest do
   test "POST /addresses" do
     use_cassette "create_address" do
       assert {:ok, %Address{}} = with_mock_client() |> Addresses.create_address(%{
-        currencySymbol: "BAT"
+        currency_symbol: "BAT"
       })
     end
   end
