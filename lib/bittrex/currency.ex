@@ -3,6 +3,30 @@ defmodule Bittrex.Currency do
   A Bittrex Currency
   """
 
+  @typedoc """
+  - `symbol`: unique symbol for this currency.
+  - `name`: long name of this currency.
+  - `base_address`: base address of this currency.
+  - `coin_type`: coin type of this currency.
+  - `status`: currency status (online, offline, etc.)
+  - `is_international`: true if this market is restricted to international
+  users.
+  - `min_confirmations`: minimum number of confirmations.
+  - `notice`: news or alerts regarding this currency.
+  - `tx_fee`: transaction fee for this currency.
+  """
+  @type t :: %__MODULE__{
+    symbol: String.t(),
+    name: String.t(),
+    base_address: String.t(),
+    coin_type: String.t(),
+    status: String.t(),
+    is_international: boolean(),
+    min_confirmations: integer(),
+    notice: String.t(),
+    tx_fee: number()
+  }
+
   defstruct [
     :symbol,
     :name,

@@ -9,6 +9,7 @@ defmodule Bittrex.Currencies do
   @doc """
   List currencies with optional health info.
   """
+  @spec get_currencies(%HttpClient{}) :: Response.t([%Currency{}], any())
   def get_currencies(client) do
     client
     |> HttpRequest.new()
@@ -25,6 +26,7 @@ defmodule Bittrex.Currencies do
   @doc """
   Retrieve info on a specified currency.
   """
+  @spec get_currency(%HttpClient{}, String.t()) :: Response.t(%Currency{}, any())
   def get_currency(client, currency_symbol) do
     client
     |> HttpRequest.new()
