@@ -3,6 +3,18 @@ defmodule Bittrex.Address do
   A Bittrex Address
   """
 
+  @typedoc """
+  - `status`: the status of this deposit address.
+  - `currency_symbol`: the unique ID of the currency this deposit address is
+  for.
+  - `crypto_address`: the cryptographic deposit address.
+  """
+  @type t :: %__MODULE__{
+    status: String.t(),
+    currency_symbol: String.t(),
+    crypto_address: String.t()
+  }
+
   defstruct [:status, :currency_symbol, :crypto_address]
 
   @doc false
