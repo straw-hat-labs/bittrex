@@ -31,7 +31,7 @@ defmodule Bittrex.Addresses do
     |> HttpClient.send()
     |> StrawHat.Response.and_then(fn data ->
       data
-      |> Address.to_struct()
+      |> Address.new()
       |> Response.ok()
     end)
   end
@@ -47,7 +47,7 @@ defmodule Bittrex.Addresses do
     |> HttpClient.send()
     |> StrawHat.Response.and_then(fn data ->
       data
-      |> Address.to_struct()
+      |> Address.new()
       |> Response.ok()
     end)
   end

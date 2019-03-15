@@ -6,7 +6,7 @@ defmodule Bittrex.Balance do
   defstruct [:total, :currency_symbol, :available]
 
   @doc false
-  def to_struct(data) do
+  def new(data) do
     %__MODULE__{
       total: data["total"],
       currency_symbol: data["currencySymbol"],

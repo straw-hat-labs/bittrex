@@ -19,12 +19,13 @@ defmodule Bittrex.Account do
     |> HttpClient.send()
     |> StrawHat.Response.and_then(fn data ->
       data
-      |> to_struct()
+      |> new()
       |> Response.ok()
     end)
   end
 
-  defp to_struct(data) do
+  @doc false
+  def new(data) do
     %__MODULE__{
       email: data["email"],
       id: data["id"],

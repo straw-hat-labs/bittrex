@@ -6,7 +6,7 @@ defmodule Bittrex.Address do
   defstruct [:status, :currency_symbol, :crypto_address]
 
   @doc false
-  def to_struct(data) do
+  def new(data) do
     %__MODULE__{
       status: data["status"],
       currency_symbol: data["currencySymbol"],

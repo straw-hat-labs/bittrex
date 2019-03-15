@@ -17,7 +17,7 @@ defmodule Bittrex.Balances do
     |> HttpClient.send()
     |> StrawHat.Response.and_then(fn data ->
       data
-      |> Enum.map(&Balance.to_struct/1)
+      |> Enum.map(&Balance.new/1)
       |> Response.ok()
     end)
   end
@@ -33,7 +33,7 @@ defmodule Bittrex.Balances do
     |> HttpClient.send()
     |> StrawHat.Response.and_then(fn data ->
       data
-      |> Balance.to_struct()
+      |> Balance.new()
       |> Response.ok()
     end)
   end
