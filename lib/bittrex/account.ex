@@ -6,11 +6,24 @@ defmodule Bittrex.Account do
   alias StrawHat.Response
   alias Bittrex.{HttpClient, HttpRequest}
 
+  @typedoc """
+  - `id`: the account ID associated with this API key / user.
+  - `email`: the email address associated with this API key / user.
+  - `is_international`: true if this account has access to international
+  markets, false otherwise.
+  """
+  @type t :: %__MODULE__{
+    email: String.t(),
+    id: String.t(),
+    is_international: boolean()
+  }
+
   defstruct [:email, :id, :is_international]
 
   @doc """
   Retrieve account information.
   """
+  @spec get_account(%HttpClient{}) :: Response.t(%__MODULE__{}, any())
   def get_account(client) do
     client
     |> HttpRequest.new()
