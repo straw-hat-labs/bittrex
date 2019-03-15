@@ -15,4 +15,15 @@ defmodule Bittrex do
       _ -> nil
     end
   end
+
+  def camelcase_keys(struct) do
+    StrawHat.Utils.Map.deep_map(struct, &camelize_key/1, &StrawHat.identity/1)
+  end
+
+  defp camelize_key(key) do
+    key
+    |> to_string()
+    |> Recase.to_camel()
+    |> String.to_atom()
+  end
 end

@@ -21,10 +21,12 @@ defmodule Bittrex.Addresses do
   Request provisioning of a deposit address.
   """
   def create_address(client, address_attr) do
+    body = Bittrex.camelcase_keys(address_attr)
+
     client
     |> HttpRequest.new()
     |> HttpRequest.put_method(:post)
-    |> HttpRequest.put_body(address_attr)
+    |> HttpRequest.put_body(body)
     |> HttpRequest.put_path("/addresses")
     |> HttpClient.send()
     |> StrawHat.Response.and_then(fn data ->

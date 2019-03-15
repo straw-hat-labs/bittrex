@@ -32,10 +32,11 @@ defmodule Bittrex.MixProject do
 
   defp deps do
     [
-      {:straw_hat, "~> 0.4"},
+      {:straw_hat, "~> 0.5"},
       {:jason, "~> 1.1"},
       {:ibrowse, "~> 4.4"},
       {:httpoison, "~> 1.0"},
+      {:recase, "~> 0.4.0"},
 
       # Tools
       {:exvcr, ">= 0.0.0", only: [:test], runtime: false},
