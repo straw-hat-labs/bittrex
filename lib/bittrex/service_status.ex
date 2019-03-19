@@ -3,9 +3,6 @@ defmodule Bittrex.ServiceStatus do
   A Bittrex Service Status.
   """
 
-  alias StrawHat.Response
-  alias Bittrex.{HttpClient, HttpRequest}
-
   @typedoc """
   - `status`: overall service status.
   - `server_time`: server time in epoch millisecond format.

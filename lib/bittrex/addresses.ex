@@ -28,12 +28,10 @@ defmodule Bittrex.Addresses do
   """
   @spec create_address(%HttpClient{}, %{ currency_symbol: String.t() }) :: Response.t(%Address{}, any())
   def create_address(client, address_attr) do
-    body = Bittrex.camelcase_keys(address_attr)
-
     client
     |> HttpRequest.new()
     |> HttpRequest.put_method(:post)
-    |> HttpRequest.put_body(body)
+    |> HttpRequest.put_body(address_attr)
     |> HttpRequest.put_path("/addresses")
     |> HttpClient.send()
     |> StrawHat.Response.and_then(fn data ->

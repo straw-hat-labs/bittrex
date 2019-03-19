@@ -17,8 +17,6 @@ defmodule Bittrex.Deposits do
     limit: integer(),
   }) :: Response.t([%Deposit{}], any())
   def get_deposits(client, params \\ %{}) do
-    params = Bittrex.camelcase_keys(params)
-
     client
     |> HttpRequest.new()
     |> HttpRequest.put_method(:get)

@@ -24,7 +24,12 @@ defmodule Bittrex.HttpRequest do
   end
 
   def put_body(%__MODULE__{} = http_request, body) do
-    Map.put(http_request, :body, Jason.encode!(body))
+    new_body =
+      body
+      |> Bittrex.camelcase_keys()
+      |> Jason.encode!()
+
+    Map.put(http_request, :body, new_body)
   end
 
   def process_url(path) do
@@ -37,8 +42,10 @@ defmodule Bittrex.HttpRequest do
   end
 
   def put_params(%__MODULE__{} = request, params) do
-    params = Map.merge(request.params, params)
-    Map.put(request, :params, params)
+    normalized_params = Bittrex.camelcase_keys(params)
+    new_params = Map.merge(request.params, normalized_params)
+
+    Map.put(request, :params, new_params)
   end
 
   def put_required_headers(request) do
@@ -49,7 +56,6 @@ defmodule Bittrex.HttpRequest do
       |> put_api_content_hash_header(request)
       |> put_api_sub_account_id(request)
       |> put_api_signature_header(request)
-
 
     put_headers(request, headers)
   end
