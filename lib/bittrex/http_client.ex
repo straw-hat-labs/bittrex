@@ -7,13 +7,14 @@ defmodule Bittrex.HttpClient do
   alias Bittrex.HttpRequest
   alias StrawHat.Response
 
-  @enforce_keys [:api_key, :api_secret]
+  @enforce_keys [:api_key, :api_secret, :sub_account_id]
   defstruct [:api_key, :api_secret, :sub_account_id]
 
   def new(api_key, api_secret) do
     %__MODULE__{
       api_key: api_key,
-      api_secret: api_secret
+      api_secret: api_secret,
+      sub_account_id: ""
     }
   end
 
