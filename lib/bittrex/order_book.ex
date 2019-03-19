@@ -1,6 +1,6 @@
 defmodule Bittrex.OrderBook do
   @moduledoc """
-  A Bittrex Service Status.
+  A Bittrex Order Book.
   """
 
   alias Bittrex.OrderBookEntry

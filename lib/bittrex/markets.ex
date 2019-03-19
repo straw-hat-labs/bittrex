@@ -4,7 +4,7 @@ defmodule Bittrex.Markets do
   """
 
   alias StrawHat.Response
-  alias Bittrex.{HttpClient, HttpRequest, Market, MarketSummary, OrderBook, Trade}
+  alias Bittrex.{HttpClient, HttpRequest, Market, MarketSummary, OrderBook, Trade, Candle}
 
   @doc """
   List markets.
@@ -91,6 +91,26 @@ defmodule Bittrex.Markets do
     |> StrawHat.Response.and_then(fn data ->
       data
       |> Enum.map(&Trade.new/1)
+      |> Response.ok()
+    end)
+  end
+
+  @doc """
+  Retrieve candles for a specific market.
+  """
+  @spec get_market_candles(%HttpClient{}, String.t(), %{
+    candle_interval: String.t()
+  }) :: Response.t(%Candle{}, any())
+  def get_market_candles(client, market_name, params \\ %{}) do
+    client
+    |> HttpRequest.new()
+    |> HttpRequest.put_method(:get)
+    |> HttpRequest.put_path("/markets/#{market_name}/trades")
+    |> HttpRequest.put_params(params)
+    |> HttpClient.send()
+    |> StrawHat.Response.and_then(fn data ->
+      data
+      |> Enum.map(&Candle.new/1)
       |> Response.ok()
     end)
   end

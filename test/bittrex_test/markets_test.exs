@@ -32,6 +32,12 @@ defmodule Bittrex.MarketsTest do
     end
   end
 
+  test "GET /markets/{marketName}/candles" do
+    use_cassette "get_market_candles" do
+      assert {:ok, _candles} = with_mock_client() |> Markets.get_market_candles("BTC-DASH")
+    end
+  end
+
   test "GET /markets/summaries" do
     use_cassette "get_market_summaries" do
       assert {:ok, _market_summaries} = with_mock_client() |> Markets.get_market_summaries()
