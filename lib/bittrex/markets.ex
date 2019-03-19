@@ -62,8 +62,8 @@ defmodule Bittrex.Markets do
   Retrieve the order book for a specific market.
   """
   @spec get_order_book(%HttpClient{}, String.t(), %{
-    depth: integer(),
-  }) :: Response.t(%OrderBook{}, any())
+          depth: integer()
+        }) :: Response.t(%OrderBook{}, any())
   def get_order_book(client, market_name, params \\ %{}) do
     client
     |> HttpRequest.new()
@@ -99,8 +99,8 @@ defmodule Bittrex.Markets do
   Retrieve candles for a specific market.
   """
   @spec get_market_candles(%HttpClient{}, String.t(), %{
-    candle_interval: String.t()
-  }) :: Response.t(%Candle{}, any())
+          candle_interval: String.t()
+        }) :: Response.t(%Candle{}, any())
   def get_market_candles(client, market_name, params \\ %{}) do
     client
     |> HttpRequest.new()

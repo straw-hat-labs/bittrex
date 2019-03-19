@@ -13,14 +13,14 @@ defmodule Bittrex.Candle do
   - `base_volume`: base volume.
   """
   @type t :: %__MODULE__{
-    tick: NaiveDateTime.t(),
-    open: number(),
-    high: number(),
-    low: number(),
-    close: number(),
-    volume: number(),
-    base_volume: number(),
-  }
+          tick: NaiveDateTime.t(),
+          open: number(),
+          high: number(),
+          low: number(),
+          close: number(),
+          volume: number(),
+          base_volume: number()
+        }
 
   defstruct [:tick, :open, :high, :low, :close, :volume, :base_volume]
 
@@ -33,7 +33,7 @@ defmodule Bittrex.Candle do
       low: data["l"],
       close: data["c"],
       volume: data["v"],
-      base_volume: data["bv"],
+      base_volume: data["bv"]
     }
   end
 end

@@ -39,7 +39,10 @@ defmodule Bittrex.HttpClient do
     HTTPoison.request(request.method, request.url, request.body, headers, params: request.params)
   end
 
-  defp process_response({:ok, %HTTPoison.Response{status_code: status_code, body: body} = _response}) when status_code in 200..299 do
+  defp process_response(
+         {:ok, %HTTPoison.Response{status_code: status_code, body: body} = _response}
+       )
+       when status_code in 200..299 do
     body
     |> Jason.decode!()
     |> Response.ok()

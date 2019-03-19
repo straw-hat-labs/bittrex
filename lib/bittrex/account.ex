@@ -13,10 +13,10 @@ defmodule Bittrex.Account do
   markets, false otherwise.
   """
   @type t :: %__MODULE__{
-    email: String.t(),
-    id: String.t(),
-    is_international: boolean()
-  }
+          email: String.t(),
+          id: String.t(),
+          is_international: boolean()
+        }
 
   defstruct [:email, :id, :is_international]
 

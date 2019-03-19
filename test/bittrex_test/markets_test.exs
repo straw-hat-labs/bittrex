@@ -16,7 +16,8 @@ defmodule Bittrex.MarketsTest do
 
   test "GET /markets/{marketName}/summary" do
     use_cassette "get_market_summary" do
-      assert {:ok, %MarketSummary{}} = with_mock_client() |> Markets.get_market_summary("BTC-DASH")
+      assert {:ok, %MarketSummary{}} =
+               with_mock_client() |> Markets.get_market_summary("BTC-DASH")
     end
   end
 

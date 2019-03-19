@@ -26,7 +26,8 @@ defmodule Bittrex.Addresses do
   @doc """
   Request provisioning of a deposit address.
   """
-  @spec create_address(%HttpClient{}, %{ currency_symbol: String.t() }) :: Response.t(%Address{}, any())
+  @spec create_address(%HttpClient{}, %{currency_symbol: String.t()}) ::
+          Response.t(%Address{}, any())
   def create_address(client, address_attr) do
     client
     |> HttpRequest.new()

@@ -8,9 +8,9 @@ defmodule Bittrex.ServiceStatus do
   - `server_time`: server time in epoch millisecond format.
   """
   @type t :: %__MODULE__{
-    status: String.t(),
-    server_time: integer(),
-  }
+          status: String.t(),
+          server_time: integer()
+        }
 
   defstruct [:status, :server_time]
 

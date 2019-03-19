@@ -8,9 +8,9 @@ defmodule Bittrex.OrderBookEntry do
   - `rate`: rate.
   """
   @type t :: %__MODULE__{
-    quantity: number(),
-    rate: number(),
-  }
+          quantity: number(),
+          rate: number()
+        }
 
   defstruct [:quantity, :rate]
 

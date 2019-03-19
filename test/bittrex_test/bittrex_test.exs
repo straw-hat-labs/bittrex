@@ -8,6 +8,7 @@ defmodule BittrexTest do
         hello_world: "123"
       }
     }
+
     output = %{
       helloWorld: "123",
       nestedStruct: %{

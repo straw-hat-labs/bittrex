@@ -74,7 +74,10 @@ defmodule Bittrex.HttpRequest do
       |> to_string()
       |> String.upcase()
 
-    pre_sign = "#{headers["Api-Timestamp"]}#{request.url}#{method}#{headers["Api-Content-Hash"]}#{request.http_client.sub_account_id}"
+    pre_sign =
+      "#{headers["Api-Timestamp"]}#{request.url}#{method}#{headers["Api-Content-Hash"]}#{
+        request.http_client.sub_account_id
+      }"
 
     signature =
       :sha512

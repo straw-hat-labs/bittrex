@@ -18,18 +18,18 @@ defmodule Bittrex.Market do
   - `logo_url`: logo URL.
   """
   @type t :: %__MODULE__{
-    name: String.t(),
-    base_currency_symbol: String.t(),
-    base_currency_name: String.t(),
-    quote_currency_symbol: String.t(),
-    quote_currency_name: String.t(),
-    min_trade_size: number(),
-    status: String.t(),
-    is_international: boolean(),
-    created_at: NaiveDateTime.t(),
-    notice: String.t(),
-    logo_url: String.t()
-  }
+          name: String.t(),
+          base_currency_symbol: String.t(),
+          base_currency_name: String.t(),
+          quote_currency_symbol: String.t(),
+          quote_currency_name: String.t(),
+          min_trade_size: number(),
+          status: String.t(),
+          is_international: boolean(),
+          created_at: NaiveDateTime.t(),
+          notice: String.t(),
+          logo_url: String.t()
+        }
 
   defstruct [
     :name,
@@ -58,7 +58,7 @@ defmodule Bittrex.Market do
       is_international: data["isInternational"],
       created_at: Bittrex.format_datetime(data["createdAt"]),
       notice: data["notice"],
-      logo_url: data["logoUrl"],
+      logo_url: data["logoUrl"]
     }
   end
 end

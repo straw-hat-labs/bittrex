@@ -9,10 +9,10 @@ defmodule Bittrex.Trade do
   - `rate`: rate.
   """
   @type t :: %__MODULE__{
-    executed_at: NaiveDateTime.t(),
-    quantity: String.t(),
-    rate: integer(),
-  }
+          executed_at: NaiveDateTime.t(),
+          quantity: String.t(),
+          rate: integer()
+        }
 
   defstruct [:executed_at, :quantity, :rate]
 

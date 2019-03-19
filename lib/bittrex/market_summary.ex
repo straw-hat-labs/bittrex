@@ -18,19 +18,19 @@ defmodule Bittrex.MarketSummary do
   - `updated_at`: timestamp in UTC when market summary was last updated.
   """
   @type t :: %__MODULE__{
-    name: String.t(),
-    high: number(),
-    low: number(),
-    volume: number(),
-    last: number(),
-    base_volume: number(),
-    bid: number(),
-    ask: number(),
-    open_buy_orders: integer(),
-    open_sell_orders: integer(),
-    previous_day: number(),
-    updated_at: NaiveDateTime.t()
-  }
+          name: String.t(),
+          high: number(),
+          low: number(),
+          volume: number(),
+          last: number(),
+          base_volume: number(),
+          bid: number(),
+          ask: number(),
+          open_buy_orders: integer(),
+          open_sell_orders: integer(),
+          previous_day: number(),
+          updated_at: NaiveDateTime.t()
+        }
 
   defstruct [
     :name,
@@ -61,7 +61,7 @@ defmodule Bittrex.MarketSummary do
       open_buy_orders: data["openBuyOrders"],
       open_sell_orders: data["openSellOrders"],
       previous_day: data["previousDay"],
-      updated_at: Bittrex.format_datetime(data["updatedAt"]),
+      updated_at: Bittrex.format_datetime(data["updatedAt"])
     }
   end
 end

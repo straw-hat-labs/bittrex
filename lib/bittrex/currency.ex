@@ -16,16 +16,16 @@ defmodule Bittrex.Currency do
   - `tx_fee`: transaction fee for this currency.
   """
   @type t :: %__MODULE__{
-    symbol: String.t(),
-    name: String.t(),
-    base_address: String.t(),
-    coin_type: String.t(),
-    status: String.t(),
-    is_international: boolean(),
-    min_confirmations: integer(),
-    notice: String.t(),
-    tx_fee: number()
-  }
+          symbol: String.t(),
+          name: String.t(),
+          base_address: String.t(),
+          coin_type: String.t(),
+          status: String.t(),
+          is_international: boolean(),
+          min_confirmations: integer(),
+          notice: String.t(),
+          tx_fee: number()
+        }
 
   defstruct [
     :symbol,

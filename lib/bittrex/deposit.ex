@@ -15,16 +15,16 @@ defmodule Bittrex.Deposit do
   - `status`: current status of this deposit.
   """
   @type t :: %__MODULE__{
-    id: String.t(),
-    currency_symbol: String.t(),
-    quantity: number(),
-    address: String.t(),
-    tx_id: String.t(),
-    confirmations: integer(),
-    created_at: NaiveDateTime.t(),
-    updated_at: NaiveDateTime.t(),
-    status: String.t()
-  }
+          id: String.t(),
+          currency_symbol: String.t(),
+          quantity: number(),
+          address: String.t(),
+          tx_id: String.t(),
+          confirmations: integer(),
+          created_at: NaiveDateTime.t(),
+          updated_at: NaiveDateTime.t(),
+          status: String.t()
+        }
 
   defstruct [
     :id,

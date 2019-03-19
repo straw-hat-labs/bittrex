@@ -10,12 +10,12 @@ defmodule Bittrex.Deposits do
   List historical deposits.
   """
   @spec get_deposits(%HttpClient{}, %{
-    status: String.t(),
-    currency_symbol: String.t(),
-    starting_after: String.t(),
-    ending_before: String.t(),
-    limit: integer(),
-  }) :: Response.t([%Deposit{}], any())
+          status: String.t(),
+          currency_symbol: String.t(),
+          starting_after: String.t(),
+          ending_before: String.t(),
+          limit: integer()
+        }) :: Response.t([%Deposit{}], any())
   def get_deposits(client, params \\ %{}) do
     client
     |> HttpRequest.new()

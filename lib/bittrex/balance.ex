@@ -10,10 +10,10 @@ defmodule Bittrex.Balance do
   - `available`: available amount.
   """
   @type t :: %__MODULE__{
-    total: number(),
-    currency_symbol: String.t(),
-    available: number()
-  }
+          total: number(),
+          currency_symbol: String.t(),
+          available: number()
+        }
 
   defstruct [:total, :currency_symbol, :available]
 

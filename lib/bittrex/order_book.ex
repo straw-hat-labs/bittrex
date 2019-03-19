@@ -10,9 +10,9 @@ defmodule Bittrex.OrderBook do
   - `ask`: sell entries.
   """
   @type t :: %__MODULE__{
-    bid: [%OrderBookEntry{}],
-    ask: [%OrderBookEntry{}],
-  }
+          bid: [%OrderBookEntry{}],
+          ask: [%OrderBookEntry{}]
+        }
 
   defstruct [:bid, :ask]
 
