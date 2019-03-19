@@ -10,7 +10,7 @@ defmodule Bittrex.DepositsTest do
 
   test "GET /deposits/{depositId}" do
     use_cassette "get_deposit" do
-      assert {:ok, %Deposit{}} = with_mock_client() |> Deposits.get_deposit("123")
+      assert {:ok, %Deposit{}} = with_mock_client() |> Deposits.get_deposit("da1e1640-ea44-40ae-ac5a-6a4843305b70")
     end
   end
 end
