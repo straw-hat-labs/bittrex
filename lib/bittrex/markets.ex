@@ -4,7 +4,7 @@ defmodule Bittrex.Markets do
   """
 
   alias StrawHat.Response
-  alias Bittrex.{HttpClient, HttpRequest, Market, MarketSummary}
+  alias Bittrex.{HttpClient, HttpRequest, Market, MarketSummary, OrderBook}
 
   @doc """
   List markets.
@@ -61,10 +61,10 @@ defmodule Bittrex.Markets do
   @doc """
   Retrieve the order book for a specific market.
   """
-  @spec get_orderbook(%HttpClient{}, String.t(), %{
+  @spec get_order_book(%HttpClient{}, String.t(), %{
     depth: integer(),
   }) :: Response.t(%MarketSummary{}, any())
-  def get_orderbook(client, market_name, params) do
+  def get_order_book(client, market_name, params \\ %{}) do
     client
     |> HttpRequest.new()
     |> HttpRequest.put_method(:get)
@@ -73,7 +73,7 @@ defmodule Bittrex.Markets do
     |> HttpClient.send()
     |> StrawHat.Response.and_then(fn data ->
       data
-      |> MarketSummary.new()
+      |> OrderBook.new()
       |> Response.ok()
     end)
   end
