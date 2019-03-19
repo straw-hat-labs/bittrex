@@ -11,7 +11,10 @@ defmodule Bittrex.Deposits do
   """
   @spec get_deposits(%HttpClient{}, %{
     status: String.t(),
-    currency_symbol: String.t()
+    currency_symbol: String.t(),
+    starting_after: String.t(),
+    ending_before: String.t(),
+    limit: integer(),
   }) :: Response.t([%Deposit{}], any())
   def get_deposits(client, params \\ %{}) do
     params = Bittrex.camelcase_keys(params)
@@ -20,28 +23,6 @@ defmodule Bittrex.Deposits do
     |> HttpRequest.new()
     |> HttpRequest.put_method(:get)
     |> HttpRequest.put_path("/deposits")
-    |> HttpRequest.put_params(params)
-    |> HttpClient.send()
-    |> StrawHat.Response.and_then(fn data ->
-      data
-      |> Enum.map(&Deposit.new/1)
-      |> Response.ok()
-    end)
-  end
-
-  @doc """
-  List pending deposits.
-  """
-  @spec get_pending_deposits(%HttpClient{}, %{
-    currency_symbol: String.t()
-  }) :: Response.t([%Deposit{}], any())
-  def get_pending_deposits(client, params \\ %{}) do
-    params = Bittrex.camelcase_keys(params)
-
-    client
-    |> HttpRequest.new()
-    |> HttpRequest.put_method(:get)
-    |> HttpRequest.put_path("/deposits/pending")
     |> HttpRequest.put_params(params)
     |> HttpClient.send()
     |> StrawHat.Response.and_then(fn data ->

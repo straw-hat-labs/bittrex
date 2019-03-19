@@ -7,7 +7,7 @@ defmodule Bittrex.Addresses do
   alias Bittrex.{HttpClient, HttpRequest, Address}
 
   @doc """
-  List deposit addresses. (NOT YET IMPLEMENTED)
+  List deposit addresses.
   """
   @spec get_addresses(%HttpClient{}) :: Response.t([%Address{}], any())
   def get_addresses(client) do
