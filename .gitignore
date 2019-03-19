@@ -20,3 +20,5 @@ erl_crash.dump
 *.ez
 
 /config/*.secret.exs
+
+/test/support/fixtures/vcr_cassettes

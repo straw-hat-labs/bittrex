@@ -1,6 +1,6 @@
 defmodule Bittrex.MarketsTest do
   use Bittrex.TestSupport.CaseTemplate, async: true
-  alias Bittrex.{Markets, Market, MarketSummary}
+  alias Bittrex.{Markets, Market, MarketSummary, OrderBook}
 
   test "GET /markets" do
     use_cassette "get_markets" do
@@ -22,7 +22,13 @@ defmodule Bittrex.MarketsTest do
 
   test "GET /markets/{marketName}/orderbook" do
     use_cassette "get_order_book" do
-      assert {:ok, %Bittrex.OrderBook{}} = with_mock_client() |> Markets.get_order_book("BTC-DASH")
+      assert {:ok, %OrderBook{}} = with_mock_client() |> Markets.get_order_book("BTC-DASH")
+    end
+  end
+
+  test "GET /markets/{marketName}/trades" do
+    use_cassette "get_market_trades" do
+      assert {:ok, _trades} = with_mock_client() |> Markets.get_market_trades("BTC-DASH")
     end
   end
 
