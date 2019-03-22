@@ -7,6 +7,8 @@ defmodule Bittrex.HttpClient do
   alias Bittrex.HttpRequest
   alias StrawHat.Response
 
+  @http_adapter Application.get_env(:bittrex, :http_adapter, HTTPoison)
+
   @enforce_keys [:api_key, :api_secret, :sub_account_id]
   defstruct [:api_key, :api_secret, :sub_account_id]
 
@@ -36,11 +38,11 @@ defmodule Bittrex.HttpClient do
 
   defp execute_request(request) do
     headers = Enum.into(request.headers, [])
-    HTTPoison.request(request.method, request.url, request.body, headers, params: request.params)
+    @http_adapter.request(request.method, request.url, request.body, headers, params: request.params)
   end
 
   defp process_response(
-         {:ok, %HTTPoison.Response{status_code: status_code, body: body} = _response}
+         {:ok, %{status_code: status_code, body: body} = _response}
        )
        when status_code in 200..299 do
     body
@@ -48,7 +50,7 @@ defmodule Bittrex.HttpClient do
     |> Response.ok()
   end
 
-  defp process_response({:ok, %HTTPoison.Response{} = response}) do
+  defp process_response({:ok, response}) do
     decoded_body =
       response
       |> get_content_type()
@@ -57,7 +59,7 @@ defmodule Bittrex.HttpClient do
     Response.error({response.status_code, decoded_body})
   end
 
-  defp process_response({:error, %HTTPoison.Error{reason: reason}} = _response) do
+  defp process_response({:error, %{reason: reason}} = _response) do
     Response.error(reason)
   end
 
