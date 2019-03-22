@@ -31,8 +31,9 @@ defmodule Bittrex.OrdersTest do
   test "POST /orders" do
     use_cassette "create_order" do
       assert {:ok, %Order{}} =
-               with_mock_client() |> Orders.create_order(%{
-                market_name: "BTC-DASH"
+               with_mock_client()
+               |> Orders.create_order(%{
+                 market_name: "BTC-DASH"
                })
     end
   end

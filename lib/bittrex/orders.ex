@@ -10,11 +10,11 @@ defmodule Bittrex.Orders do
   List closed orders.
   """
   @spec get_closed_orders(%HttpClient{}, %{
-    market_name: String.t(),
-    starting_after: String.t(),
-    ending_before: String.t(),
-    limit: integer(),
-  }) :: Response.t([%Order{}], any())
+          market_name: String.t(),
+          starting_after: String.t(),
+          ending_before: String.t(),
+          limit: integer()
+        }) :: Response.t([%Order{}], any())
   def get_closed_orders(client, params \\ %{}) do
     client
     |> HttpRequest.new()
@@ -33,8 +33,8 @@ defmodule Bittrex.Orders do
   List open orders.
   """
   @spec get_open_orders(%HttpClient{}, %{
-    market_name: String.t(),
-  }) :: Response.t([%Order{}], any())
+          market_name: String.t()
+        }) :: Response.t([%Order{}], any())
   def get_open_orders(client, params \\ %{}) do
     client
     |> HttpRequest.new()
@@ -87,15 +87,15 @@ defmodule Bittrex.Orders do
   Create a new order.
   """
   @spec create_order(%HttpClient{}, %{
-    market_name: String.t(),
-    direction: String.t(),
-    type: String.t(),
-    quantity: number(),
-    limit: number(),
-    ceiling: number(),
-    time_in_force: String.t(),
-    client_order_id: String.t(),
-  }) ::
+          market_name: String.t(),
+          direction: String.t(),
+          type: String.t(),
+          quantity: number(),
+          limit: number(),
+          ceiling: number(),
+          time_in_force: String.t(),
+          client_order_id: String.t()
+        }) ::
           Response.t(%Order{}, any())
   def create_order(client, order_attrs) do
     client

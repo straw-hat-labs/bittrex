@@ -22,23 +22,23 @@ defmodule Bittrex.Order do
   - `closed_at`: imestamp (UTC) when this order was closed.
   """
   @type t :: %__MODULE__{
-    id: String.t(),
-    market_name: String.t(),
-    direction: String.t(),
-    type: String.t(),
-    quantity: number(),
-    limit: number(),
-    ceiling: number(),
-    time_in_force: String.t(),
-    fill_quantity: number(),
-    commission: number(),
-    proceeds: number(),
-    client_order_id: String.t(),
-    status: String.t(),
-    created_at: NaiveDateTime.t(),
-    updated_at: NaiveDateTime.t(),
-    closed_at: NaiveDateTime.t(),
-  }
+          id: String.t(),
+          market_name: String.t(),
+          direction: String.t(),
+          type: String.t(),
+          quantity: number(),
+          limit: number(),
+          ceiling: number(),
+          time_in_force: String.t(),
+          fill_quantity: number(),
+          commission: number(),
+          proceeds: number(),
+          client_order_id: String.t(),
+          status: String.t(),
+          created_at: NaiveDateTime.t(),
+          updated_at: NaiveDateTime.t(),
+          closed_at: NaiveDateTime.t()
+        }
 
   defstruct [
     :id,
@@ -77,7 +77,7 @@ defmodule Bittrex.Order do
       status: data["status"],
       created_at: Bittrex.format_datetime(data["createdAt"]),
       updated_at: Bittrex.format_datetime(data["updatedAt"]),
-      closed_at: Bittrex.format_datetime(data["closedAt"]),
+      closed_at: Bittrex.format_datetime(data["closedAt"])
     }
   end
 end
