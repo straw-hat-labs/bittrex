@@ -1,5 +1,8 @@
 use Mix.Config
 
+config :bittrex,
+  http_adapter: Bittrex.MockHttpClient
+
 config :exvcr,
   vcr_cassette_library_dir: "test/support/fixtures/vcr_cassettes",
   custom_cassette_library_dir: "test/support/fixtures/custom_vcr_cassettes",

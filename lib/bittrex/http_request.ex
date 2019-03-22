@@ -52,7 +52,7 @@ defmodule Bittrex.HttpRequest do
     headers =
       %{"Content-Type" => "application/json"}
       |> put_api_key_header(request)
-      |> put_api_timestamp_header(request)
+      |> put_api_timestamp_header()
       |> put_api_content_hash_header(request)
       |> put_api_sub_account_id(request)
       |> put_api_signature_header(request)
@@ -91,7 +91,7 @@ defmodule Bittrex.HttpRequest do
     Map.put(headers, "Api-Key", request.http_client.api_key)
   end
 
-  defp put_api_timestamp_header(headers, request) do
+  defp put_api_timestamp_header(headers) do
     timestamp = :os.system_time(:milli_seconds)
     Map.put(headers, "Api-Timestamp", timestamp)
   end

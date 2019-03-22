@@ -37,13 +37,12 @@ defmodule Bittrex.HttpClient do
   end
 
   defp execute_request(request) do
-    headers = Enum.into(request.headers, [])
-    @http_adapter.request(request.method, request.url, request.body, headers, params: request.params)
+    @http_adapter.request(request.method, request.url, request.body, request.headers,
+      params: request.params
+    )
   end
 
-  defp process_response(
-         {:ok, %{status_code: status_code, body: body} = _response}
-       )
+  defp process_response({:ok, %{status_code: status_code, body: body} = _response})
        when status_code in 200..299 do
     body
     |> Jason.decode!()
