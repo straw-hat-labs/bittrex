@@ -39,6 +39,7 @@ defmodule Bittrex.MixProject do
       {:recase, "~> 0.4.0"},
 
       # Tools
+      {:mox, "~> 0.5", only: :test},
       {:exvcr, ">= 0.0.0", only: [:test], runtime: false},
       {:dialyxir, ">= 0.0.0", only: [:dev], runtime: false},
       {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
