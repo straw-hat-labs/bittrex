@@ -4,17 +4,13 @@ defmodule Bittrex.BalancesTest do
   alias Bittrex.{Balances, Balance}
 
   test "GET /balances" do
-    stub(
-      Bittrex.MockHttpClient,
-      :request,
-      create_response([
-        %{
-          "currencySymbol" => "BTC",
-          "total" => 12.0,
-          "available" => 5
-        }
-      ])
-    )
+    stub_request([
+      %{
+        "currencySymbol" => "BTC",
+        "total" => 12.0,
+        "available" => 5
+      }
+    ])
 
     assert {:ok,
             [
@@ -27,15 +23,11 @@ defmodule Bittrex.BalancesTest do
   end
 
   test "GET /balances/{currencySymbol}" do
-    stub(
-      Bittrex.MockHttpClient,
-      :request,
-      create_response(%{
-        "currencySymbol" => "BTC",
-        "total" => 12.0,
-        "available" => 5
-      })
-    )
+    stub_request(%{
+      "currencySymbol" => "BTC",
+      "total" => 12.0,
+      "available" => 5
+    })
 
     assert {:ok,
             %Balance{

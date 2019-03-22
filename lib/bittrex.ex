@@ -7,10 +7,10 @@ defmodule Bittrex do
   def format_datetime(nil), do: nil
 
   def format_datetime(datetime_string) do
-    case NaiveDateTime.from_iso8601(datetime_string) do
-      {:ok, date} -> date
-      _ -> nil
-    end
+    datetime_string
+    |> Integer.parse()
+    |> elem(0)
+    |> DateTime.from_unix!(:millisecond)
   end
 
   @doc false
