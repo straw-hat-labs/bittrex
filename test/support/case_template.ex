@@ -3,8 +3,7 @@ defmodule Bittrex.TestSupport.CaseTemplate do
 
   use ExUnit.CaseTemplate
 
-  @api_key System.get_env("BITTREX_KEY")
-  @api_secret System.get_env("BITTREX_SECRET")
+  @response_headers [{"Content-Type", "application/json"}]
 
   using do
     quote do
@@ -14,6 +13,14 @@ defmodule Bittrex.TestSupport.CaseTemplate do
   end
 
   def with_mock_client do
-    Bittrex.HttpClient.new(@api_key, @api_secret)
+    Bittrex.HttpClient.new("apikey", "apisecret")
+  end
+
+  def create_response(data, config \\ %{}) do
+    {:ok, %{
+      status_code: Map.get(config, :status_code, 200),
+      body: Jason.encode!(data),
+      headers: @response_headers
+    }}
   end
 end
