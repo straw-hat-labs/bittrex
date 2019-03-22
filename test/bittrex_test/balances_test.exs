@@ -1,16 +1,47 @@
 defmodule Bittrex.BalancesTest do
   use Bittrex.TestSupport.CaseTemplate, async: true
+  import Mox
   alias Bittrex.{Balances, Balance}
 
   test "GET /balances" do
-    use_cassette "get_balances" do
-      assert {:ok, _balances} = with_mock_client() |> Balances.get_balances()
-    end
+    stub(
+      Bittrex.MockHttpClient,
+      :request,
+      create_response([
+        %{
+          "currencySymbol" => "BTC",
+          "total" => 12.0,
+          "available" => 5
+        }
+      ])
+    )
+
+    assert {:ok,
+            [
+              %Balance{
+                currency_symbol: "BTC",
+                total: 12.0,
+                available: 5
+              }
+            ]} = with_mock_client() |> Balances.get_balances()
   end
 
   test "GET /balances/{currencySymbol}" do
-    use_cassette "get_balance" do
-      assert {:ok, %Balance{}} = with_mock_client() |> Balances.get_balance("BAT")
-    end
+    stub(
+      Bittrex.MockHttpClient,
+      :request,
+      create_response(%{
+        "currencySymbol" => "BTC",
+        "total" => 12.0,
+        "available" => 5
+      })
+    )
+
+    assert {:ok,
+            %Balance{
+              currency_symbol: "BTC",
+              total: 12.0,
+              available: 5
+            }} = with_mock_client() |> Balances.get_balance("BAT")
   end
 end
