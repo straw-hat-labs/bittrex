@@ -4,7 +4,7 @@ defmodule Bittrex.AccountTest do
   alias Bittrex.Account
 
   test "GET /account" do
-    expect(
+    stub(
       Bittrex.MockHttpClient,
       :request,
       create_response(%{

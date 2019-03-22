@@ -4,7 +4,7 @@ defmodule Bittrex.AddressesTest do
   alias Bittrex.{Addresses, Address}
 
   test "GET /addresses" do
-    expect(
+    stub(
       Bittrex.MockHttpClient,
       :request,
       create_response([
@@ -27,7 +27,7 @@ defmodule Bittrex.AddressesTest do
   end
 
   test "POST /addresses" do
-    expect(
+    stub(
       Bittrex.MockHttpClient,
       :request,
       create_response(%{
@@ -50,7 +50,7 @@ defmodule Bittrex.AddressesTest do
   end
 
   test "GET /addresses/{currencySymbol}" do
-    expect(
+    stub(
       Bittrex.MockHttpClient,
       :request,
       create_response(%{
