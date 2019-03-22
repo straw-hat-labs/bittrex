@@ -15,9 +15,8 @@ defmodule Bittrex.AccountTest do
   end
 
   test "GET /account" do
-    expect(Bittrex.MockHttpClient, :request, fn _method, _url, _body, _headers, _options ->
-      account() |> create_response()
-    end)
+    request = account() |> create_response()
+    expect(Bittrex.MockHttpClient, :request, request)
 
     assert {:ok, %Account{}} = with_mock_client() |> Account.get_account()
   end

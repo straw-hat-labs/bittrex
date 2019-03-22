@@ -17,10 +17,13 @@ defmodule Bittrex.TestSupport.CaseTemplate do
   end
 
   def create_response(data, config \\ %{}) do
-    {:ok, %{
-      status_code: Map.get(config, :status_code, 200),
-      body: Jason.encode!(data),
-      headers: @response_headers
-    }}
+    tuple_error = Map.get(config, :tuple_error, :ok)
+    fn _method, _url, _body, _headers, _options ->
+      {tuple_error, %{
+        status_code: Map.get(config, :status_code, 200),
+        body: Jason.encode!(data),
+        headers: @response_headers
+      }}
+    end
   end
 end
