@@ -4,17 +4,13 @@ defmodule Bittrex.AddressesTest do
   alias Bittrex.{Addresses, Address}
 
   test "GET /addresses" do
-    stub(
-      Bittrex.MockHttpClient,
-      :request,
-      create_response([
-        %{
-          "status" => "REQUESTED",
-          "currencySymbol" => "BTC",
-          "cryptoAddress" => "123"
-        }
-      ])
-    )
+    stub_request([
+      %{
+        "status" => "REQUESTED",
+        "currencySymbol" => "BTC",
+        "cryptoAddress" => "123"
+      }
+    ])
 
     assert {:ok,
             [
@@ -27,15 +23,11 @@ defmodule Bittrex.AddressesTest do
   end
 
   test "POST /addresses" do
-    stub(
-      Bittrex.MockHttpClient,
-      :request,
-      create_response(%{
-        "status" => "REQUESTED",
-        "currencySymbol" => "BAT",
-        "cryptoAddress" => "123"
-      })
-    )
+    stub_request(%{
+      "status" => "REQUESTED",
+      "currencySymbol" => "BAT",
+      "cryptoAddress" => "123"
+    })
 
     assert {:ok,
             %Address{
@@ -50,15 +42,11 @@ defmodule Bittrex.AddressesTest do
   end
 
   test "GET /addresses/{currencySymbol}" do
-    stub(
-      Bittrex.MockHttpClient,
-      :request,
-      create_response(%{
-        "status" => "REQUESTED",
-        "currencySymbol" => "BAT",
-        "cryptoAddress" => "123"
-      })
-    )
+    stub_request(%{
+      "status" => "REQUESTED",
+      "currencySymbol" => "BAT",
+      "cryptoAddress" => "123"
+    })
 
     assert {:ok,
             %Address{
