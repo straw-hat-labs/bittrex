@@ -3,20 +3,17 @@ defmodule Bittrex.AccountTest do
   import Mox
   alias Bittrex.Account
 
-  @response_headers [{"Content-Type", "application/json"}]
-
-  defp account do
-    %{
-      "id" => "123",
-      "email" => "acmec@acmec.com",
-      "isInternational" => true,
-      "isFiat" => true
-    }
-  end
-
   test "GET /account" do
-    request = account() |> create_response()
-    expect(Bittrex.MockHttpClient, :request, request)
+    expect(
+      Bittrex.MockHttpClient,
+      :request,
+      create_response(%{
+        "id" => "123",
+        "email" => "acmec@acmec.com",
+        "isInternational" => true,
+        "isFiat" => true
+      })
+    )
 
     assert {:ok, %Account{}} = with_mock_client() |> Account.get_account()
   end
