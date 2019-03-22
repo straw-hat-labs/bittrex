@@ -69,8 +69,8 @@ defmodule Bittrex.Orders do
   @doc """
   Cancel an order.
   """
-  @spec delete_order(%HttpClient{}, String.t()) :: Response.t(%OrderCancelResult{}, any())
-  def delete_order(client, order_id) do
+  @spec cancel_order(%HttpClient{}, String.t()) :: Response.t(%OrderCancelResult{}, any())
+  def cancel_order(client, order_id) do
     client
     |> HttpRequest.new()
     |> HttpRequest.put_method(:get)

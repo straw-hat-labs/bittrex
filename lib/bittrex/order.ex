@@ -74,7 +74,7 @@ defmodule Bittrex.Order do
       commission: data["commission"],
       proceeds: data["proceeds"],
       client_order_id: data["clientOrderId"],
-      status: data["status"]:
+      status: data["status"],
       created_at: Bittrex.format_datetime(data["createdAt"]),
       updated_at: Bittrex.format_datetime(data["updatedAt"]),
       closed_at: Bittrex.format_datetime(data["closedAt"]),

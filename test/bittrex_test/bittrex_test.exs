@@ -10,9 +10,9 @@ defmodule BittrexTest do
     }
 
     output = %{
-      helloWorld: "123",
-      nestedStruct: %{
-        helloWorld: "123"
+      "helloWorld" => "123",
+      "nestedStruct" => %{
+        "helloWorld" => "123"
       }
     }
 

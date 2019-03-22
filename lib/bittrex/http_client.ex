@@ -72,7 +72,9 @@ defmodule Bittrex.HttpClient do
   end
 
   defp decode_body(:json, body) do
-    Jason.decode!(body)
+    body
+    |> Jason.decode!()
+    |> Bittrex.snake_keys()
   end
 
   defp decode_body(_content_type, body) do
