@@ -3,9 +3,11 @@ defmodule Bittrex.OrdersTest do
   alias Bittrex.{Orders, Order, OrderCancelResult}
 
   test "GET /orders/closed" do
-    order_response = build_list(2, :order_response, %{
-      "status" => "CLOSED"
-    })
+    order_response =
+      build_list(2, :order_response, %{
+        "status" => "CLOSED"
+      })
+
     orders = Enum.map(order_response, &Order.new/1)
     stub_request(order_response)
 
@@ -13,9 +15,11 @@ defmodule Bittrex.OrdersTest do
   end
 
   test "GET /orders/open" do
-    order_response = build_list(2, :order_response, %{
-      "status" => "OPEN"
-    })
+    order_response =
+      build_list(2, :order_response, %{
+        "status" => "OPEN"
+      })
+
     orders = Enum.map(order_response, &Order.new/1)
     stub_request(order_response)
 
@@ -27,8 +31,7 @@ defmodule Bittrex.OrdersTest do
     order = Order.new(order_response)
     stub_request(order_response)
 
-    assert {:ok, ^order} =
-               with_mock_client() |> Orders.get_order("123")
+    assert {:ok, ^order} = with_mock_client() |> Orders.get_order("123")
   end
 
   test "DELETE /orders/{orderId}" do
@@ -45,9 +48,9 @@ defmodule Bittrex.OrdersTest do
     stub_request(order_response)
 
     assert {:ok, ^order} =
-               with_mock_client()
-               |> Orders.create_order(%{
-                 market_name: "BTC-DASH"
-               })
+             with_mock_client()
+             |> Orders.create_order(%{
+               market_name: "BTC-DASH"
+             })
   end
 end

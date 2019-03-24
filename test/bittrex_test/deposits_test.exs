@@ -15,7 +15,6 @@ defmodule Bittrex.DepositsTest do
     deposit = Deposit.new(deposit_response)
     stub_request(deposit_response)
 
-    assert {:ok, ^deposit} =
-             with_mock_client() |> Deposits.get_deposit("123")
+    assert {:ok, ^deposit} = with_mock_client() |> Deposits.get_deposit("123")
   end
 end
