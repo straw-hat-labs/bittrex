@@ -28,7 +28,7 @@ defmodule Bittrex.MarketsTest do
 
   test "GET /markets/summaries" do
     market_summaries_response = build_list(2, :market_summary_response)
-    market_summaries = Enum.map(market_summaries_response, &MarketSummary.new/1) |> IO.inspect()
+    market_summaries = Enum.map(market_summaries_response, &MarketSummary.new/1)
     stub_request(market_summaries_response)
 
     assert {:ok, ^market_summaries} = with_mock_client() |> Markets.get_market_summaries()

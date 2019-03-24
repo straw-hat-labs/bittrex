@@ -12,7 +12,7 @@ defmodule Bittrex.CurrenciesTest do
 
   test "GET /currencies/{currencySymbol}" do
     currency_response = build(:currency_response)
-    currency = Balance.new(currency_response)
+    currency = Currency.new(currency_response)
     stub_request(currency_response)
 
     assert {:ok, ^currency} = with_mock_client() |> Currencies.get_currency("BAT")
