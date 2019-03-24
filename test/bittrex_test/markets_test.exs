@@ -3,15 +3,19 @@ defmodule Bittrex.MarketsTest do
   alias Bittrex.{Markets, Market, MarketSummary, OrderBook}
 
   test "GET /markets" do
-    use_cassette "get_markets" do
-      assert {:ok, _markets} = with_mock_client() |> Markets.get_markets()
-    end
+    market_response = build_list(2, :market_response)
+    markets = Enum.map(market_response, &Market.new/1)
+    stub_request(market_response)
+
+    assert {:ok, ^markets} = with_mock_client() |> Markets.get_markets()
   end
 
   test "GET /markets/{marketName}" do
-    use_cassette "get_market" do
-      assert {:ok, %Market{}} = with_mock_client() |> Markets.get_market("BTC-DASH")
-    end
+    market_response = build(:market_response)
+    market = Market.new(market_response)
+    stub_request(market_response)
+
+    assert {:ok, ^market} = with_mock_client() |> Markets.get_market("BTC-DASH")
   end
 
   test "GET /markets/{marketName}/summary" do

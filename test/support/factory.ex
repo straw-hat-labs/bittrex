@@ -102,4 +102,22 @@ defmodule Bittrex.TestSupport.Factory do
       "closedAt" => date_unix
     }
   end
+
+  def market_response_factory do
+    date_unix = "1553243950205"
+
+    %{
+      "name" => "Ethereum",
+      "baseCurrencySymbol" => "ETH",
+      "baseCurrencyName" => "Ethereum",
+      "quoteCurrencySymbol" => "ETH",
+      "quoteCurrencyName" => "Ethereum",
+      "minTradeSize" => 235.4,
+      "status" => "ONLINE",
+      "isInternational" => true,
+      "createdAt" => date_unix,
+      "notice" => "Pepega is cool",
+      "logoUrl" => "http://nowhere.com/pepega.png"
+    }
+  end
 end
