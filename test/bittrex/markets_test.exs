@@ -1,6 +1,6 @@
 defmodule Bittrex.MarketsTest do
   use Bittrex.TestSupport.CaseTemplate, async: true
-  alias Bittrex.{Markets, Market, MarketSummary, OrderBook}
+  alias Bittrex.{Markets, Market, MarketSummary, OrderBook, Trade}
 
   test "GET /markets" do
     market_response = build_list(2, :market_response)
@@ -19,22 +19,27 @@ defmodule Bittrex.MarketsTest do
   end
 
   test "GET /markets/{marketName}/summary" do
-    use_cassette "get_market_summary" do
-      assert {:ok, %MarketSummary{}} =
-               with_mock_client() |> Markets.get_market_summary("BTC-DASH")
-    end
+    market_summary_response = build(:market_summary_response)
+    market_summary = MarketSummary.new(market_summary_response)
+    stub_request(market_summary_response)
+
+    assert {:ok, ^market_summary} = with_mock_client() |> Markets.get_market_summary("BTC-DASH")
   end
 
   test "GET /markets/{marketName}/orderbook" do
-    use_cassette "get_order_book" do
-      assert {:ok, %OrderBook{}} = with_mock_client() |> Markets.get_order_book("BTC-DASH")
-    end
+    order_book_response = build(:order_book_response)
+    order_book = OrderBook.new(order_book_response)
+    stub_request(order_book_response)
+
+    assert {:ok, ^order_book} = with_mock_client() |> Markets.get_order_book("BTC-DASH")
   end
 
   test "GET /markets/{marketName}/trades" do
-    use_cassette "get_market_trades" do
-      assert {:ok, _trades} = with_mock_client() |> Markets.get_market_trades("BTC-DASH")
-    end
+    trades_response = build_list(2, :trade_response)
+    trades = Enum.map(trades_response, &Trade.new/1)
+    stub_request(trades_response)
+
+    assert {:ok, ^trades} = with_mock_client() |> Markets.get_market_trades("BTC-DASH")
   end
 
   test "GET /markets/{marketName}/candles" do

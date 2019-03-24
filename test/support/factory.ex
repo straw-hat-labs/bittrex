@@ -120,4 +120,47 @@ defmodule Bittrex.TestSupport.Factory do
       "logoUrl" => "http://nowhere.com/pepega.png"
     }
   end
+
+  def market_summary_response_factory do
+    date_unix = "1553243950205"
+
+    %{
+      "name" => "string",
+      "high" => 23.5,
+      "low" => 23.5,
+      "volume" => 23.5,
+      "last" => 23.5,
+      "baseVolume" => 23.5,
+      "bid" => 23.5,
+      "ask" => 23.5,
+      "openBuyOrders" => 23,
+      "openSellOrders" => 23,
+      "previousDay" => 23.5,
+      "updatedAt" => date_unix
+    }
+  end
+
+  def order_book_response_factory do
+    %{
+      "bid" => build_list(2, :order_book_entry),
+      "ask" => build_list(2, :order_book_entry)
+    }
+  end
+
+  def order_book_entry_factory do
+    %{
+      "quantity" => 1235.5,
+      "rate" => 1235.5
+    }
+  end
+
+  def trade_response_factory do
+    date_unix = "1553243950205"
+
+    %{
+      "executedAt": date_unix,
+      "quantity": 245.5,
+      "rate": 245.5
+    }
+  end
 end
