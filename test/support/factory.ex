@@ -158,9 +158,23 @@ defmodule Bittrex.TestSupport.Factory do
     date_unix = "1553243950205"
 
     %{
-      "executedAt": date_unix,
-      "quantity": 245.5,
-      "rate": 245.5
+      "executedAt" => date_unix,
+      "quantity" => 245.5,
+      "rate" => 245.5
+    }
+  end
+
+  def candle_response_factory do
+    date_unix = "1553243950205"
+
+    %{
+      "t" => date_unix,
+      "o" => 23.5,
+      "h" => 23.5,
+      "l" => 23.5,
+      "c" => 23.5,
+      "v" => 23.5,
+      "bv" => 23.5
     }
   end
 end
