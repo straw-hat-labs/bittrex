@@ -41,7 +41,6 @@ defmodule Bittrex.MixProject do
       # Tools
       {:mox, ">= 0.0.0", only: :test},
       {:ex_machina, ">= 0.0.0", only: [:test], runtime: false},
-      {:exvcr, ">= 0.0.0", only: [:test], runtime: false},
       {:dialyxir, ">= 0.0.0", only: [:dev], runtime: false},
       {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
       {:excoveralls, ">= 0.0.0", only: [:test], runtime: false},

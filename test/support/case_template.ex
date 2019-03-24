@@ -8,7 +8,6 @@ defmodule Bittrex.TestSupport.CaseTemplate do
 
   using do
     quote do
-      use ExVCR.Mock
       import Bittrex.TestSupport.CaseTemplate
       import Bittrex.TestSupport.Factory
     end
