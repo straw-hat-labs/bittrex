@@ -36,10 +36,11 @@ defmodule Bittrex.MixProject do
       {:jason, "~> 1.1"},
       {:ibrowse, "~> 4.4"},
       {:httpoison, "~> 1.0"},
-      {:recase, "~> 0.4.0"},
+      {:recase, "~> 0.4"},
 
       # Tools
-      {:mox, "~> 0.5", only: :test},
+      {:mox, ">= 0.0.0", only: :test},
+      {:ex_machina, ">= 0.0.0", only: [:test], runtime: false},
       {:exvcr, ">= 0.0.0", only: [:test], runtime: false},
       {:dialyxir, ">= 0.0.0", only: [:dev], runtime: false},
       {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},

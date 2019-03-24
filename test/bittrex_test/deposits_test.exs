@@ -2,65 +2,20 @@ defmodule Bittrex.DepositsTest do
   use Bittrex.TestSupport.CaseTemplate, async: true
   alias Bittrex.{Deposits, Deposit}
 
-  @date_unix "1553243950205"
-  @date Bittrex.format_datetime(@date_unix)
-
   test "GET /deposits" do
-    stub_request([
-      %{
-        "id" => "123",
-        "currencySymbol" => "BTC",
-        "quantity" => 123.23,
-        "address" => "123adresses",
-        "txId" => "pepegatax",
-        "confirmations" => 1235,
-        "createdAt" => @date_unix,
-        "updatedAt" => @date_unix,
-        "status" => "COMPLETED"
-      }
-    ])
+    deposits_response = build_list(2, :deposit_response)
+    deposits = Enum.map(deposits_response, &Deposit.new/1)
+    stub_request(deposits_response)
 
-    assert {:ok,
-            [
-              %Deposit{
-                id: "123",
-                currency_symbol: "BTC",
-                quantity: 123.23,
-                address: "123adresses",
-                tx_id: "pepegatax",
-                confirmations: 1235,
-                created_at: @date,
-                updated_at: @date,
-                status: "COMPLETED"
-              }
-            ]} = with_mock_client() |> Deposits.get_deposits()
+    assert {:ok, ^deposits} = with_mock_client() |> Deposits.get_deposits()
   end
 
   test "GET /deposits/{depositId}" do
-    stub_request(%{
-      "id" => "123",
-      "currencySymbol" => "BTC",
-      "quantity" => 123.23,
-      "address" => "123adresses",
-      "txId" => "pepegatax",
-      "confirmations" => 1235,
-      "createdAt" => @date_unix,
-      "updatedAt" => @date_unix,
-      "status" => "COMPLETED"
-    })
+    deposit_response = build(:deposit_response)
+    deposit = Deposit.new(deposit_response)
+    stub_request(deposit_response)
 
-    assert {:ok,
-            %Deposit{
-              id: "123",
-              currency_symbol: "BTC",
-              quantity: 123.23,
-              address: "123adresses",
-              tx_id: "pepegatax",
-              confirmations: 1235,
-              created_at: @date,
-              updated_at: @date,
-              status: "COMPLETED"
-            }} =
-             with_mock_client() |> Deposits.get_deposit("da1e1640-ea44-40ae-ac5a-6a4843305b70")
+    assert {:ok, ^deposit} =
+             with_mock_client() |> Deposits.get_deposit("123")
   end
 end

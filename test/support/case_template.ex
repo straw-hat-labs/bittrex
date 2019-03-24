@@ -10,6 +10,7 @@ defmodule Bittrex.TestSupport.CaseTemplate do
     quote do
       use ExVCR.Mock
       import Bittrex.TestSupport.CaseTemplate
+      import Bittrex.TestSupport.Factory
     end
   end
 

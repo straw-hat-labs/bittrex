@@ -3,13 +3,10 @@ defmodule Bittrex.AccountTest do
   alias Bittrex.Account
 
   test "GET /account" do
-    stub_request(%{
-      "id" => "123",
-      "email" => "acmec@acmec.com",
-      "isInternational" => true,
-      "isFiat" => true
-    })
+    account_response = build(:account_response)
+    account = Account.new(account_response)
+    stub_request(account_response)
 
-    assert {:ok, %Account{}} = with_mock_client() |> Account.get_account()
+    assert {:ok, ^account} = with_mock_client() |> Account.get_account()
   end
 end
