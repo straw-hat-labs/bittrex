@@ -3,38 +3,51 @@ defmodule Bittrex.OrdersTest do
   alias Bittrex.{Orders, Order, OrderCancelResult}
 
   test "GET /orders/closed" do
-    use_cassette "get_closed_orders" do
-      assert {:ok, _orders} = with_mock_client() |> Orders.get_closed_orders()
-    end
+    order_response = build_list(2, :order_response, %{
+      "status" => "CLOSED"
+    })
+    orders = Enum.map(order_response, &Order.new/1)
+    stub_request(order_response)
+
+    assert {:ok, ^orders} = with_mock_client() |> Orders.get_closed_orders()
   end
 
   test "GET /orders/open" do
-    use_cassette "get_open_orders" do
-      assert {:ok, _orders} = with_mock_client() |> Orders.get_open_orders()
-    end
+    order_response = build_list(2, :order_response, %{
+      "status" => "OPEN"
+    })
+    orders = Enum.map(order_response, &Order.new/1)
+    stub_request(order_response)
+
+    assert {:ok, ^orders} = with_mock_client() |> Orders.get_open_orders()
   end
 
   test "GET /orders/{orderId}" do
-    use_cassette "get_order" do
-      assert {:ok, %Order{}} =
-               with_mock_client() |> Orders.get_order("d153cd02-5c95-4691-ab9e-0d30564bef02")
-    end
+    order_response = build(:order_response)
+    order = Order.new(order_response)
+    stub_request(order_response)
+
+    assert {:ok, ^order} =
+               with_mock_client() |> Orders.get_order("123")
   end
 
   test "DELETE /orders/{orderId}" do
-    use_cassette "cancel_order" do
-      assert {:ok, %OrderCancelResult{}} =
-               with_mock_client() |> Orders.cancel_order("d153cd02-5c95-4691-ab9e-0d30564bef02")
-    end
+    order_cancel_result_response = build(:order_cancel_result_response)
+    order_cancel = OrderCancelResult.new(order_cancel_result_response)
+    stub_request(order_cancel_result_response)
+
+    assert {:ok, ^order_cancel} = with_mock_client() |> Orders.cancel_order("123")
   end
 
   test "POST /orders" do
-    use_cassette "create_order" do
-      assert {:ok, %Order{}} =
+    order_response = build(:order_response)
+    order = Order.new(order_response)
+    stub_request(order_response)
+
+    assert {:ok, ^order} =
                with_mock_client()
                |> Orders.create_order(%{
                  market_name: "BTC-DASH"
                })
-    end
   end
 end

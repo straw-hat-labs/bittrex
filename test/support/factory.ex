@@ -58,10 +58,48 @@ defmodule Bittrex.TestSupport.Factory do
     }
   end
 
-  def service_status_factory do
+  def service_status_response_factory do
     %{
       "status" => "123",
       "serverTime" => 12_351_243
+    }
+  end
+
+  def order_response_factory do
+    date_unix = "1553243950205"
+
+    %{
+      "id" => "123",
+      "marketName" => "BTC",
+      "direction" => "BUY",
+      "type" => "MARKET",
+      "quantity" => 1235.4,
+      "limit" => 123.2,
+      "ceiling" => 235.3,
+      "timeInForce" => "GOOD_TIL_CANCELLED",
+      "fillQuantity" => 345.5,
+      "commission" => 754.4,
+      "proceeds" => 754.4,
+      "clientOrderId" => "1235",
+      "status" => "OPEN",
+      "createdAt" => date_unix,
+      "updatedAt" => date_unix,
+      "closedAt" => date_unix
+    }
+  end
+
+  def order_cancel_result_response_factory do
+    date_unix = "1553243950205"
+
+    %{
+      "id" => "123",
+      "fillQuantity" => 564.4,
+      "commission" => 564.4,
+      "proceeds" => 564.4,
+      "clientOrderId" => "454",
+      "status" => "OPEN",
+      "updatedAt" => date_unix,
+      "closedAt" => date_unix
     }
   end
 end

@@ -3,7 +3,7 @@ defmodule Bittrex.StatusTest do
   alias Bittrex.{Status, ServiceStatus}
 
   test "GET /status" do
-    service_status_response = build(:service_status)
+    service_status_response = build(:service_status_response)
     service_status = ServiceStatus.new(service_status_response)
     stub_request(service_status_response)
 
