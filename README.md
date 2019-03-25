@@ -8,18 +8,21 @@
 
 ## Usage
 
-Add credentials from Bittrex. To manage your API keys please goto
+First, create the credentials from Bittrex. To manage your API keys please goto
 `Settings -> Manage API Keys` on Bittrex.
 
+You need to create an `Bittrex.HttpClient` using `Bittrex.HttpClient.new/1`
+
 ```elixir
-# config/config.exs
-config :bittrex,
-  credentials: [
-    api_key: "",
-    api_secret: ""
-  ]
+client = Bittrex.HttpClient.new("my api key", "my api secret")
 ```
 
-From now on, just check the available modules and functions so you can find
-the data that you need. The module and function are self descriptive but if you
-have any feedback open a PR and we add some documentation.
+Now you can use the available functions for communicate with Bittrex API.
+
+Example:
+
+```elixir
+client = Bittrex.HttpClient.new("my api key", "my api secret")
+
+{:ok, markets} = Bittrex.Markets.get_markets(client)
+```
