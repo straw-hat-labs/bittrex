@@ -55,11 +55,7 @@ defmodule Bittrex.MixProject do
   defp cli_env do
     [
       "coveralls.html": :test,
-      "coveralls.json": :test,
-      vcr: :test,
-      "vcr.delete": :test,
-      "vcr.check": :test,
-      "vcr.show": :test
+      "coveralls.json": :test
     ]
   end
 
