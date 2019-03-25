@@ -186,4 +186,20 @@ defmodule Bittrex.TestSupport.Factory do
       "createdAt" => date_unix
     }
   end
+
+  def withdrawal_response_factory do
+    date_unix = "1553243950205"
+
+    %{
+      "id" => "1235",
+      "currencySymbol" => "BTC",
+      "quantity" => 453.2,
+      "address" => "string",
+      "txCost" => 453.2,
+      "txId" => "123",
+      "status" => "COMPLETED",
+      "createdAt" => date_unix,
+      "completedAt" => date_unix
+    }
+  end
 end
