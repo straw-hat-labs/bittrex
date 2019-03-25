@@ -7,9 +7,11 @@ defmodule Bittrex.OrdersTest do
       build_list(2, :order_response, %{
         "status" => "CLOSED"
       })
-
     orders = Enum.map(order_response, &Order.new/1)
-    stub_request(order_response)
+
+    stub_request(%{
+      body: Jason.encode!(order_response)
+    })
 
     assert {:ok, ^orders} = with_mock_client() |> Orders.get_closed_orders()
   end
@@ -19,9 +21,11 @@ defmodule Bittrex.OrdersTest do
       build_list(2, :order_response, %{
         "status" => "OPEN"
       })
-
     orders = Enum.map(order_response, &Order.new/1)
-    stub_request(order_response)
+
+    stub_request(%{
+      body: Jason.encode!(order_response)
+    })
 
     assert {:ok, ^orders} = with_mock_client() |> Orders.get_open_orders()
   end
@@ -29,7 +33,10 @@ defmodule Bittrex.OrdersTest do
   test "GET /orders/{orderId}" do
     order_response = build(:order_response)
     order = Order.new(order_response)
-    stub_request(order_response)
+
+    stub_request(%{
+      body: Jason.encode!(order_response)
+    })
 
     assert {:ok, ^order} = with_mock_client() |> Orders.get_order("123")
   end
@@ -37,7 +44,10 @@ defmodule Bittrex.OrdersTest do
   test "DELETE /orders/{orderId}" do
     order_cancel_result_response = build(:order_cancel_result_response)
     order_cancel = OrderCancelResult.new(order_cancel_result_response)
-    stub_request(order_cancel_result_response)
+
+    stub_request(%{
+      body: Jason.encode!(order_cancel_result_response)
+    })
 
     assert {:ok, ^order_cancel} = with_mock_client() |> Orders.cancel_order("123")
   end
@@ -45,7 +55,10 @@ defmodule Bittrex.OrdersTest do
   test "POST /orders" do
     order_response = build(:order_response)
     order = Order.new(order_response)
-    stub_request(order_response)
+
+    stub_request(%{
+      body: Jason.encode!(order_response)
+    })
 
     assert {:ok, ^order} =
              with_mock_client()

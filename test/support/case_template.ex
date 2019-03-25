@@ -17,19 +17,20 @@ defmodule Bittrex.TestSupport.CaseTemplate do
     Bittrex.HttpClient.new("apikey", "apisecret")
   end
 
-  def stub_request(data, config \\ %{}) do
-    tuple_error = Map.get(config, :tuple_error, :ok)
+  def stub_request(config) do
+    tupple_status = Map.get(config, :tupple_status, :ok)
+    headers = Map.get(config, :headers, @response_headers)
+    response = Map.get(config, :response, %{
+      status_code: Map.get(config, :status_code, 200),
+      body: Map.get(config, :body, ""),
+      headers: headers
+    })
 
     stub(
       Bittrex.MockHttpClient,
       :request,
       fn _method, _url, _body, _headers, _options ->
-        {tuple_error,
-         %{
-           status_code: Map.get(config, :status_code, 200),
-           body: Jason.encode!(data),
-           headers: @response_headers
-         }}
+        {tupple_status, response}
       end
     )
   end

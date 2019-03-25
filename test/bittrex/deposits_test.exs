@@ -5,7 +5,10 @@ defmodule Bittrex.DepositsTest do
   test "GET /deposits" do
     deposits_response = build_list(2, :deposit_response)
     deposits = Enum.map(deposits_response, &Deposit.new/1)
-    stub_request(deposits_response)
+
+    stub_request(%{
+      body: Jason.encode!(deposits_response)
+    })
 
     assert {:ok, ^deposits} = with_mock_client() |> Deposits.get_deposits()
   end
@@ -13,7 +16,10 @@ defmodule Bittrex.DepositsTest do
   test "GET /deposits/{depositId}" do
     deposit_response = build(:deposit_response)
     deposit = Deposit.new(deposit_response)
-    stub_request(deposit_response)
+
+    stub_request(%{
+      body: Jason.encode!(deposit_response)
+    })
 
     assert {:ok, ^deposit} = with_mock_client() |> Deposits.get_deposit("123")
   end
