@@ -60,7 +60,7 @@ defmodule Bittrex.HttpRequest do
     put_headers(request, headers)
   end
 
-  defp put_api_sub_account_id(headers, request) do
+  def put_api_sub_account_id(headers, request) do
     if request.http_client.sub_account_id == "" do
       headers
     else
