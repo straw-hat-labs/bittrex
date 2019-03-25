@@ -177,4 +177,13 @@ defmodule Bittrex.TestSupport.Factory do
       "bv" => 23.5
     }
   end
+
+  def subaccount_response_factory do
+    date_unix = "1553243950205"
+
+    %{
+      "id" => "123",
+      "createdAt" => date_unix
+    }
+  end
 end
