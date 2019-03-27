@@ -7,6 +7,12 @@ defmodule Bittrex.HttpClient do
   alias Bittrex.HttpRequest
   alias StrawHat.Response
 
+  @typedoc """
+  The error could be either an string with the reason of the error or a tuple
+  with the HTTP status code and the body of the HTTP response.
+  """
+  @type error :: {integer(), any()} | String.t()
+
   @http_adapter Application.get_env(:bittrex, :http_adapter, HTTPoison)
 
   @enforce_keys [:api_key, :api_secret, :sub_account_id]

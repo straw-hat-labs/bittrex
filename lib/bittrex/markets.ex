@@ -9,7 +9,7 @@ defmodule Bittrex.Markets do
   @doc """
   List markets.
   """
-  @spec get_markets(%HttpClient{}, %{}) :: Response.t([%Market{}], any())
+  @spec get_markets(%HttpClient{}, %{}) :: Response.t([%Market{}], HttpClient.error())
   def get_markets(client, params \\ %{}) do
     client
     |> HttpRequest.new()
@@ -27,7 +27,7 @@ defmodule Bittrex.Markets do
   @doc """
   Retrieve information for a specific market.
   """
-  @spec get_market(%HttpClient{}, String.t()) :: Response.t(%Market{}, any())
+  @spec get_market(%HttpClient{}, String.t()) :: Response.t(%Market{}, HttpClient.error())
   def get_market(client, market_name) do
     client
     |> HttpRequest.new()
@@ -44,7 +44,8 @@ defmodule Bittrex.Markets do
   @doc """
   Retrieve summary for a specific market.
   """
-  @spec get_market_summary(%HttpClient{}, String.t()) :: Response.t(%MarketSummary{}, any())
+  @spec get_market_summary(%HttpClient{}, String.t()) ::
+          Response.t(%MarketSummary{}, HttpClient.error())
   def get_market_summary(client, market_name) do
     client
     |> HttpRequest.new()
@@ -63,7 +64,7 @@ defmodule Bittrex.Markets do
   """
   @spec get_order_book(%HttpClient{}, String.t(), %{
           depth: integer()
-        }) :: Response.t(%OrderBook{}, any())
+        }) :: Response.t(%OrderBook{}, HttpClient.error())
   def get_order_book(client, market_name, params \\ %{}) do
     client
     |> HttpRequest.new()
@@ -81,7 +82,7 @@ defmodule Bittrex.Markets do
   @doc """
   Retrieve the recent trades for a specific market.
   """
-  @spec get_market_trades(%HttpClient{}, String.t()) :: Response.t(%Trade{}, any())
+  @spec get_market_trades(%HttpClient{}, String.t()) :: Response.t(%Trade{}, HttpClient.error())
   def get_market_trades(client, market_name) do
     client
     |> HttpRequest.new()
@@ -100,7 +101,7 @@ defmodule Bittrex.Markets do
   """
   @spec get_market_candles(%HttpClient{}, String.t(), %{
           candle_interval: String.t()
-        }) :: Response.t(%Candle{}, any())
+        }) :: Response.t(%Candle{}, HttpClient.error())
   def get_market_candles(client, market_name, params \\ %{}) do
     client
     |> HttpRequest.new()
@@ -118,7 +119,7 @@ defmodule Bittrex.Markets do
   @doc """
   List market summaries.
   """
-  @spec get_market_summaries(%HttpClient{}) :: Response.t(%MarketSummary{}, any())
+  @spec get_market_summaries(%HttpClient{}) :: Response.t(%MarketSummary{}, HttpClient.error())
   def get_market_summaries(client) do
     client
     |> HttpRequest.new()

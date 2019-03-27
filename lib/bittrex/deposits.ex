@@ -15,7 +15,7 @@ defmodule Bittrex.Deposits do
           starting_after: String.t(),
           ending_before: String.t(),
           limit: integer()
-        }) :: Response.t([%Deposit{}], any())
+        }) :: Response.t([%Deposit{}], HttpClient.error())
   def get_deposits(client, params \\ %{}) do
     client
     |> HttpRequest.new()
@@ -33,7 +33,7 @@ defmodule Bittrex.Deposits do
   @doc """
   Retrieve information for a specific deposit. (NOT YET IMPLEMENTED)
   """
-  @spec get_deposit(%HttpClient{}, String.t()) :: Response.t(%Deposit{}, any())
+  @spec get_deposit(%HttpClient{}, String.t()) :: Response.t(%Deposit{}, HttpClient.error())
   def get_deposit(client, deposit_id) do
     client
     |> HttpRequest.new()

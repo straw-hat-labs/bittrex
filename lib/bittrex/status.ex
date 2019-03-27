@@ -9,7 +9,7 @@ defmodule Bittrex.Status do
   @doc """
   Check service status.
   """
-  @spec get_status(%HttpClient{}) :: Response.t(%ServiceStatus{}, any())
+  @spec get_status(%HttpClient{}) :: Response.t(%ServiceStatus{}, HttpClient.error())
   def get_status(client) do
     client
     |> HttpRequest.new()

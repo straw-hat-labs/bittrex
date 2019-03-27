@@ -14,7 +14,7 @@ defmodule Bittrex.Subaccounts do
           starting_after: String.t(),
           ending_before: String.t(),
           limit: integer()
-        }) :: Response.t([%Subaccount{}], any())
+        }) :: Response.t([%Subaccount{}], HttpClient.error())
   def get_subaccounts(client, params \\ %{}) do
     client
     |> HttpRequest.new()
@@ -33,7 +33,7 @@ defmodule Bittrex.Subaccounts do
   Create a new subaccount. (NOTE: This API is limited to partners and not
   available for traders.)
   """
-  @spec create_subaccount(%HttpClient{}, %{}) :: Response.t(%Subaccount{}, any())
+  @spec create_subaccount(%HttpClient{}, %{}) :: Response.t(%Subaccount{}, HttpClient.error())
   def create_subaccount(client, params \\ %{}) do
     client
     |> HttpRequest.new()
@@ -52,7 +52,7 @@ defmodule Bittrex.Subaccounts do
   Retrieve details for a specified subaccount. (NOTE: This API is limited to
   partners and not available for traders.)
   """
-  @spec get_subaccount(%HttpClient{}, String.t()) :: Response.t(%Subaccount{}, any())
+  @spec get_subaccount(%HttpClient{}, String.t()) :: Response.t(%Subaccount{}, HttpClient.error())
   def get_subaccount(client, subaccount_id) do
     client
     |> HttpRequest.new()

@@ -15,7 +15,7 @@ defmodule Bittrex.Withdrawals do
           starting_after: String.t(),
           ending_before: String.t(),
           limit: integer()
-        }) :: Response.t([%Withdrawal{}], any())
+        }) :: Response.t([%Withdrawal{}], HttpClient.error())
   def get_withdrawals(client, params \\ %{}) do
     client
     |> HttpRequest.new()
@@ -33,7 +33,7 @@ defmodule Bittrex.Withdrawals do
   @doc """
   Retrieve information on a specified withdrawal.
   """
-  @spec get_withdrawal(%HttpClient{}, String.t()) :: Response.t(%Withdrawal{}, any())
+  @spec get_withdrawal(%HttpClient{}, String.t()) :: Response.t(%Withdrawal{}, HttpClient.error())
   def get_withdrawal(client, withdrawal_id) do
     client
     |> HttpRequest.new()
@@ -50,7 +50,7 @@ defmodule Bittrex.Withdrawals do
   @doc """
   Cancel a withdrawal.
   """
-  @spec delete_withdrawal(%HttpClient{}, String.t()) :: Response.t(String.t(), any())
+  @spec delete_withdrawal(%HttpClient{}, String.t()) :: Response.t(String.t(), HttpClient.error())
   def delete_withdrawal(client, withdrawal_id) do
     client
     |> HttpRequest.new()
@@ -68,7 +68,7 @@ defmodule Bittrex.Withdrawals do
           quantity: number(),
           address: String.t(),
           message: String.t()
-        }) :: Response.t(%Withdrawal{}, any())
+        }) :: Response.t(%Withdrawal{}, HttpClient.error())
   def create_withdrawal(client, params \\ %{}) do
     client
     |> HttpRequest.new()

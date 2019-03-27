@@ -14,7 +14,7 @@ defmodule Bittrex.Orders do
           starting_after: String.t(),
           ending_before: String.t(),
           limit: integer()
-        }) :: Response.t([%Order{}], any())
+        }) :: Response.t([%Order{}], HttpClient.error())
   def get_closed_orders(client, params \\ %{}) do
     client
     |> HttpRequest.new()
@@ -34,7 +34,7 @@ defmodule Bittrex.Orders do
   """
   @spec get_open_orders(%HttpClient{}, %{
           market_name: String.t()
-        }) :: Response.t([%Order{}], any())
+        }) :: Response.t([%Order{}], HttpClient.error())
   def get_open_orders(client, params \\ %{}) do
     client
     |> HttpRequest.new()
@@ -52,7 +52,7 @@ defmodule Bittrex.Orders do
   @doc """
   Retrieve information on a specific order.
   """
-  @spec get_order(%HttpClient{}, String.t()) :: Response.t(%Order{}, any())
+  @spec get_order(%HttpClient{}, String.t()) :: Response.t(%Order{}, HttpClient.error())
   def get_order(client, order_id) do
     client
     |> HttpRequest.new()
@@ -69,7 +69,8 @@ defmodule Bittrex.Orders do
   @doc """
   Cancel an order.
   """
-  @spec cancel_order(%HttpClient{}, String.t()) :: Response.t(%OrderCancelResult{}, any())
+  @spec cancel_order(%HttpClient{}, String.t()) ::
+          Response.t(%OrderCancelResult{}, HttpClient.error())
   def cancel_order(client, order_id) do
     client
     |> HttpRequest.new()
@@ -96,7 +97,7 @@ defmodule Bittrex.Orders do
           time_in_force: String.t(),
           client_order_id: String.t()
         }) ::
-          Response.t(%Order{}, any())
+          Response.t(%Order{}, HttpClient.error())
   def create_order(client, order_attrs) do
     client
     |> HttpRequest.new()

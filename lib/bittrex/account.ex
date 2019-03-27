@@ -23,7 +23,7 @@ defmodule Bittrex.Account do
   @doc """
   Retrieve account information.
   """
-  @spec get_account(%HttpClient{}) :: Response.t(%__MODULE__{}, any())
+  @spec get_account(%HttpClient{}) :: Response.t(%__MODULE__{}, HttpClient.error())
   def get_account(client) do
     client
     |> HttpRequest.new()

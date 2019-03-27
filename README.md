@@ -26,3 +26,6 @@ client = Bittrex.HttpClient.new("my api key", "my api secret")
 
 {:ok, markets} = Bittrex.Markets.get_markets(client)
 ```
+
+Check the current modules, the module names are trying to follow the same
+structure from the [official documentation of Bittrex API](https://bittrex.github.io/api/v3).

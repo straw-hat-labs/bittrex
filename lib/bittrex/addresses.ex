@@ -9,7 +9,7 @@ defmodule Bittrex.Addresses do
   @doc """
   List deposit addresses.
   """
-  @spec get_addresses(%HttpClient{}) :: Response.t([%Address{}], any())
+  @spec get_addresses(%HttpClient{}) :: Response.t([%Address{}], HttpClient.error())
   def get_addresses(client) do
     client
     |> HttpRequest.new()
@@ -27,7 +27,7 @@ defmodule Bittrex.Addresses do
   Request provisioning of a deposit address.
   """
   @spec create_address(%HttpClient{}, %{currency_symbol: String.t()}) ::
-          Response.t(%Address{}, any())
+          Response.t(%Address{}, HttpClient.error())
   def create_address(client, address_attr) do
     client
     |> HttpRequest.new()
@@ -45,7 +45,7 @@ defmodule Bittrex.Addresses do
   @doc """
   Retrieve the deposit address for a particular currency.
   """
-  @spec get_address(%HttpClient{}, String.t()) :: Response.t(%Address{}, any())
+  @spec get_address(%HttpClient{}, String.t()) :: Response.t(%Address{}, HttpClient.error())
   def get_address(client, currency_symbol) do
     client
     |> HttpRequest.new()
