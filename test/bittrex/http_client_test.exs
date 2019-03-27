@@ -18,7 +18,7 @@ defmodule Bittrex.HttpClientTest do
     stub_request(%{
       body: "<p>Some HTML <b>here</b></p>",
       headers: [{"Content-Type", "application/text"}],
-      status_code: 400
+      status_code: 500
     })
 
     assert {:error, {500, "<p>Some HTML <b>here</b></p>"}} == HttpClient.send(http_request)
