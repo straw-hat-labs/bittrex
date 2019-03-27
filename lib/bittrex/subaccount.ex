@@ -18,7 +18,7 @@ defmodule Bittrex.Subaccount do
   def new(data) do
     %__MODULE__{
       id: data["id"],
-      created_at: Bittrex.format_datetime(data["createdAt"]),
+      created_at: Bittrex.format_datetime(data["createdAt"])
     }
   end
 end

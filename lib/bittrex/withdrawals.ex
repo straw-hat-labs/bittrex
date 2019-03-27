@@ -64,11 +64,11 @@ defmodule Bittrex.Withdrawals do
   Create a new withdrawal.
   """
   @spec create_withdrawal(%HttpClient{}, %{
-    currency_symbol: String.t(),
-    quantity: number(),
-    address: String.t(),
-    message: String.t()
-  }) :: Response.t(%Withdrawal{}, any())
+          currency_symbol: String.t(),
+          quantity: number(),
+          address: String.t(),
+          message: String.t()
+        }) :: Response.t(%Withdrawal{}, any())
   def create_withdrawal(client, params \\ %{}) do
     client
     |> HttpRequest.new()

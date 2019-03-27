@@ -7,6 +7,7 @@ defmodule Bittrex.OrdersTest do
       build_list(2, :order_response, %{
         "status" => "CLOSED"
       })
+
     orders = Enum.map(order_response, &Order.new/1)
 
     stub_request(%{
@@ -21,6 +22,7 @@ defmodule Bittrex.OrdersTest do
       build_list(2, :order_response, %{
         "status" => "OPEN"
       })
+
     orders = Enum.map(order_response, &Order.new/1)
 
     stub_request(%{

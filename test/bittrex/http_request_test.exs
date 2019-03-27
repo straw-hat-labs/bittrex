@@ -9,7 +9,7 @@ defmodule Bittrex.HttpRequestTest do
       |> HttpRequest.new()
 
     assert %{
-      "Api-Subaccount-Id" => "pepega"
-    } == HttpRequest.put_api_sub_account_id(%{}, http_request)
+             "Api-Subaccount-Id" => "pepega"
+           } == HttpRequest.put_api_sub_account_id(%{}, http_request)
   end
 end

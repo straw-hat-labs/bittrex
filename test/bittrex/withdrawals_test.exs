@@ -43,9 +43,9 @@ defmodule Bittrex.WithdrawalsTest do
     assert {:ok, ^withdrawal} =
              with_mock_client()
              |> Withdrawals.create_withdrawal(%{
-              currency_symbol: "BAT",
-              quantity: 125.5,
-              address: "1236",
+               currency_symbol: "BAT",
+               quantity: 125.5,
+               address: "1236"
              })
   end
 end

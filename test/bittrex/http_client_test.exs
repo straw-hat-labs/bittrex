@@ -4,12 +4,14 @@ defmodule Bittrex.HttpClientTest do
 
   test "handling API error responses" do
     http_request = with_mock_client() |> HttpRequest.new()
+
     stub_request(%{
-      body: Jason.encode!(%{ "messageResponse" => "Something went wrong" }),
+      body: Jason.encode!(%{"messageResponse" => "Something went wrong"}),
       status_code: 400
     })
 
-    assert {:error, {400, %{"message_response" => "Something went wrong"}}} == HttpClient.send(http_request)
+    assert {:error, {400, %{"message_response" => "Something went wrong"}}} ==
+             HttpClient.send(http_request)
   end
 
   test "handling non JSON response" do

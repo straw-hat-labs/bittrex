@@ -15,16 +15,16 @@ defmodule Bittrex.Withdrawal do
   - `completed_at`: time stamp when this withdrawal was completed.
   """
   @type t :: %__MODULE__{
-    id: String.t(),
-    currency_symbol: String.t(),
-    quantity: number(),
-    address: String.t(),
-    tx_cost: number(),
-    tx_id: String.t(),
-    status: String.t(),
-    created_at: NaiveDateTime.t(),
-    completed_at: NaiveDateTime.t()
-  }
+          id: String.t(),
+          currency_symbol: String.t(),
+          quantity: number(),
+          address: String.t(),
+          tx_cost: number(),
+          tx_id: String.t(),
+          status: String.t(),
+          created_at: NaiveDateTime.t(),
+          completed_at: NaiveDateTime.t()
+        }
 
   defstruct [
     :id,
@@ -49,7 +49,7 @@ defmodule Bittrex.Withdrawal do
       tx_id: data["txId"],
       status: data["status"],
       created_at: Bittrex.format_datetime(data["createdAt"]),
-      completed_at: Bittrex.format_datetime(data["completedAt"]),
+      completed_at: Bittrex.format_datetime(data["completedAt"])
     }
   end
 end

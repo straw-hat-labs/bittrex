@@ -20,11 +20,13 @@ defmodule Bittrex.TestSupport.CaseTemplate do
   def stub_request(config) do
     tupple_status = Map.get(config, :tupple_status, :ok)
     headers = Map.get(config, :headers, @response_headers)
-    response = Map.get(config, :response, %{
-      status_code: Map.get(config, :status_code, 200),
-      body: Map.get(config, :body, ""),
-      headers: headers
-    })
+
+    response =
+      Map.get(config, :response, %{
+        status_code: Map.get(config, :status_code, 200),
+        body: Map.get(config, :body, ""),
+        headers: headers
+      })
 
     stub(
       Bittrex.MockHttpClient,
