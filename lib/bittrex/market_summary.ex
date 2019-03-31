@@ -3,6 +3,8 @@ defmodule Bittrex.MarketSummary do
   A Bittrex MarketSummary.
   """
 
+  alias StrawHat.Response
+
   @typedoc """
   - `name`: unique name for this market.
   - `high`: high.
@@ -63,5 +65,19 @@ defmodule Bittrex.MarketSummary do
       previous_day: data["previousDay"],
       updated_at: Bittrex.format_datetime(data["updatedAt"])
     }
+  end
+
+  @doc false
+  def transform_response(data) when is_list(data) do
+    data
+    |> Enum.map(&new/1)
+    |> Response.ok()
+  end
+
+  @doc false
+  def transform_response(data) do
+    data
+    |> new()
+    |> Response.ok()
   end
 end

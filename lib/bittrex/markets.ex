@@ -52,11 +52,7 @@ defmodule Bittrex.Markets do
     |> Request.put_method(:get)
     |> Request.put_path("/markets/#{market_name}/summary")
     |> Client.send()
-    |> StrawHat.Response.and_then(fn data ->
-      data
-      |> MarketSummary.new()
-      |> Response.ok()
-    end)
+    |> StrawHat.Response.and_then(&MarketSummary.transform_response/1)
   end
 
   @doc """
@@ -122,10 +118,6 @@ defmodule Bittrex.Markets do
     |> Request.put_method(:get)
     |> Request.put_path("/markets")
     |> Client.send()
-    |> StrawHat.Response.and_then(fn data ->
-      data
-      |> Enum.map(&MarketSummary.new/1)
-      |> Response.ok()
-    end)
+    |> StrawHat.Response.and_then(&MarketSummary.transform_response/1)
   end
 end
