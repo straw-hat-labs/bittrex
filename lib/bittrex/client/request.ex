@@ -1,7 +1,8 @@
 defmodule Bittrex.Client.Request do
   @moduledoc false
 
-  @base_url Application.get_env(:bittrex, :base_url, "https://api.bittrex.com/v3")
+  @base_url "https://api.bittrex.com/v3"
+  @default_headers %{"Content-Type" => "application/json"}
 
   defstruct [:client, :method, :url, :headers, :params, :body]
 
@@ -19,7 +20,7 @@ defmodule Bittrex.Client.Request do
   end
 
   def put_path(%__MODULE__{} = http_request, path) do
-    url = process_url(path)
+    url = @base_url <> path
     Map.put(http_request, :url, url)
   end
 
@@ -30,10 +31,6 @@ defmodule Bittrex.Client.Request do
       |> Jason.encode!()
 
     Map.put(http_request, :body, new_body)
-  end
-
-  def process_url(path) do
-    @base_url <> path
   end
 
   def put_headers(%__MODULE__{} = request, headers) do
@@ -50,7 +47,7 @@ defmodule Bittrex.Client.Request do
 
   def put_required_headers(request) do
     headers =
-      %{"Content-Type" => "application/json"}
+      @default_headers
       |> put_api_key_header(request)
       |> put_api_timestamp_header()
       |> put_api_content_hash_header(request)
