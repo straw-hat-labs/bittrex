@@ -17,11 +17,7 @@ defmodule Bittrex.Markets do
     |> Request.put_path("/markets")
     |> Request.put_params(params)
     |> Client.send()
-    |> StrawHat.Response.and_then(fn data ->
-      data
-      |> Enum.map(&Market.new/1)
-      |> Response.ok()
-    end)
+    |> StrawHat.Response.and_then(&Market.transform_response/1)
   end
 
   @doc """
@@ -34,11 +30,7 @@ defmodule Bittrex.Markets do
     |> Request.put_method(:get)
     |> Request.put_path("/markets/#{market_name}")
     |> Client.send()
-    |> StrawHat.Response.and_then(fn data ->
-      data
-      |> Market.new()
-      |> Response.ok()
-    end)
+    |> StrawHat.Response.and_then(&Market.transform_response/1)
   end
 
   @doc """
@@ -68,11 +60,7 @@ defmodule Bittrex.Markets do
     |> Request.put_path("/markets/#{market_name}/orderbook")
     |> Request.put_params(params)
     |> Client.send()
-    |> StrawHat.Response.and_then(fn data ->
-      data
-      |> OrderBook.new()
-      |> Response.ok()
-    end)
+    |> StrawHat.Response.and_then(&OrderBook.transform_response/1)
   end
 
   @doc """
@@ -85,11 +73,7 @@ defmodule Bittrex.Markets do
     |> Request.put_method(:get)
     |> Request.put_path("/markets/#{market_name}/trades")
     |> Client.send()
-    |> StrawHat.Response.and_then(fn data ->
-      data
-      |> Enum.map(&Trade.new/1)
-      |> Response.ok()
-    end)
+    |> StrawHat.Response.and_then(&Trade.transform_response/1)
   end
 
   @doc """

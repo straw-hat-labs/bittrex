@@ -3,6 +3,8 @@ defmodule Bittrex.Market do
   A Bittrex Market.
   """
 
+  alias StrawHat.Response
+
   @typedoc """
   - `name`: unique name for this market.
   - `base_currency_symbol`: unique symbol for base currency.
@@ -60,5 +62,19 @@ defmodule Bittrex.Market do
       notice: data["notice"],
       logo_url: data["logoUrl"]
     }
+  end
+
+  @doc false
+  def transform_response(data) when is_list(data) do
+    data
+    |> Enum.map(&new/1)
+    |> Response.ok()
+  end
+
+  @doc false
+  def transform_response(data) do
+    data
+    |> new()
+    |> Response.ok()
   end
 end

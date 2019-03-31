@@ -3,6 +3,8 @@ defmodule Bittrex.Trade do
   A Bittrex Trade.
   """
 
+  alias StrawHat.Response
+
   @typedoc """
   - `executed_at`: timestamp in UTC when order was filled.
   - `quantity`: quantity.
@@ -23,5 +25,12 @@ defmodule Bittrex.Trade do
       quantity: data["quantity"],
       rate: data["rate"]
     }
+  end
+
+  @doc false
+  def transform_response(data) when is_list(data) do
+    data
+    |> Enum.map(&new/1)
+    |> Response.ok()
   end
 end

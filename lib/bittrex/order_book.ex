@@ -3,6 +3,7 @@ defmodule Bittrex.OrderBook do
   A Bittrex Order Book.
   """
 
+  alias StrawHat.Response
   alias Bittrex.OrderBookEntry
 
   @typedoc """
@@ -22,5 +23,12 @@ defmodule Bittrex.OrderBook do
       bid: Enum.map(data["bid"], &OrderBookEntry.new/1),
       ask: Enum.map(data["ask"], &OrderBookEntry.new/1)
     }
+  end
+
+  @doc false
+  def transform_response(data) do
+    data
+    |> new()
+    |> Response.ok()
   end
 end
