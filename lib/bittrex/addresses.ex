@@ -16,11 +16,7 @@ defmodule Bittrex.Addresses do
     |> Request.put_method(:get)
     |> Request.put_path("/addresses")
     |> Client.send()
-    |> StrawHat.Response.and_then(fn data ->
-      data
-      |> Enum.map(&Address.new/1)
-      |> Response.ok()
-    end)
+    |> StrawHat.Response.and_then(&Address.transform_response/1)
   end
 
   @doc """
@@ -35,11 +31,7 @@ defmodule Bittrex.Addresses do
     |> Request.put_body(address_attr)
     |> Request.put_path("/addresses")
     |> Client.send()
-    |> StrawHat.Response.and_then(fn data ->
-      data
-      |> Address.new()
-      |> Response.ok()
-    end)
+    |> StrawHat.Response.and_then(&Address.transform_response/1)
   end
 
   @doc """
@@ -52,10 +44,6 @@ defmodule Bittrex.Addresses do
     |> Request.put_method(:get)
     |> Request.put_path("/addresses/#{currency_symbol}")
     |> Client.send()
-    |> StrawHat.Response.and_then(fn data ->
-      data
-      |> Address.new()
-      |> Response.ok()
-    end)
+    |> StrawHat.Response.and_then(&Address.transform_response/1)
   end
 end

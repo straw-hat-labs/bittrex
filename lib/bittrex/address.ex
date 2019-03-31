@@ -3,6 +3,8 @@ defmodule Bittrex.Address do
   A Bittrex Address.
   """
 
+  alias StrawHat.Response
+
   @typedoc """
   - `status`: the status of this deposit address.
   - `currency_symbol`: the unique ID of the currency this deposit address is
@@ -24,5 +26,19 @@ defmodule Bittrex.Address do
       currency_symbol: data["currencySymbol"],
       crypto_address: data["cryptoAddress"]
     }
+  end
+
+  @doc false
+  def transform_response(data) when is_list(data) do
+    data
+    |> Enum.map(&new/1)
+    |> Response.ok()
+  end
+
+  @doc false
+  def transform_response(data) do
+    data
+    |> new()
+    |> Response.ok()
   end
 end
