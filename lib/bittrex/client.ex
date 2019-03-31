@@ -4,8 +4,8 @@ defmodule Bittrex.Client do
   of your client, this allow you to have multiple clients.
   """
 
-  alias Bittrex.Client.Request
   alias StrawHat.Response
+  alias Bittrex.Client.Request
 
   @typedoc """
   Client credentials and metadata.
@@ -83,10 +83,9 @@ defmodule Bittrex.Client do
   defp get_content_type(response) do
     {_key, content_type} = Enum.find(response.headers, &is_content_type_header/1)
 
-    if String.contains?(content_type, "application/json") do
-      :json
-    else
-      :text
+    cond do
+      String.contains?(content_type, "application/json") -> :json
+      true -> :text
     end
   end
 
