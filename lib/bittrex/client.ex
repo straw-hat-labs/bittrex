@@ -5,7 +5,7 @@ defmodule Bittrex.Client do
   """
 
   alias StrawHat.Response
-  alias Bittrex.Client.Request
+  alias Bittrex.Client.{Request, Error}
 
   @typedoc """
   Client credentials and metadata.
@@ -16,7 +16,7 @@ defmodule Bittrex.Client do
   The error could be either an string with the reason of the error or a tuple
   with the HTTP status code and the body of the HTTP response.
   """
-  @type error :: {integer(), any()} | String.t()
+  @type error :: Error.t() | any()
 
   @http_adapter Application.get_env(:bittrex, :http_adapter, HTTPoison)
 
@@ -73,11 +73,7 @@ defmodule Bittrex.Client do
       |> get_content_type()
       |> decode_body(response.body)
 
-    Response.error({response.status_code, decoded_body})
-  end
-
-  defp process_response({:error, %{reason: reason}} = _response) do
-    Response.error(reason)
+    Error.new(response.status_code, decoded_body) |> Response.error()
   end
 
   defp get_content_type(response) do
