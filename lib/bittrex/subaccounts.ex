@@ -22,11 +22,7 @@ defmodule Bittrex.Subaccounts do
     |> Request.put_path("/subaccounts")
     |> Request.put_params(params)
     |> Client.send()
-    |> StrawHat.Response.and_then(fn data ->
-      data
-      |> Enum.map(&Subaccount.new/1)
-      |> Response.ok()
-    end)
+    |> StrawHat.Response.and_then(&Subaccount.transform_response/1)
   end
 
   @doc """
@@ -41,11 +37,7 @@ defmodule Bittrex.Subaccounts do
     |> Request.put_path("/subaccounts")
     |> Request.put_params(params)
     |> Client.send()
-    |> StrawHat.Response.and_then(fn data ->
-      data
-      |> Subaccount.new()
-      |> Response.ok()
-    end)
+    |> StrawHat.Response.and_then(&Subaccount.transform_response/1)
   end
 
   @doc """
@@ -59,10 +51,6 @@ defmodule Bittrex.Subaccounts do
     |> Request.put_method(:get)
     |> Request.put_path("/subaccounts/#{subaccount_id}")
     |> Client.send()
-    |> StrawHat.Response.and_then(fn data ->
-      data
-      |> Subaccount.new()
-      |> Response.ok()
-    end)
+    |> StrawHat.Response.and_then(&Subaccount.transform_response/1)
   end
 end

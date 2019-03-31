@@ -3,6 +3,8 @@ defmodule Bittrex.Subaccount do
   A Bittrex Subaccount.
   """
 
+  alias StrawHat.Response
+
   @typedoc """
   - `id`: unique ID of this subaccount.
   - `created_at`: when the account was created.
@@ -20,5 +22,19 @@ defmodule Bittrex.Subaccount do
       id: data["id"],
       created_at: Bittrex.format_datetime(data["createdAt"])
     }
+  end
+
+  @doc false
+  def transform_response(data) when is_list(data) do
+    data
+    |> Enum.map(&new/1)
+    |> Response.ok()
+  end
+
+  @doc false
+  def transform_response(data) do
+    data
+    |> new()
+    |> Response.ok()
   end
 end
