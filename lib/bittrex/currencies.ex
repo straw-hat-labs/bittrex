@@ -16,11 +16,7 @@ defmodule Bittrex.Currencies do
     |> Request.put_method(:get)
     |> Request.put_path("/currencies")
     |> Client.send()
-    |> StrawHat.Response.and_then(fn data ->
-      data
-      |> Enum.map(&Currency.new/1)
-      |> Response.ok()
-    end)
+    |> StrawHat.Response.and_then(&Currency.transform_response/1)
   end
 
   @doc """
@@ -33,10 +29,6 @@ defmodule Bittrex.Currencies do
     |> Request.put_method(:get)
     |> Request.put_path("/currencies/#{currency_symbol}")
     |> Client.send()
-    |> StrawHat.Response.and_then(fn data ->
-      data
-      |> Currency.new()
-      |> Response.ok()
-    end)
+    |> StrawHat.Response.and_then(&Currency.transform_response/1)
   end
 end

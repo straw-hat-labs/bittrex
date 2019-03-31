@@ -3,6 +3,8 @@ defmodule Bittrex.Currency do
   A Bittrex Currency.
   """
 
+  alias StrawHat.Response
+
   @typedoc """
   - `symbol`: unique symbol for this currency.
   - `name`: long name of this currency.
@@ -52,5 +54,19 @@ defmodule Bittrex.Currency do
       notice: data["notice"],
       tx_fee: data["txFee"]
     }
+  end
+
+  @doc false
+  def transform_response(data) when is_list(data) do
+    data
+    |> Enum.map(&new/1)
+    |> Response.ok()
+  end
+
+  @doc false
+  def transform_response(data) do
+    data
+    |> new()
+    |> Response.ok()
   end
 end
