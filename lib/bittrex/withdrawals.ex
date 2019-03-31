@@ -23,11 +23,7 @@ defmodule Bittrex.Withdrawals do
     |> Request.put_path("/withdrawals")
     |> Request.put_params(params)
     |> Client.send()
-    |> StrawHat.Response.and_then(fn data ->
-      data
-      |> Enum.map(&Withdrawal.new/1)
-      |> Response.ok()
-    end)
+    |> StrawHat.Response.and_then(&Withdrawal.transform_response/1)
   end
 
   @doc """
@@ -40,11 +36,7 @@ defmodule Bittrex.Withdrawals do
     |> Request.put_method(:get)
     |> Request.put_path("/withdrawals/#{withdrawal_id}")
     |> Client.send()
-    |> StrawHat.Response.and_then(fn data ->
-      data
-      |> Withdrawal.new()
-      |> Response.ok()
-    end)
+    |> StrawHat.Response.and_then(&Withdrawal.transform_response/1)
   end
 
   @doc """
@@ -76,10 +68,6 @@ defmodule Bittrex.Withdrawals do
     |> Request.put_path("/withdrawals")
     |> Request.put_params(params)
     |> Client.send()
-    |> StrawHat.Response.and_then(fn data ->
-      data
-      |> Withdrawal.new()
-      |> Response.ok()
-    end)
+    |> StrawHat.Response.and_then(&Withdrawal.transform_response/1)
   end
 end

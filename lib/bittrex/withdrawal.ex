@@ -3,6 +3,8 @@ defmodule Bittrex.Withdrawal do
   A Bittrex Withdrawal.
   """
 
+  alias StrawHat.Response
+
   @typedoc """
   - `id`: unique ID for this withdrawal.
   - `currency_symbol`: unique symbol of currency to withdraw.
@@ -51,5 +53,19 @@ defmodule Bittrex.Withdrawal do
       created_at: Bittrex.format_datetime(data["createdAt"]),
       completed_at: Bittrex.format_datetime(data["completedAt"])
     }
+  end
+
+  @doc false
+  def transform_response(data) when is_list(data) do
+    data
+    |> Enum.map(&new/1)
+    |> Response.ok()
+  end
+
+  @doc false
+  def transform_response(data) do
+    data
+    |> new()
+    |> Response.ok()
   end
 end
