@@ -3,6 +3,8 @@ defmodule Bittrex.ServiceStatus do
   A Bittrex Service Status.
   """
 
+  alias StrawHat.Response
+
   @typedoc """
   - `status`: overall service status.
   - `server_time`: server time in epoch millisecond format.
@@ -20,5 +22,12 @@ defmodule Bittrex.ServiceStatus do
       status: data["status"],
       server_time: data["serverTime"]
     }
+  end
+
+  @doc false
+  def transform_response(data) do
+    data
+    |> new()
+    |> Response.ok()
   end
 end
