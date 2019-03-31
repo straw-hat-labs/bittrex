@@ -4,7 +4,7 @@ defmodule Bittrex.Markets do
   """
 
   alias StrawHat.Response
-  alias Bittrex.{Client, HttpRequest, Market, MarketSummary, OrderBook, Trade, Candle}
+  alias Bittrex.{Client, Client.Request, Market, MarketSummary, OrderBook, Trade, Candle}
 
   @doc """
   List markets.
@@ -12,10 +12,10 @@ defmodule Bittrex.Markets do
   @spec get_markets(%Client{}, %{}) :: Response.t([%Market{}], Client.error())
   def get_markets(client, params \\ %{}) do
     client
-    |> HttpRequest.new()
-    |> HttpRequest.put_method(:get)
-    |> HttpRequest.put_path("/markets")
-    |> HttpRequest.put_params(params)
+    |> Request.new()
+    |> Request.put_method(:get)
+    |> Request.put_path("/markets")
+    |> Request.put_params(params)
     |> Client.send()
     |> StrawHat.Response.and_then(fn data ->
       data
@@ -30,9 +30,9 @@ defmodule Bittrex.Markets do
   @spec get_market(%Client{}, String.t()) :: Response.t(%Market{}, Client.error())
   def get_market(client, market_name) do
     client
-    |> HttpRequest.new()
-    |> HttpRequest.put_method(:get)
-    |> HttpRequest.put_path("/markets/#{market_name}")
+    |> Request.new()
+    |> Request.put_method(:get)
+    |> Request.put_path("/markets/#{market_name}")
     |> Client.send()
     |> StrawHat.Response.and_then(fn data ->
       data
@@ -48,9 +48,9 @@ defmodule Bittrex.Markets do
           Response.t(%MarketSummary{}, Client.error())
   def get_market_summary(client, market_name) do
     client
-    |> HttpRequest.new()
-    |> HttpRequest.put_method(:get)
-    |> HttpRequest.put_path("/markets/#{market_name}/summary")
+    |> Request.new()
+    |> Request.put_method(:get)
+    |> Request.put_path("/markets/#{market_name}/summary")
     |> Client.send()
     |> StrawHat.Response.and_then(fn data ->
       data
@@ -67,10 +67,10 @@ defmodule Bittrex.Markets do
         }) :: Response.t(%OrderBook{}, Client.error())
   def get_order_book(client, market_name, params \\ %{}) do
     client
-    |> HttpRequest.new()
-    |> HttpRequest.put_method(:get)
-    |> HttpRequest.put_path("/markets/#{market_name}/orderbook")
-    |> HttpRequest.put_params(params)
+    |> Request.new()
+    |> Request.put_method(:get)
+    |> Request.put_path("/markets/#{market_name}/orderbook")
+    |> Request.put_params(params)
     |> Client.send()
     |> StrawHat.Response.and_then(fn data ->
       data
@@ -85,9 +85,9 @@ defmodule Bittrex.Markets do
   @spec get_market_trades(%Client{}, String.t()) :: Response.t(%Trade{}, Client.error())
   def get_market_trades(client, market_name) do
     client
-    |> HttpRequest.new()
-    |> HttpRequest.put_method(:get)
-    |> HttpRequest.put_path("/markets/#{market_name}/trades")
+    |> Request.new()
+    |> Request.put_method(:get)
+    |> Request.put_path("/markets/#{market_name}/trades")
     |> Client.send()
     |> StrawHat.Response.and_then(fn data ->
       data
@@ -104,10 +104,10 @@ defmodule Bittrex.Markets do
         }) :: Response.t(%Candle{}, Client.error())
   def get_market_candles(client, market_name, params \\ %{}) do
     client
-    |> HttpRequest.new()
-    |> HttpRequest.put_method(:get)
-    |> HttpRequest.put_path("/markets/#{market_name}/trades")
-    |> HttpRequest.put_params(params)
+    |> Request.new()
+    |> Request.put_method(:get)
+    |> Request.put_path("/markets/#{market_name}/trades")
+    |> Request.put_params(params)
     |> Client.send()
     |> StrawHat.Response.and_then(fn data ->
       data
@@ -122,9 +122,9 @@ defmodule Bittrex.Markets do
   @spec get_market_summaries(%Client{}) :: Response.t(%MarketSummary{}, Client.error())
   def get_market_summaries(client) do
     client
-    |> HttpRequest.new()
-    |> HttpRequest.put_method(:get)
-    |> HttpRequest.put_path("/markets")
+    |> Request.new()
+    |> Request.put_method(:get)
+    |> Request.put_path("/markets")
     |> Client.send()
     |> StrawHat.Response.and_then(fn data ->
       data

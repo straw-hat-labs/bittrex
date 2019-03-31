@@ -4,7 +4,7 @@ defmodule Bittrex.Withdrawals do
   """
 
   alias StrawHat.Response
-  alias Bittrex.{Withdrawal, Client, HttpRequest}
+  alias Bittrex.{Withdrawal, Client, Client.Request}
 
   @doc """
   List withdrawals.
@@ -18,10 +18,10 @@ defmodule Bittrex.Withdrawals do
         }) :: Response.t([%Withdrawal{}], Client.error())
   def get_withdrawals(client, params \\ %{}) do
     client
-    |> HttpRequest.new()
-    |> HttpRequest.put_method(:get)
-    |> HttpRequest.put_path("/withdrawals")
-    |> HttpRequest.put_params(params)
+    |> Request.new()
+    |> Request.put_method(:get)
+    |> Request.put_path("/withdrawals")
+    |> Request.put_params(params)
     |> Client.send()
     |> StrawHat.Response.and_then(fn data ->
       data
@@ -36,9 +36,9 @@ defmodule Bittrex.Withdrawals do
   @spec get_withdrawal(%Client{}, String.t()) :: Response.t(%Withdrawal{}, Client.error())
   def get_withdrawal(client, withdrawal_id) do
     client
-    |> HttpRequest.new()
-    |> HttpRequest.put_method(:get)
-    |> HttpRequest.put_path("/withdrawals/#{withdrawal_id}")
+    |> Request.new()
+    |> Request.put_method(:get)
+    |> Request.put_path("/withdrawals/#{withdrawal_id}")
     |> Client.send()
     |> StrawHat.Response.and_then(fn data ->
       data
@@ -53,9 +53,9 @@ defmodule Bittrex.Withdrawals do
   @spec delete_withdrawal(%Client{}, String.t()) :: Response.t(String.t(), Client.error())
   def delete_withdrawal(client, withdrawal_id) do
     client
-    |> HttpRequest.new()
-    |> HttpRequest.put_method(:delete)
-    |> HttpRequest.put_path("/withdrawals/#{withdrawal_id}")
+    |> Request.new()
+    |> Request.put_method(:delete)
+    |> Request.put_path("/withdrawals/#{withdrawal_id}")
     |> Client.send()
     |> StrawHat.Response.and_then(&Response.ok/1)
   end
@@ -71,10 +71,10 @@ defmodule Bittrex.Withdrawals do
         }) :: Response.t(%Withdrawal{}, Client.error())
   def create_withdrawal(client, params \\ %{}) do
     client
-    |> HttpRequest.new()
-    |> HttpRequest.put_method(:post)
-    |> HttpRequest.put_path("/withdrawals")
-    |> HttpRequest.put_params(params)
+    |> Request.new()
+    |> Request.put_method(:post)
+    |> Request.put_path("/withdrawals")
+    |> Request.put_params(params)
     |> Client.send()
     |> StrawHat.Response.and_then(fn data ->
       data

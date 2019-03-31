@@ -4,7 +4,7 @@ defmodule Bittrex.Deposits do
   """
 
   alias StrawHat.Response
-  alias Bittrex.{Client, HttpRequest, Deposit}
+  alias Bittrex.{Client, Client.Request, Deposit}
 
   @doc """
   List historical deposits.
@@ -18,10 +18,10 @@ defmodule Bittrex.Deposits do
         }) :: Response.t([%Deposit{}], Client.error())
   def get_deposits(client, params \\ %{}) do
     client
-    |> HttpRequest.new()
-    |> HttpRequest.put_method(:get)
-    |> HttpRequest.put_path("/deposits")
-    |> HttpRequest.put_params(params)
+    |> Request.new()
+    |> Request.put_method(:get)
+    |> Request.put_path("/deposits")
+    |> Request.put_params(params)
     |> Client.send()
     |> StrawHat.Response.and_then(fn data ->
       data
@@ -36,9 +36,9 @@ defmodule Bittrex.Deposits do
   @spec get_deposit(%Client{}, String.t()) :: Response.t(%Deposit{}, Client.error())
   def get_deposit(client, deposit_id) do
     client
-    |> HttpRequest.new()
-    |> HttpRequest.put_method(:get)
-    |> HttpRequest.put_path("/deposits/#{deposit_id}")
+    |> Request.new()
+    |> Request.put_method(:get)
+    |> Request.put_path("/deposits/#{deposit_id}")
     |> Client.send()
     |> StrawHat.Response.and_then(fn data ->
       data

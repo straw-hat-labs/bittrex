@@ -4,7 +4,7 @@ defmodule Bittrex.Subaccounts do
   """
 
   alias StrawHat.Response
-  alias Bittrex.{Subaccount, Client, HttpRequest}
+  alias Bittrex.{Subaccount, Client, Client.Request}
 
   @doc """
   List subaccounts. (NOTE: This API is limited to partners and not available
@@ -17,10 +17,10 @@ defmodule Bittrex.Subaccounts do
         }) :: Response.t([%Subaccount{}], Client.error())
   def get_subaccounts(client, params \\ %{}) do
     client
-    |> HttpRequest.new()
-    |> HttpRequest.put_method(:get)
-    |> HttpRequest.put_path("/subaccounts")
-    |> HttpRequest.put_params(params)
+    |> Request.new()
+    |> Request.put_method(:get)
+    |> Request.put_path("/subaccounts")
+    |> Request.put_params(params)
     |> Client.send()
     |> StrawHat.Response.and_then(fn data ->
       data
@@ -36,10 +36,10 @@ defmodule Bittrex.Subaccounts do
   @spec create_subaccount(%Client{}, %{}) :: Response.t(%Subaccount{}, Client.error())
   def create_subaccount(client, params \\ %{}) do
     client
-    |> HttpRequest.new()
-    |> HttpRequest.put_method(:post)
-    |> HttpRequest.put_path("/subaccounts")
-    |> HttpRequest.put_params(params)
+    |> Request.new()
+    |> Request.put_method(:post)
+    |> Request.put_path("/subaccounts")
+    |> Request.put_params(params)
     |> Client.send()
     |> StrawHat.Response.and_then(fn data ->
       data
@@ -55,9 +55,9 @@ defmodule Bittrex.Subaccounts do
   @spec get_subaccount(%Client{}, String.t()) :: Response.t(%Subaccount{}, Client.error())
   def get_subaccount(client, subaccount_id) do
     client
-    |> HttpRequest.new()
-    |> HttpRequest.put_method(:get)
-    |> HttpRequest.put_path("/subaccounts/#{subaccount_id}")
+    |> Request.new()
+    |> Request.put_method(:get)
+    |> Request.put_path("/subaccounts/#{subaccount_id}")
     |> Client.send()
     |> StrawHat.Response.and_then(fn data ->
       data

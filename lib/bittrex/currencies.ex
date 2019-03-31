@@ -4,7 +4,7 @@ defmodule Bittrex.Currencies do
   """
 
   alias StrawHat.Response
-  alias Bittrex.{Client, HttpRequest, Currency}
+  alias Bittrex.{Client, Client.Request, Currency}
 
   @doc """
   List currencies with optional health info.
@@ -12,9 +12,9 @@ defmodule Bittrex.Currencies do
   @spec get_currencies(%Client{}) :: Response.t([%Currency{}], Client.error())
   def get_currencies(client) do
     client
-    |> HttpRequest.new()
-    |> HttpRequest.put_method(:get)
-    |> HttpRequest.put_path("/currencies")
+    |> Request.new()
+    |> Request.put_method(:get)
+    |> Request.put_path("/currencies")
     |> Client.send()
     |> StrawHat.Response.and_then(fn data ->
       data
@@ -29,9 +29,9 @@ defmodule Bittrex.Currencies do
   @spec get_currency(%Client{}, String.t()) :: Response.t(%Currency{}, Client.error())
   def get_currency(client, currency_symbol) do
     client
-    |> HttpRequest.new()
-    |> HttpRequest.put_method(:get)
-    |> HttpRequest.put_path("/currencies/#{currency_symbol}")
+    |> Request.new()
+    |> Request.put_method(:get)
+    |> Request.put_path("/currencies/#{currency_symbol}")
     |> Client.send()
     |> StrawHat.Response.and_then(fn data ->
       data

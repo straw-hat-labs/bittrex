@@ -1,9 +1,9 @@
 defmodule Bittrex.ClientTest do
   use Bittrex.TestSupport.CaseTemplate, async: true
-  alias Bittrex.{HttpRequest, Client}
+  alias Bittrex.{Client.Request, Client}
 
   test "handling API error responses" do
-    http_request = with_mock_client() |> HttpRequest.new()
+    http_request = with_mock_client() |> Request.new()
 
     stub_request(%{
       body: Jason.encode!(%{"messageResponse" => "Something went wrong"}),
@@ -15,7 +15,7 @@ defmodule Bittrex.ClientTest do
   end
 
   test "handling non JSON response" do
-    http_request = with_mock_client() |> HttpRequest.new()
+    http_request = with_mock_client() |> Request.new()
 
     stub_request(%{
       body: "<p>Some HTML <b>here</b></p>",
@@ -27,7 +27,7 @@ defmodule Bittrex.ClientTest do
   end
 
   test "handling errors" do
-    http_request = with_mock_client() |> HttpRequest.new()
+    http_request = with_mock_client() |> Request.new()
 
     stub_request(%{
       tupple_status: :error,

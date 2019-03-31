@@ -4,7 +4,7 @@ defmodule Bittrex.Addresses do
   """
 
   alias StrawHat.Response
-  alias Bittrex.{Client, HttpRequest, Address}
+  alias Bittrex.{Client, Client.Request, Address}
 
   @doc """
   List deposit addresses.
@@ -12,9 +12,9 @@ defmodule Bittrex.Addresses do
   @spec get_addresses(%Client{}) :: Response.t([%Address{}], Client.error())
   def get_addresses(client) do
     client
-    |> HttpRequest.new()
-    |> HttpRequest.put_method(:get)
-    |> HttpRequest.put_path("/addresses")
+    |> Request.new()
+    |> Request.put_method(:get)
+    |> Request.put_path("/addresses")
     |> Client.send()
     |> StrawHat.Response.and_then(fn data ->
       data
@@ -30,10 +30,10 @@ defmodule Bittrex.Addresses do
           Response.t(%Address{}, Client.error())
   def create_address(client, address_attr) do
     client
-    |> HttpRequest.new()
-    |> HttpRequest.put_method(:post)
-    |> HttpRequest.put_body(address_attr)
-    |> HttpRequest.put_path("/addresses")
+    |> Request.new()
+    |> Request.put_method(:post)
+    |> Request.put_body(address_attr)
+    |> Request.put_path("/addresses")
     |> Client.send()
     |> StrawHat.Response.and_then(fn data ->
       data
@@ -48,9 +48,9 @@ defmodule Bittrex.Addresses do
   @spec get_address(%Client{}, String.t()) :: Response.t(%Address{}, Client.error())
   def get_address(client, currency_symbol) do
     client
-    |> HttpRequest.new()
-    |> HttpRequest.put_method(:get)
-    |> HttpRequest.put_path("/addresses/#{currency_symbol}")
+    |> Request.new()
+    |> Request.put_method(:get)
+    |> Request.put_path("/addresses/#{currency_symbol}")
     |> Client.send()
     |> StrawHat.Response.and_then(fn data ->
       data

@@ -1,13 +1,13 @@
-defmodule Bittrex.HttpRequest do
+defmodule Bittrex.Client.Request do
   @moduledoc false
 
   @base_url Application.get_env(:bittrex, :base_url, "https://api.bittrex.com/v3")
 
-  defstruct [:http_client, :method, :url, :headers, :params, :body]
+  defstruct [:client, :method, :url, :headers, :params, :body]
 
-  def new(http_client) do
+  def new(client) do
     %__MODULE__{
-      http_client: http_client,
+      client: client,
       headers: %{},
       params: %{},
       body: ""
@@ -61,10 +61,10 @@ defmodule Bittrex.HttpRequest do
   end
 
   def put_api_sub_account_id(headers, request) do
-    if request.http_client.sub_account_id == "" do
+    if request.client.sub_account_id == "" do
       headers
     else
-      Map.put(headers, "Api-Subaccount-Id", request.http_client.sub_account_id)
+      Map.put(headers, "Api-Subaccount-Id", request.client.sub_account_id)
     end
   end
 
@@ -76,19 +76,19 @@ defmodule Bittrex.HttpRequest do
 
     pre_sign =
       "#{headers["Api-Timestamp"]}#{request.url}#{method}#{headers["Api-Content-Hash"]}#{
-        request.http_client.sub_account_id
+        request.client.sub_account_id
       }"
 
     signature =
       :sha512
-      |> :crypto.hmac(request.http_client.api_secret, pre_sign)
+      |> :crypto.hmac(request.client.api_secret, pre_sign)
       |> Base.encode16(case: :lower)
 
     Map.put(headers, "Api-Signature", signature)
   end
 
   defp put_api_key_header(headers, request) do
-    Map.put(headers, "Api-Key", request.http_client.api_key)
+    Map.put(headers, "Api-Key", request.client.api_key)
   end
 
   defp put_api_timestamp_header(headers) do

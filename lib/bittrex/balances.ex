@@ -4,7 +4,7 @@ defmodule Bittrex.Balances do
   """
 
   alias StrawHat.Response
-  alias Bittrex.{Client, HttpRequest, Balance}
+  alias Bittrex.{Client, Client.Request, Balance}
 
   @doc """
   List account balances across available currencies.
@@ -12,9 +12,9 @@ defmodule Bittrex.Balances do
   @spec get_balances(%Client{}) :: Response.t([%Balance{}], Client.error())
   def get_balances(client) do
     client
-    |> HttpRequest.new()
-    |> HttpRequest.put_method(:get)
-    |> HttpRequest.put_path("/balances")
+    |> Request.new()
+    |> Request.put_method(:get)
+    |> Request.put_path("/balances")
     |> Client.send()
     |> StrawHat.Response.and_then(fn data ->
       data
@@ -29,9 +29,9 @@ defmodule Bittrex.Balances do
   @spec get_balance(%Client{}, String.t()) :: Response.t(%Balance{}, Client.error())
   def get_balance(client, currency_symbol) do
     client
-    |> HttpRequest.new()
-    |> HttpRequest.put_method(:get)
-    |> HttpRequest.put_path("/balances/#{currency_symbol}")
+    |> Request.new()
+    |> Request.put_method(:get)
+    |> Request.put_path("/balances/#{currency_symbol}")
     |> Client.send()
     |> StrawHat.Response.and_then(fn data ->
       data

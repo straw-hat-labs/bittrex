@@ -4,7 +4,7 @@ defmodule Bittrex.Client do
   of your client, this allow you to have multiple clients.
   """
 
-  alias Bittrex.HttpRequest
+  alias Bittrex.Client.Request
   alias StrawHat.Response
 
   @typedoc """
@@ -38,9 +38,9 @@ defmodule Bittrex.Client do
   end
 
   @doc false
-  def send(%HttpRequest{} = request) do
+  def send(%Request{} = request) do
     request
-    |> HttpRequest.put_required_headers()
+    |> Request.put_required_headers()
     |> execute_request()
     |> process_response()
   end

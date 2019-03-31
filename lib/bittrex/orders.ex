@@ -4,7 +4,7 @@ defmodule Bittrex.Orders do
   """
 
   alias StrawHat.Response
-  alias Bittrex.{Client, HttpRequest, Order, OrderCancelResult}
+  alias Bittrex.{Client, Client.Request, Order, OrderCancelResult}
 
   @doc """
   List closed orders.
@@ -17,10 +17,10 @@ defmodule Bittrex.Orders do
         }) :: Response.t([%Order{}], Client.error())
   def get_closed_orders(client, params \\ %{}) do
     client
-    |> HttpRequest.new()
-    |> HttpRequest.put_method(:get)
-    |> HttpRequest.put_path("/orders/closed")
-    |> HttpRequest.put_params(params)
+    |> Request.new()
+    |> Request.put_method(:get)
+    |> Request.put_path("/orders/closed")
+    |> Request.put_params(params)
     |> Client.send()
     |> StrawHat.Response.and_then(fn data ->
       data
@@ -37,10 +37,10 @@ defmodule Bittrex.Orders do
         }) :: Response.t([%Order{}], Client.error())
   def get_open_orders(client, params \\ %{}) do
     client
-    |> HttpRequest.new()
-    |> HttpRequest.put_method(:get)
-    |> HttpRequest.put_path("/orders/open")
-    |> HttpRequest.put_params(params)
+    |> Request.new()
+    |> Request.put_method(:get)
+    |> Request.put_path("/orders/open")
+    |> Request.put_params(params)
     |> Client.send()
     |> StrawHat.Response.and_then(fn data ->
       data
@@ -55,9 +55,9 @@ defmodule Bittrex.Orders do
   @spec get_order(%Client{}, String.t()) :: Response.t(%Order{}, Client.error())
   def get_order(client, order_id) do
     client
-    |> HttpRequest.new()
-    |> HttpRequest.put_method(:get)
-    |> HttpRequest.put_path("/orders/#{order_id}")
+    |> Request.new()
+    |> Request.put_method(:get)
+    |> Request.put_path("/orders/#{order_id}")
     |> Client.send()
     |> StrawHat.Response.and_then(fn data ->
       data
@@ -73,9 +73,9 @@ defmodule Bittrex.Orders do
           Response.t(%OrderCancelResult{}, Client.error())
   def cancel_order(client, order_id) do
     client
-    |> HttpRequest.new()
-    |> HttpRequest.put_method(:get)
-    |> HttpRequest.put_path("/orders/#{order_id}")
+    |> Request.new()
+    |> Request.put_method(:get)
+    |> Request.put_path("/orders/#{order_id}")
     |> Client.send()
     |> StrawHat.Response.and_then(fn data ->
       data
@@ -100,10 +100,10 @@ defmodule Bittrex.Orders do
           Response.t(%Order{}, Client.error())
   def create_order(client, order_attrs) do
     client
-    |> HttpRequest.new()
-    |> HttpRequest.put_method(:post)
-    |> HttpRequest.put_body(order_attrs)
-    |> HttpRequest.put_path("/orders")
+    |> Request.new()
+    |> Request.put_method(:post)
+    |> Request.put_body(order_attrs)
+    |> Request.put_path("/orders")
     |> Client.send()
     |> StrawHat.Response.and_then(fn data ->
       data
