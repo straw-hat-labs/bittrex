@@ -73,15 +73,18 @@ defmodule Bittrex.Client do
       |> get_content_type()
       |> decode_body(response.body)
 
-    Error.new(response.status_code, decoded_body) |> Response.error()
+    response.status_code
+    |> Error.new(decoded_body)
+    |> Response.error()
   end
 
   defp get_content_type(response) do
     {_key, content_type} = Enum.find(response.headers, &is_content_type_header/1)
 
-    cond do
-      String.contains?(content_type, "application/json") -> :json
-      true -> :text
+    if String.contains?(content_type, "application/json") do
+      :json
+    else
+      :text
     end
   end
 
