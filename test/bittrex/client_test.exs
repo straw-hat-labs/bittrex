@@ -4,6 +4,7 @@ defmodule Bittrex.ClientTest do
 
   test "handling API error responses" do
     http_request = with_mock_client() |> Request.new()
+
     error = %Error{
       status_code: 400,
       reason: %{"message_response" => "Something went wrong"}
@@ -19,6 +20,7 @@ defmodule Bittrex.ClientTest do
 
   test "handling non JSON response" do
     http_request = with_mock_client() |> Request.new()
+
     error = %Error{
       status_code: 500,
       reason: "<p>Some HTML <b>here</b></p>"

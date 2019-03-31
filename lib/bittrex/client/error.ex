@@ -8,9 +8,9 @@ defmodule Bittrex.Client.Error do
   - `reason`: the http body.
   """
   @type t :: %__MODULE__{
-    status_code: integer(),
-    reason: any(),
-  }
+          status_code: integer(),
+          reason: any()
+        }
 
   @enforce_keys [:status_code, :reason]
   defstruct [:status_code, :reason]
