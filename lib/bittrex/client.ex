@@ -8,6 +8,11 @@ defmodule Bittrex.Client do
   alias StrawHat.Response
 
   @typedoc """
+  Client credentials and metadata.
+  """
+  @type t :: %__MODULE__{}
+
+  @typedoc """
   The error could be either an string with the reason of the error or a tuple
   with the HTTP status code and the body of the HTTP response.
   """
@@ -21,10 +26,14 @@ defmodule Bittrex.Client do
   @doc """
   Creates an HTTP client.
   """
-  def new(api_key, api_secret) do
+  @spec new(%{
+          api_key: String.t(),
+          api_secret: String.t()
+        }) :: t()
+  def new(credentials) do
     %__MODULE__{
-      api_key: api_key,
-      api_secret: api_secret,
+      api_key: credentials.api_key,
+      api_secret: credentials.api_secret,
       sub_account_id: ""
     }
   end

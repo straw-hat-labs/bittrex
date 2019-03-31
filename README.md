@@ -13,19 +13,21 @@ First, create the credentials from Bittrex. To manage your API keys please goto
 
 You need to create an `Bittrex.Client` using `Bittrex.Client.new/1`
 
-```elixir
-client = Bittrex.Client.new("my api key", "my api secret")
-```
+    client = Bittrex.Client.new(%{
+      api_key: "my api key",
+      api_secret: "my api secret"
+    })
 
 Now you can use the available functions for communicate with Bittrex API.
 
 Example:
 
-```elixir
-client = Bittrex.Client.new("my api key", "my api secret")
+    client = Bittrex.Client.new(%{
+      api_key: "my api key",
+      api_secret: "my api secret"
+    })
 
-{:ok, markets} = Bittrex.Markets.get_markets(client)
-```
+    {:ok, markets} = Bittrex.Markets.get_markets(client)
 
 Check the current modules, the module names are trying to follow the same
 structure from the [official documentation of Bittrex API](https://bittrex.github.io/api/v3).

@@ -14,7 +14,10 @@ defmodule Bittrex.TestSupport.CaseTemplate do
   end
 
   def with_mock_client do
-    Bittrex.Client.new("apikey", "apisecret")
+    Bittrex.Client.new(%{
+      api_key: "apikey",
+      api_secret: "apisecret"
+    })
   end
 
   def stub_request(config) do
