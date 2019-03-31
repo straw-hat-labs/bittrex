@@ -6,34 +6,26 @@ defmodule Bittrex.SubaccountsTest do
     subaccount_response = build_list(2, :subaccount_response)
     subaccounts = Enum.map(subaccount_response, &Subaccount.new/1)
 
-    stub_request(%{
-      body: Jason.encode!(subaccount_response)
-    })
+    stub_request(%{body: Jason.encode!(subaccount_response)})
 
-    assert {:ok, ^subaccounts} = with_mock_client() |> Subaccounts.get_subaccounts()
+    assert {:ok, ^subaccounts} = Subaccounts.get_subaccounts(@client)
   end
 
   test "POST /subaccounts" do
     subaccount_response = build(:subaccount_response)
     subaccount = Subaccount.new(subaccount_response)
 
-    stub_request(%{
-      body: Jason.encode!(subaccount_response)
-    })
+    stub_request(%{body: Jason.encode!(subaccount_response)})
 
-    assert {:ok, ^subaccount} =
-             with_mock_client()
-             |> Subaccounts.create_subaccount(%{})
+    assert {:ok, ^subaccount} = Subaccounts.create_subaccount(@client, %{})
   end
 
   test "GET /subaccounts/{subaccountId}" do
     subaccount_response = build(:subaccount_response)
     subaccount = Subaccount.new(subaccount_response)
 
-    stub_request(%{
-      body: Jason.encode!(subaccount_response)
-    })
+    stub_request(%{body: Jason.encode!(subaccount_response)})
 
-    assert {:ok, ^subaccount} = with_mock_client() |> Subaccounts.get_subaccount("123")
+    assert {:ok, ^subaccount} = Subaccounts.get_subaccount(@client, "123")
   end
 end

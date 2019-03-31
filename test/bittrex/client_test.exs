@@ -3,7 +3,7 @@ defmodule Bittrex.ClientTest do
   alias Bittrex.{Client, Client.Request, Client.Error}
 
   test "handling API error responses" do
-    http_request = with_mock_client() |> Request.new()
+    http_request = Request.new(@client)
 
     error = %Error{
       status_code: 400,
@@ -19,7 +19,7 @@ defmodule Bittrex.ClientTest do
   end
 
   test "handling non JSON response" do
-    http_request = with_mock_client() |> Request.new()
+    http_request = Request.new(@client)
 
     error = %Error{
       status_code: 500,

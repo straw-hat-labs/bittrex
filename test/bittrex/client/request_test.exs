@@ -4,7 +4,7 @@ defmodule Bittrex.Client.RequestTest do
 
   test "add subaccount id to headers" do
     http_request =
-      with_mock_client()
+      @client
       |> Client.with_sub_account("pepega")
       |> Request.new()
 
