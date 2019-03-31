@@ -16,11 +16,7 @@ defmodule Bittrex.Balances do
     |> Request.put_method(:get)
     |> Request.put_path("/balances")
     |> Client.send()
-    |> StrawHat.Response.and_then(fn data ->
-      data
-      |> Enum.map(&Balance.new/1)
-      |> Response.ok()
-    end)
+    |> StrawHat.Response.and_then(&Balance.transform_response/1)
   end
 
   @doc """
@@ -33,10 +29,6 @@ defmodule Bittrex.Balances do
     |> Request.put_method(:get)
     |> Request.put_path("/balances/#{currency_symbol}")
     |> Client.send()
-    |> StrawHat.Response.and_then(fn data ->
-      data
-      |> Balance.new()
-      |> Response.ok()
-    end)
+    |> StrawHat.Response.and_then(&Balance.transform_response/1)
   end
 end

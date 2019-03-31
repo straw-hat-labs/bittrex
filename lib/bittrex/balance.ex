@@ -3,6 +3,8 @@ defmodule Bittrex.Balance do
   A Bittrex Balance.
   """
 
+  alias StrawHat.Response
+
   @typedoc """
   - `total`: total amount.
   - `currency_symbol`: unique ID for the currency this balance is associated
@@ -24,5 +26,19 @@ defmodule Bittrex.Balance do
       currency_symbol: data["currencySymbol"],
       available: data["available"]
     }
+  end
+
+  @doc false
+  def transform_response(data) when is_list(data) do
+    data
+    |> Enum.map(&new/1)
+    |> Response.ok()
+  end
+
+  @doc false
+  def transform_response(data) do
+    data
+    |> new()
+    |> Response.ok()
   end
 end
