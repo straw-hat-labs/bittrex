@@ -3,6 +3,8 @@ defmodule Bittrex.TestSupport.Factory do
 
   use ExMachina
 
+  @some_date "2017-07-14T17:10:07.74Z"
+
   def account_response_factory do
     %{
       "id" => "123",
@@ -43,8 +45,6 @@ defmodule Bittrex.TestSupport.Factory do
   end
 
   def deposit_response_factory do
-    date_unix = "1553243950205"
-
     %{
       "id" => "123",
       "currencySymbol" => "BTC",
@@ -52,8 +52,8 @@ defmodule Bittrex.TestSupport.Factory do
       "address" => "123adresses",
       "txId" => "pepegatax",
       "confirmations" => 1235,
-      "createdAt" => date_unix,
-      "updatedAt" => date_unix,
+      "createdAt" => @some_date,
+      "updatedAt" => @some_date,
       "status" => "COMPLETED"
     }
   end
@@ -66,8 +66,6 @@ defmodule Bittrex.TestSupport.Factory do
   end
 
   def order_response_factory do
-    date_unix = "1553243950205"
-
     %{
       "id" => "123",
       "marketName" => "BTC",
@@ -82,15 +80,13 @@ defmodule Bittrex.TestSupport.Factory do
       "proceeds" => 754.4,
       "clientOrderId" => "1235",
       "status" => "OPEN",
-      "createdAt" => date_unix,
-      "updatedAt" => date_unix,
-      "closedAt" => date_unix
+      "createdAt" => @some_date,
+      "updatedAt" => @some_date,
+      "closedAt" => @some_date
     }
   end
 
   def order_cancel_result_response_factory do
-    date_unix = "1553243950205"
-
     %{
       "id" => "123",
       "fillQuantity" => 564.4,
@@ -98,14 +94,12 @@ defmodule Bittrex.TestSupport.Factory do
       "proceeds" => 564.4,
       "clientOrderId" => "454",
       "status" => "OPEN",
-      "updatedAt" => date_unix,
-      "closedAt" => date_unix
+      "updatedAt" => @some_date,
+      "closedAt" => @some_date
     }
   end
 
   def market_response_factory do
-    date_unix = "1553243950205"
-
     %{
       "name" => "Ethereum",
       "baseCurrencySymbol" => "ETH",
@@ -115,15 +109,13 @@ defmodule Bittrex.TestSupport.Factory do
       "minTradeSize" => 235.4,
       "status" => "ONLINE",
       "isInternational" => true,
-      "createdAt" => date_unix,
+      "createdAt" => @some_date,
       "notice" => "Pepega is cool",
       "logoUrl" => "http://nowhere.com/pepega.png"
     }
   end
 
   def market_summary_response_factory do
-    date_unix = "1553243950205"
-
     %{
       "name" => "string",
       "high" => 23.5,
@@ -136,7 +128,7 @@ defmodule Bittrex.TestSupport.Factory do
       "openBuyOrders" => 23,
       "openSellOrders" => 23,
       "previousDay" => 23.5,
-      "updatedAt" => date_unix
+      "updatedAt" => @some_date
     }
   end
 
@@ -155,20 +147,16 @@ defmodule Bittrex.TestSupport.Factory do
   end
 
   def trade_response_factory do
-    date_unix = "1553243950205"
-
     %{
-      "executedAt" => date_unix,
+      "executedAt" => @some_date,
       "quantity" => 245.5,
       "rate" => 245.5
     }
   end
 
   def candle_response_factory do
-    date_unix = "1553243950205"
-
     %{
-      "t" => date_unix,
+      "t" => @some_date,
       "o" => 23.5,
       "h" => 23.5,
       "l" => 23.5,
@@ -179,17 +167,13 @@ defmodule Bittrex.TestSupport.Factory do
   end
 
   def subaccount_response_factory do
-    date_unix = "1553243950205"
-
     %{
       "id" => "123",
-      "createdAt" => date_unix
+      "createdAt" => @some_date
     }
   end
 
   def withdrawal_response_factory do
-    date_unix = "1553243950205"
-
     %{
       "id" => "1235",
       "currencySymbol" => "BTC",
@@ -198,8 +182,8 @@ defmodule Bittrex.TestSupport.Factory do
       "txCost" => 453.2,
       "txId" => "123",
       "status" => "COMPLETED",
-      "createdAt" => date_unix,
-      "completedAt" => date_unix
+      "createdAt" => @some_date,
+      "completedAt" => @some_date
     }
   end
 end
