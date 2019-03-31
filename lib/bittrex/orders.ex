@@ -22,11 +22,7 @@ defmodule Bittrex.Orders do
     |> Request.put_path("/orders/closed")
     |> Request.put_params(params)
     |> Client.send()
-    |> StrawHat.Response.and_then(fn data ->
-      data
-      |> Enum.map(&Order.new/1)
-      |> Response.ok()
-    end)
+    |> StrawHat.Response.and_then(&Order.transform_response/1)
   end
 
   @doc """
@@ -42,11 +38,7 @@ defmodule Bittrex.Orders do
     |> Request.put_path("/orders/open")
     |> Request.put_params(params)
     |> Client.send()
-    |> StrawHat.Response.and_then(fn data ->
-      data
-      |> Enum.map(&Order.new/1)
-      |> Response.ok()
-    end)
+    |> StrawHat.Response.and_then(&Order.transform_response/1)
   end
 
   @doc """
@@ -59,11 +51,7 @@ defmodule Bittrex.Orders do
     |> Request.put_method(:get)
     |> Request.put_path("/orders/#{order_id}")
     |> Client.send()
-    |> StrawHat.Response.and_then(fn data ->
-      data
-      |> Order.new()
-      |> Response.ok()
-    end)
+    |> StrawHat.Response.and_then(&Order.transform_response/1)
   end
 
   @doc """
@@ -77,11 +65,7 @@ defmodule Bittrex.Orders do
     |> Request.put_method(:get)
     |> Request.put_path("/orders/#{order_id}")
     |> Client.send()
-    |> StrawHat.Response.and_then(fn data ->
-      data
-      |> OrderCancelResult.new()
-      |> Response.ok()
-    end)
+    |> StrawHat.Response.and_then(&OrderCancelResult.transform_response/1)
   end
 
   @doc """
@@ -105,10 +89,6 @@ defmodule Bittrex.Orders do
     |> Request.put_body(order_attrs)
     |> Request.put_path("/orders")
     |> Client.send()
-    |> StrawHat.Response.and_then(fn data ->
-      data
-      |> Order.new()
-      |> Response.ok()
-    end)
+    |> StrawHat.Response.and_then(&Order.transform_response/1)
   end
 end

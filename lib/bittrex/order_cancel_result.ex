@@ -3,6 +3,8 @@ defmodule Bittrex.OrderCancelResult do
   A Bittrex Order Cancel Result.
   """
 
+  alias StrawHat.Response
+
   @typedoc """
   - `id`: unique ID of this order.
   - `fill_quantity`: fill quantity.
@@ -47,5 +49,12 @@ defmodule Bittrex.OrderCancelResult do
       updated_at: Bittrex.format_datetime(data["updatedAt"]),
       closed_at: Bittrex.format_datetime(data["closedAt"])
     }
+  end
+
+  @doc false
+  def transform_response(data) do
+    data
+    |> new()
+    |> Response.ok()
   end
 end

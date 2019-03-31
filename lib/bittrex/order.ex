@@ -3,6 +3,8 @@ defmodule Bittrex.Order do
   A Bittrex Order.
   """
 
+  alias StrawHat.Response
+
   @typedoc """
   - `id`: unique ID of this order.
   - `market_name`: unique name of the market this order is being placed on.
@@ -79,5 +81,19 @@ defmodule Bittrex.Order do
       updated_at: Bittrex.format_datetime(data["updatedAt"]),
       closed_at: Bittrex.format_datetime(data["closedAt"])
     }
+  end
+
+  @doc false
+  def transform_response(data) when is_list(data) do
+    data
+    |> Enum.map(&new/1)
+    |> Response.ok()
+  end
+
+  @doc false
+  def transform_response(data) do
+    data
+    |> new()
+    |> Response.ok()
   end
 end
