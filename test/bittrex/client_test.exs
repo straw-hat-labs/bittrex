@@ -1,6 +1,6 @@
-defmodule Bittrex.HttpClientTest do
+defmodule Bittrex.ClientTest do
   use Bittrex.TestSupport.CaseTemplate, async: true
-  alias Bittrex.{HttpRequest, HttpClient}
+  alias Bittrex.{HttpRequest, Client}
 
   test "handling API error responses" do
     http_request = with_mock_client() |> HttpRequest.new()
@@ -11,7 +11,7 @@ defmodule Bittrex.HttpClientTest do
     })
 
     assert {:error, {400, %{"message_response" => "Something went wrong"}}} ==
-             HttpClient.send(http_request)
+             Client.send(http_request)
   end
 
   test "handling non JSON response" do
@@ -23,7 +23,7 @@ defmodule Bittrex.HttpClientTest do
       status_code: 500
     })
 
-    assert {:error, {500, "<p>Some HTML <b>here</b></p>"}} == HttpClient.send(http_request)
+    assert {:error, {500, "<p>Some HTML <b>here</b></p>"}} == Client.send(http_request)
   end
 
   test "handling errors" do
@@ -34,6 +34,6 @@ defmodule Bittrex.HttpClientTest do
       response: %{reason: "CAPUN"}
     })
 
-    assert {:error, "CAPUN"} == HttpClient.send(http_request)
+    assert {:error, "CAPUN"} == Client.send(http_request)
   end
 end

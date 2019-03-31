@@ -4,24 +4,24 @@ defmodule Bittrex.Subaccounts do
   """
 
   alias StrawHat.Response
-  alias Bittrex.{Subaccount, HttpClient, HttpRequest}
+  alias Bittrex.{Subaccount, Client, HttpRequest}
 
   @doc """
   List subaccounts. (NOTE: This API is limited to partners and not available
   for traders.)
   """
-  @spec get_subaccounts(%HttpClient{}, %{
+  @spec get_subaccounts(%Client{}, %{
           starting_after: String.t(),
           ending_before: String.t(),
           limit: integer()
-        }) :: Response.t([%Subaccount{}], HttpClient.error())
+        }) :: Response.t([%Subaccount{}], Client.error())
   def get_subaccounts(client, params \\ %{}) do
     client
     |> HttpRequest.new()
     |> HttpRequest.put_method(:get)
     |> HttpRequest.put_path("/subaccounts")
     |> HttpRequest.put_params(params)
-    |> HttpClient.send()
+    |> Client.send()
     |> StrawHat.Response.and_then(fn data ->
       data
       |> Enum.map(&Subaccount.new/1)
@@ -33,14 +33,14 @@ defmodule Bittrex.Subaccounts do
   Create a new subaccount. (NOTE: This API is limited to partners and not
   available for traders.)
   """
-  @spec create_subaccount(%HttpClient{}, %{}) :: Response.t(%Subaccount{}, HttpClient.error())
+  @spec create_subaccount(%Client{}, %{}) :: Response.t(%Subaccount{}, Client.error())
   def create_subaccount(client, params \\ %{}) do
     client
     |> HttpRequest.new()
     |> HttpRequest.put_method(:post)
     |> HttpRequest.put_path("/subaccounts")
     |> HttpRequest.put_params(params)
-    |> HttpClient.send()
+    |> Client.send()
     |> StrawHat.Response.and_then(fn data ->
       data
       |> Subaccount.new()
@@ -52,13 +52,13 @@ defmodule Bittrex.Subaccounts do
   Retrieve details for a specified subaccount. (NOTE: This API is limited to
   partners and not available for traders.)
   """
-  @spec get_subaccount(%HttpClient{}, String.t()) :: Response.t(%Subaccount{}, HttpClient.error())
+  @spec get_subaccount(%Client{}, String.t()) :: Response.t(%Subaccount{}, Client.error())
   def get_subaccount(client, subaccount_id) do
     client
     |> HttpRequest.new()
     |> HttpRequest.put_method(:get)
     |> HttpRequest.put_path("/subaccounts/#{subaccount_id}")
-    |> HttpClient.send()
+    |> Client.send()
     |> StrawHat.Response.and_then(fn data ->
       data
       |> Subaccount.new()

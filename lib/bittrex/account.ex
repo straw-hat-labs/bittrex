@@ -4,7 +4,7 @@ defmodule Bittrex.Account do
   """
 
   alias StrawHat.Response
-  alias Bittrex.{HttpClient, HttpRequest}
+  alias Bittrex.{Client, HttpRequest}
 
   @typedoc """
   - `id`: the account ID associated with this API key / user.
@@ -23,13 +23,13 @@ defmodule Bittrex.Account do
   @doc """
   Retrieve account information.
   """
-  @spec get_account(%HttpClient{}) :: Response.t(%__MODULE__{}, HttpClient.error())
+  @spec get_account(%Client{}) :: Response.t(%__MODULE__{}, Client.error())
   def get_account(client) do
     client
     |> HttpRequest.new()
     |> HttpRequest.put_method(:get)
     |> HttpRequest.put_path("/account")
-    |> HttpClient.send()
+    |> Client.send()
     |> StrawHat.Response.and_then(fn data ->
       data
       |> new()

@@ -1,4 +1,4 @@
-defmodule Bittrex.HttpClient do
+defmodule Bittrex.Client do
   @moduledoc """
   HTTP client used to request data from Bittrex server. It safes the credentials
   of your client, this allow you to have multiple clients.

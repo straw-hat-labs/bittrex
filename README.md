@@ -11,10 +11,10 @@
 First, create the credentials from Bittrex. To manage your API keys please goto
 `Settings -> Manage API Keys` on Bittrex.
 
-You need to create an `Bittrex.HttpClient` using `Bittrex.HttpClient.new/1`
+You need to create an `Bittrex.Client` using `Bittrex.Client.new/1`
 
 ```elixir
-client = Bittrex.HttpClient.new("my api key", "my api secret")
+client = Bittrex.Client.new("my api key", "my api secret")
 ```
 
 Now you can use the available functions for communicate with Bittrex API.
@@ -22,7 +22,7 @@ Now you can use the available functions for communicate with Bittrex API.
 Example:
 
 ```elixir
-client = Bittrex.HttpClient.new("my api key", "my api secret")
+client = Bittrex.Client.new("my api key", "my api secret")
 
 {:ok, markets} = Bittrex.Markets.get_markets(client)
 ```

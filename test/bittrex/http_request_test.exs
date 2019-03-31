@@ -1,11 +1,11 @@
 defmodule Bittrex.HttpRequestTest do
   use Bittrex.TestSupport.CaseTemplate, async: true
-  alias Bittrex.{HttpRequest, HttpClient}
+  alias Bittrex.{HttpRequest, Client}
 
   test "add subaccount id to headers" do
     http_request =
       with_mock_client()
-      |> HttpClient.with_sub_account("pepega")
+      |> Client.with_sub_account("pepega")
       |> HttpRequest.new()
 
     assert %{

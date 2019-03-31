@@ -1,1 +1,1 @@
-Mox.defmock(Bittrex.MockHttpClient, for: Bittrex.HttpClientAdapter)
+Mox.defmock(Bittrex.MockClient, for: Bittrex.ClientAdapter)

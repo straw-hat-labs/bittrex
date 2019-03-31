@@ -1,4 +1,4 @@
-defmodule Bittrex.HttpClientAdapter do
+defmodule Bittrex.ClientAdapter do
   @moduledoc """
   The HTTP client adapter.
   """

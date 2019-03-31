@@ -14,7 +14,7 @@ defmodule Bittrex.TestSupport.CaseTemplate do
   end
 
   def with_mock_client do
-    Bittrex.HttpClient.new("apikey", "apisecret")
+    Bittrex.Client.new("apikey", "apisecret")
   end
 
   def stub_request(config) do
@@ -29,7 +29,7 @@ defmodule Bittrex.TestSupport.CaseTemplate do
       })
 
     stub(
-      Bittrex.MockHttpClient,
+      Bittrex.MockClient,
       :request,
       fn _method, _url, _body, _headers, _options ->
         {tupple_status, response}

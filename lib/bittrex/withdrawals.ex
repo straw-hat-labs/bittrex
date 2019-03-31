@@ -4,25 +4,25 @@ defmodule Bittrex.Withdrawals do
   """
 
   alias StrawHat.Response
-  alias Bittrex.{Withdrawal, HttpClient, HttpRequest}
+  alias Bittrex.{Withdrawal, Client, HttpRequest}
 
   @doc """
   List withdrawals.
   """
-  @spec get_withdrawals(%HttpClient{}, %{
+  @spec get_withdrawals(%Client{}, %{
           status: String.t(),
           currency_symbol: String.t(),
           starting_after: String.t(),
           ending_before: String.t(),
           limit: integer()
-        }) :: Response.t([%Withdrawal{}], HttpClient.error())
+        }) :: Response.t([%Withdrawal{}], Client.error())
   def get_withdrawals(client, params \\ %{}) do
     client
     |> HttpRequest.new()
     |> HttpRequest.put_method(:get)
     |> HttpRequest.put_path("/withdrawals")
     |> HttpRequest.put_params(params)
-    |> HttpClient.send()
+    |> Client.send()
     |> StrawHat.Response.and_then(fn data ->
       data
       |> Enum.map(&Withdrawal.new/1)
@@ -33,13 +33,13 @@ defmodule Bittrex.Withdrawals do
   @doc """
   Retrieve information on a specified withdrawal.
   """
-  @spec get_withdrawal(%HttpClient{}, String.t()) :: Response.t(%Withdrawal{}, HttpClient.error())
+  @spec get_withdrawal(%Client{}, String.t()) :: Response.t(%Withdrawal{}, Client.error())
   def get_withdrawal(client, withdrawal_id) do
     client
     |> HttpRequest.new()
     |> HttpRequest.put_method(:get)
     |> HttpRequest.put_path("/withdrawals/#{withdrawal_id}")
-    |> HttpClient.send()
+    |> Client.send()
     |> StrawHat.Response.and_then(fn data ->
       data
       |> Withdrawal.new()
@@ -50,32 +50,32 @@ defmodule Bittrex.Withdrawals do
   @doc """
   Cancel a withdrawal.
   """
-  @spec delete_withdrawal(%HttpClient{}, String.t()) :: Response.t(String.t(), HttpClient.error())
+  @spec delete_withdrawal(%Client{}, String.t()) :: Response.t(String.t(), Client.error())
   def delete_withdrawal(client, withdrawal_id) do
     client
     |> HttpRequest.new()
     |> HttpRequest.put_method(:delete)
     |> HttpRequest.put_path("/withdrawals/#{withdrawal_id}")
-    |> HttpClient.send()
+    |> Client.send()
     |> StrawHat.Response.and_then(&Response.ok/1)
   end
 
   @doc """
   Create a new withdrawal.
   """
-  @spec create_withdrawal(%HttpClient{}, %{
+  @spec create_withdrawal(%Client{}, %{
           currency_symbol: String.t(),
           quantity: number(),
           address: String.t(),
           message: String.t()
-        }) :: Response.t(%Withdrawal{}, HttpClient.error())
+        }) :: Response.t(%Withdrawal{}, Client.error())
   def create_withdrawal(client, params \\ %{}) do
     client
     |> HttpRequest.new()
     |> HttpRequest.put_method(:post)
     |> HttpRequest.put_path("/withdrawals")
     |> HttpRequest.put_params(params)
-    |> HttpClient.send()
+    |> Client.send()
     |> StrawHat.Response.and_then(fn data ->
       data
       |> Withdrawal.new()

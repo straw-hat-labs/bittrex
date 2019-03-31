@@ -4,18 +4,18 @@ defmodule Bittrex.Status do
   """
 
   alias StrawHat.Response
-  alias Bittrex.{HttpClient, HttpRequest, ServiceStatus}
+  alias Bittrex.{Client, HttpRequest, ServiceStatus}
 
   @doc """
   Check service status.
   """
-  @spec get_status(%HttpClient{}) :: Response.t(%ServiceStatus{}, HttpClient.error())
+  @spec get_status(%Client{}) :: Response.t(%ServiceStatus{}, Client.error())
   def get_status(client) do
     client
     |> HttpRequest.new()
     |> HttpRequest.put_method(:get)
     |> HttpRequest.put_path("/status")
-    |> HttpClient.send()
+    |> Client.send()
     |> StrawHat.Response.and_then(fn data ->
       data
       |> ServiceStatus.new()
