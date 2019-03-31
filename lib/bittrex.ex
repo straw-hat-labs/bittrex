@@ -4,10 +4,10 @@ defmodule Bittrex do
   def format_datetime(nil), do: nil
 
   def format_datetime(datetime_string) do
-    datetime_string
-    |> Integer.parse()
-    |> elem(0)
-    |> DateTime.from_unix!(:millisecond)
+    case NaiveDateTime.from_iso8601(datetime_string) do
+      {:ok, date} -> date
+      _ -> nil
+    end
   end
 
   def camelcase_keys(struct) do
