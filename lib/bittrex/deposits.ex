@@ -23,11 +23,7 @@ defmodule Bittrex.Deposits do
     |> Request.put_path("/deposits")
     |> Request.put_params(params)
     |> Client.send()
-    |> StrawHat.Response.and_then(fn data ->
-      data
-      |> Enum.map(&Deposit.new/1)
-      |> Response.ok()
-    end)
+    |> StrawHat.Response.and_then(&Deposit.transform_response/1)
   end
 
   @doc """
@@ -40,10 +36,6 @@ defmodule Bittrex.Deposits do
     |> Request.put_method(:get)
     |> Request.put_path("/deposits/#{deposit_id}")
     |> Client.send()
-    |> StrawHat.Response.and_then(fn data ->
-      data
-      |> Deposit.new()
-      |> Response.ok()
-    end)
+    |> StrawHat.Response.and_then(&Deposit.transform_response/1)
   end
 end

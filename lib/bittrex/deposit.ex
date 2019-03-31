@@ -3,6 +3,8 @@ defmodule Bittrex.Deposit do
   A Bittrex Deposit.
   """
 
+  alias StrawHat.Response
+
   @typedoc """
   - `id`: unique ID for this deposit.
   - `currency_symbol`: unique symbol of the currency being deposited to.
@@ -51,5 +53,19 @@ defmodule Bittrex.Deposit do
       updated_at: Bittrex.format_datetime(data["updatedAt"]),
       status: data["status"]
     }
+  end
+
+  @doc false
+  def transform_response(data) when is_list(data) do
+    data
+    |> Enum.map(&new/1)
+    |> Response.ok()
+  end
+
+  @doc false
+  def transform_response(data) do
+    data
+    |> new()
+    |> Response.ok()
   end
 end
