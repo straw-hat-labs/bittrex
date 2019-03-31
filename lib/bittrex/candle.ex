@@ -3,6 +3,8 @@ defmodule Bittrex.Candle do
   A Bittrex Candle.
   """
 
+  alias StrawHat.Response
+
   @typedoc """
   - `tick`: time stamp of tick in UTC.
   - `open`: open.
@@ -35,5 +37,12 @@ defmodule Bittrex.Candle do
       volume: data["v"],
       base_volume: data["bv"]
     }
+  end
+
+  @doc false
+  def transform_response(data) when is_list(data) do
+    data
+    |> Enum.map(&new/1)
+    |> Response.ok()
   end
 end

@@ -109,11 +109,7 @@ defmodule Bittrex.Markets do
     |> Request.put_path("/markets/#{market_name}/trades")
     |> Request.put_params(params)
     |> Client.send()
-    |> StrawHat.Response.and_then(fn data ->
-      data
-      |> Enum.map(&Candle.new/1)
-      |> Response.ok()
-    end)
+    |> StrawHat.Response.and_then(&Candle.transform_response/1)
   end
 
   @doc """
