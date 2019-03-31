@@ -30,11 +30,7 @@ defmodule Bittrex.Account do
     |> Request.put_method(:get)
     |> Request.put_path("/account")
     |> Client.send()
-    |> StrawHat.Response.and_then(fn data ->
-      data
-      |> new()
-      |> Response.ok()
-    end)
+    |> StrawHat.Response.and_then(&transform_response/1)
   end
 
   @doc false
@@ -44,5 +40,11 @@ defmodule Bittrex.Account do
       id: data["id"],
       is_international: data["isInternational"]
     }
+  end
+
+  defp transform_response(data) do
+    data
+    |> new()
+    |> Response.ok()
   end
 end
