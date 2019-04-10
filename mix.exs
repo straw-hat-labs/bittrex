@@ -2,7 +2,7 @@ defmodule Bittrex.MixProject do
   use Mix.Project
 
   @name :bittrex
-  @version "3.0.0-alpha.2"
+  @version "3.0.0"
   @elixir_version "~> 1.5"
   @source_url "https://github.com/straw-hat-team/bittrex"
 
