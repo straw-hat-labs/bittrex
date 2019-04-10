@@ -30,12 +30,18 @@ Erlang version:
 
 ```
 
-Package version:
+<details>
+
+<summary>Dependencies</summary>
+
+<!--- Paste the stack trace --->
 
 ```text
-# mix deps | grep straw_hat_map
+# mix deps
 
 ```
+
+</details>
 
 <details>
 
@@ -48,7 +54,6 @@ Package version:
 ```
 
 </details>
-
 
 ### Steps to reproduce
 

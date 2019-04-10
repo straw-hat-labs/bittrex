@@ -12,14 +12,14 @@
 <!--- What types of changes does your code introduce? Fill up with an `x` in
 the box that apply: -->
 
-- [ ] Bug fix (a non-breaking change which fixes an issue)
-- [ ] New feature (a non-breaking change which adds functionality)
-- [ ] Improvement/refactoring (non-breaking change that doesn't add any feature
+- [ ] Bug Fix (a non-breaking change which fixes an issue)
+- [ ] New Feature (a non-breaking change which adds functionality)
+- [ ] Improvement/Refactoring (non-breaking change that doesn't add any feature
   but make things better)
 
 *Does it introduce breaking changes?*
 
-- [ ] Breaking change (fix or feature that would cause existing functionality to
+- [ ] Breaking Change (fix or feature that would cause existing functionality to
   not work as expected)
 
 ### Checklist

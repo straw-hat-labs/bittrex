@@ -5,5 +5,5 @@ about: Questions, documentation, or anything else
 
 <!--
 For general questions, please join Discord server.
-Discord Server: https://discord.gg/uAEnx7j
+Discord Server: https://discord.gg/5WURzBb
 -->
